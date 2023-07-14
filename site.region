@@ -23,8 +23,8 @@
         </nav>
         
         <div class="flex-center-center flex-column" style=" border: 1px solid red;">
-          <div style="max-height: 350px; width: 100%;">
-            <squarespace:block-field id="{website.title}-icon" columns="1"/>
+          <div class="header-icon-container" id="{website.siteTitle}-icon-container">
+            <squarespace:block-field id="{website.siteTitle}-icon" columns="1"/>
           </div>
           <h1 style="padding: 50px;">{collection.title}</h1>
         </div>
