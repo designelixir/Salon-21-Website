@@ -18,13 +18,13 @@
     {.end}
   </ul>
   
-{.repeated section items}
-    <div class="flex-center-center flex-column">
-        {.section collection}
-            <a class="home-navigation-item home-bottom-item" href="{fullUrl}">{navigationTitle}</a>
-        {.end}
-        <div class="home-navigation-block">
-            <squarespace:block-field id="homeFooter" columns="12"/>
-        </div>
+
+<div class="flex-center-center flex-column">
+    
+    <a class="home-navigation-item home-bottom-item" href="/contact">Contact</a>
+    
+    <div class="home-navigation-block">
+        <squarespace:block-field id="homeFooter" columns="12"/>
     </div>
-{.end}
+</div>
+
