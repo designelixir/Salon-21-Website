@@ -22,8 +22,8 @@
           <div class="nav-blank-space"></div>
         </nav>
         
-        <div class="flex-center-center flex-column" style="height: 350px">
-          <squarespace:block-field id="{website.title}-icon" columns="12"/>
+        <div class="flex-center-center flex-column" style="max-height: 350px; border: 1px solid red;">
+          <squarespace:block-field id="{website.title}-icon" columns="1"/>
           <h1 style="padding: 50px;">{collection.title}</h1>
         </div>
       </header>
