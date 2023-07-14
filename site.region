@@ -23,7 +23,7 @@
         </nav>
         
         <div class="flex-center-center flex-column" style=" border: 1px solid red;">
-          <div style="border: 1px solid teal; max-height: 350px">
+          <div style="border: 1px solid teal; max-height: 350px; min-width: 10px;">
             <squarespace:block-field id="{website.title}-icon" columns="1"/>
           </div>
           <h1 style="padding: 50px;">{collection.title}</h1>
