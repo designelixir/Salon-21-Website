@@ -1,0 +1,9 @@
+<footer class="flex-center-center flex-column">
+
+<img class="hover" onclick="window.open('/','_self')" src="../assets/stamp.png" style="height: 60px"/>
+
+<p>Copyright &copy; {website.siteTitle}</p>
+<a href="https://designelixir.studio" id="de-link" target="_blank">Made with &hearts; by Design Elixir</a>
+ <squarespace:block-field id="footerBlocks" columns="12" />
+
+</footer>

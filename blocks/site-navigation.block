@@ -1,4 +1,4 @@
-<nav class="site-navigation">
+<nav class="site-navigation" id="nav-menu-list">
   <ul class="site-navigation-list">
     {.repeated section items}
 
@@ -20,4 +20,7 @@
 
     {.end}
   </ul>
+  <div style="border: 1px solid lime; height: 50%;" class="flex-end-start">
+    <squarespace:block-field id="socialMediaBlocks" columns="1"/>
+  </div>
 </nav>
