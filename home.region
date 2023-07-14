@@ -7,7 +7,7 @@
   </head>
   <body class="flex-start-start" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
     <div class="flex-center-center flex-column" style="height: 100vh; width: 100vw">
-        <img src="{website.socialLogoImageUrl}" style="height: 400px;"/>
+        <img src="{website.socialLogoImageUrl}" style="width: 55%; max-width: 400px;"/>
         <div id="homepage-nav">
             <squarespace:navigation navigationId="homeNav" template="home-navigation" />
         </div>

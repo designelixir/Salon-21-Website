@@ -1,16 +1,14 @@
-<ul class="site-navigation-list">
+<ul class="home-navigation-list flex-center-center flex-column">
     {.repeated section items}
 
-      <li class="site-navigation-item {.section active} active-link{.end}">
+      <li class="home-navigation-item hover {.section active} active-link{.end}">
 
         <!-- collection link -->
-        {.section collection}
-          <a href="{fullUrl}">{navigationTitle}</a>
-        {.end}
+        
 
         <!-- external link -->
         {.section externalLink}
-          <a href="{url}"{.section newWindow} target="_blank"{.end}>
+          <a href="{url}"{.section newWindow} target="_blank"{.end} >
             {title}
           </a>
         {.end}
@@ -19,3 +17,14 @@
 
     {.end}
   </ul>
+  
+{.repeated section items}
+    <div class="flex-center-center flex-column">
+        {.section collection}
+            <a class="home-navigation-item home-bottom-item" href="{fullUrl}">{navigationTitle}</a>
+        {.end}
+        <div class="home-navigation-block">
+            <squarespace:block-field id="homeFooter" columns="12"/>
+        </div>
+    </div>
+{.end}
