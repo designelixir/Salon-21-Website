@@ -1,7 +1,7 @@
 * {box-sizing: border-box;}
 :root {
   --tan: #E1DBCD;
-  --red: #EB271A;
+  --red: #AF3F34;
   --peach: #F4AB8D;
 }
 @font-face {font-family: 'Armoire'; src: url('../assets/fonts/ArmoireVFWeb-VariableVF.woff');}
@@ -9,17 +9,18 @@
 @font-face {font-family: 'Reckless-Reg'; src: url('../assets/fonts/Reckless-Reg.woff'); font-weight: 100;}
 html { overflow-x: hidden; min-height: 100vh;  }
 body { height: 100%; overflow-x:hidden; background-image: url('../assets/texture.jpg'); background-size: cover; }
-.content-container { width: 100vw; min-width: 100vw; background-size: cover; background-position: center top; }
+.content-container { width: 100vw; min-width: 100vw; background-size: cover; background-position: center top;}
 h1 {font-family: 'Armoire', sans-serif; text-transform: uppercase; font-size: 48px;}
 h2 {font-family: 'Reckless-Reg', serif; font-weight: 600; font-size: 36px}
 h3 {font-family: 'Reckless-Reg', serif; font-weight: 400; font-size: 28px;}
 
+h5 {font-family: 'Reckless-Reg', serif; font-weight: 600; font-size: 18px;}
 h6 {font-size: 18px; font-weight: 100; line-height: 18px; padding: 0px; margin: 0px; font-family: 'Armoire', sans-serif; padding: 10px; text-transform: uppercase; color: var(--red)}
 
 p {font-family: 'Reckless-Reg', serif; font-size: 18px;}
 
 header {width: 100%;}
-.header-icon-container {max-height: 250px; width: 250px; margin-top: 50px;}
+.header-icon-container {max-height: 250px; width: 250px; margin: 25px 0px 50px;}
 .logo {max-height: 30px;}
 .nav-blank-space {height: 30px; width: 30px;}
 #nav-menu-list {display: none; height: 100vh; position: fixed; top: 0; left: 0; min-width: 200px; overflow: hidden; background-image: url('../assets/red-texture.png'); background-size: contain;  box-shadow:inset -2px -2px 4px rgba(0,0,0,0.25); }
@@ -29,8 +30,8 @@ header {width: 100%;}
 .site-navigation-item a {font-family: 'Armoire', sans-serif; font-size: 18px; color: white; text-decoration: none; text-transform: uppercase;}
 .site-navigation-item a:hover {font-weight: 900; transform: scale(1.01)}
 .active-link a {text-decoration: underline;}
-#hamburger {margin: 25px;}
-#hamburger img {margin-top: 6px;}
+#hamburger {height: 90px; min-width: 50px;}
+#hamburger img {margin-bottom: 6px;}
 
 .hamburger-x img:nth-child(2){display: none;}
 .hamburger-x img:nth-child(1) {transform: rotate(45deg); position: absolute;}
@@ -59,7 +60,7 @@ header {width: 100%;}
 main {margin: 0px 50px;  max-width: 1000px;}
 
 // BUTTONS 
-.sqs-block-button .sqs-block-button-element {background-color: none!important;}
+.sqs-block-button .sqs-block-button-element {background-color: var(--red); margin-top: 15px;}
 .sqs-block-button .sqs-block-button-element--medium {background-color: none!important;}
 .sqs-block-button .sqs-block-button-element {font-family: 'Armoire', sans-serif!important;}
 
@@ -79,7 +80,7 @@ main {margin: 0px 50px;  max-width: 1000px;}
 .sqs-block-quote .sqs-block-content { max-width: 600px; margin: 25px 0px;}
 blockquote span {display: none;}
 .quote-block .sqs-block-content figure {background-image: url(''); background-size: 100% 100%; background-position: center center; background-repeat: no-repeat; }
-blockquote {font-family: 'Reckless-Reg', sans-serif;  font-weight: 600; font-size: 24px;  text-align: center; padding: 75px;}
+blockquote {font-family: 'Reckless-Reg', sans-serif;  font-size: 22px;  text-align: center; padding: 75px;}
 figcaption {display: none;}
 // GALLERY
 .sqs-gallery-controls {

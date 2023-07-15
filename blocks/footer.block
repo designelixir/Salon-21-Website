@@ -1,9 +1,17 @@
 <footer class="flex-center-center flex-column">
-
-<img class="hover" onclick="window.open('/','_self')" src="{website.socialLogoImageUrl}" style="height: 60px"/>
-
+<img class="hover" id="startConvo" onclick="window.open('/contact','_self')" src="../assets/start.png" style="height: 250px"/>
 <p>Copyright &copy; {website.siteTitle}</p>
 <a href="https://designelixir.studio" id="de-link" target="_blank">Made with &hearts; by Design Elixir</a>
  <squarespace:block-field id="footerBlocks" columns="12" />
 
 </footer>
+
+<script>
+var start = document.getElementById('startConvo')
+start.addEventListener("mouseover", function() {
+    start.src = "../assets/end.png"
+})
+start.addEventListener("mouseout", function() {
+    start.src = "../assets/start.png"
+})
+</script>
