@@ -20,7 +20,5 @@
 
     {.end}
   </ul>
-  <div style="height: 50%;"id="nav-social-container" class="flex-end-start">
-    <squarespace:block-field id="socialMediaBlocks" columns="1"/>
-  </div>
+  
 </nav>
