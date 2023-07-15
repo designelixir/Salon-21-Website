@@ -1,0 +1,83 @@
+<!doctype html>
+<html style="background: var(--tan)">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    {squarespace-headers}
+  </head>
+  <body class="flex-start-start" >
+    
+    <squarespace:navigation navigationId="siteNav" template="site-navigation" />
+    
+    <div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
+
+      <header class="site-header">
+        <nav class="site-navigation flex-center-spacebetween">
+          <div class="hover flex-center-center flex-column" id="hamburger" onclick="toggleMenu()">
+            <img src="../assets/ham1.svg"/>
+            <img src="../assets/ham2.svg"/>
+            <img src="../assets/ham3.svg"/>
+          </div>
+          <img src={website.logoImageUrl} onclick="window.open('/','_self')" class="logo hover" alt="{website.siteTitle} logo"/>
+          <div class="nav-blank-space"></div>
+        </nav>
+        
+        <div class="flex-center-center flex-column">
+          <div class="header-icon-container" id="{website.siteTitle}-icon-container">
+            <squarespace:block-field id="{collection.title}-icon" columns="1"/>
+          </div>
+          <h1>{collection.title}</h1>
+        </div>
+      </header>
+
+      
+
+      <div class="flex-center-center">
+        <main role="main" data-content-field="main-content" class="flex-center-center flex-column">
+        {squarespace.main-content}
+        </main>
+      </div>
+
+      <!--Footer with open block field -->
+      {@|apply footer.block}
+
+    
+
+    
+    <squarespace:script src="site.js" combo="{.if authenticatedAccount}false{.or}true{.end}" />
+    <script>
+function toggleMenu(){
+  var navMenuList = document.getElementById('nav-menu-list');
+  var navMenuItems = document.getElementsByClassName('site-navigation-item');
+  var navHamburger = document.getElementById('hamburger');
+  console.log('clicked')
+  if (navMenuList.style.display === "block"){
+    navMenuList.style.display = "none"
+    navHamburger.classList.remove('hamburger-x')
+    
+  } else {
+    navMenuList.style.display = "block"
+    navHamburger.classList.add('hamburger-x');
+    for (i=0; i<navMenuItems.length; i++){
+      navMenuItems[i].style.animation = "fade-in-left " + i * 0.1 + "s cubic-bezier(.25,.46,.45,.94) both"
+    }
+  }
+  
+  
+
+}
+var figcaption = document.querySelectorAll('figcaption');
+var figcaptionText = figcaption.item(0).innerHTML;
+var formattedFigcaption = figcaptionText.replace('— /', '');
+console.log(formattedFigcaption)
+var figure = document.querySelectorAll('.quote-block .sqs-block-content figure');
+figure.item(0).style.backgroundImage = 'url(assets/' + formattedFigcaption + ".png)";
+
+    </script>
+    <!-- other scripts, and footer code injection -->
+    {squarespace-footers}
+
+  </div>
+</body>
+
+</html>
