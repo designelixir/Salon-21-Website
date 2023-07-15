@@ -1,13 +1,15 @@
 
 
 <!-- item loop -->
-
+{.section items}
+<h1>{collection.title}</h1>
+{.end}
 {.repeated section items}
 
 <div class="flex-center-center">
 
     <div></div>
-    <div class="exhibition-details hover" onclick="window.open('{fullUrl}')">
+    <div class="exhibition-details hover" onclick="window.open('{fullUrl}', '_self')">
         <h6 style="margin-left: 20px;">{structuredContent.startDate|date %B %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
         <h3><img src="../assets/motif1.svg" style="height: 24px" />&nbsp;{title}</h3>
     </div>

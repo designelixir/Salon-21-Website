@@ -1,23 +1,26 @@
+<h1><span style="color: var(--red)">{.section item}{collection.title}/</span> <br> {title}{.or}{title}{.end}</h1>
 {.section item}
-<h1>{title}</h1>
-  <article id="post-{id}" class="{@|item-classes}" data-item-id="{id}">
 
-    <!--POST TILE-->
-    <h1 class="title" data-content-field="title">
-      {.passthrough?}
-        <a href="{sourceUrl}" target="_blank">{title}</a>
-      {.or}
-        {title}
-      {.end}
-    </h1>
-
-    <!--AUTHOR AND DATE-->
-    <p class="meta">
-      <a href="{fullUrl}" class="permalink"><time datetime="{addedOn|date %F}">{addedOn|date %B %d, %Y}</time></a> by <a href="{collection.fullUrl}?author={author.id}">{author.displayName}</a>
-    </p>
+  <div id="post-{id}" data-item-id="{id}" class="flex-start-start flex-column">
+    <div class="flex-start-start" style="width: 100%; border: 1px solid blue;">
+    <img src="{assetUrl}" style="max-width: 300px"/>
+    <div>
+    {.if starred}ON VIEW{.end}
+        <h6 style="margin-left: 20px;">{structuredContent.startDate|date %B %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
+        <p>{body}</p>
+        {.section location}
+        {.section addressTitle}
+            {addressTitle}
+            {addressLine1}
+            {addressLine2}
+            
+        {.end}
+        {.end}
+    </div>
+    </div>
 
     <!--MAIN CONTENT-->
-    {body}
+    
 
     <!--BLOG INJECTION-->
     {postItemInjectCode}
@@ -31,26 +34,9 @@
     {.repeated section tags}
       <a class="tag" href="{collection.fullUrl}?tag={@|url-encode}">{@}</a>{.alternates with},
     {.end}
-
-    <!--SHARE AND LIKE-->
-    {@|like-button}
-    {@|social-button}
-
-
-    <!--LOCATION-->
-    {.section location}
-      {.section addressTitle}
-        {addressTitle}
-        {addressLine1}
-        {addressLine2}
-        {addressCountry}
-      {.end}
-    {.end}
-
-    <!--COMMENTS-->
     {@|comments}
 
-  </article>
+  </div>
 
 {.end}
 
