@@ -1,43 +1,28 @@
-<h1><span style="color: var(--red)">{.section item}{collection.title}/</span> <br> {title}{.or}{title}{.end}</h1>
+<h1><span style="color: var(--red); cursor: pointer;" onclick="window.open('{collection.fullUrl}','_self')">{.section item}{collection.title}/</span> <br> {title}{.or}{title}{.end}</h1>
+<div style=" width: 100%;">
 {.section item}
-
-  <div id="post-{id}" data-item-id="{id}" class="flex-start-start flex-column">
-    <div class="flex-start-start" style="width: 100%;">
-    <img src="{assetUrl}" style="max-width: 300px"/>
-    <div>
-    {.if starred}ON VIEW{.end}
-        <h6 style="margin-left: 20px;">{structuredContent.startDate|date %B %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
-        <p>{body}</p>
-        {.section location}
-        {.section addressTitle}
-            {addressTitle}
-            {addressLine1}
-            {addressLine2}
-            
-        {.end}
-        {.end}
+    <div id="post-{id}" data-item-id="{id}" class="flex-start-start flex-column">
+        <div class="flex-start-start exhibition-details" style="width: 100%;">
+            <div>
+                <h6 style="color: black;">{structuredContent.startDate|date %B %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
+                <img src="{assetUrl}" style="max-width: 400px"/>
+            </div>
+            <div class="exhibition-details-body">
+                {.if starred}<p><span class="pill">On View</span></p>{.end}
+                    <p>{excerpt}</p>
+                    {.section location}
+                    {.section addressTitle}
+                        {addressTitle}
+                        {addressLine1}
+                        {addressLine2}
+                    {.end}
+                {.end}
+            </div>
+        </div>
+        
+        <div style="padding: 20px 0px">{body}</div>
     </div>
-    </div>
-
-    <!--MAIN CONTENT-->
-    
-
-    <!--BLOG INJECTION-->
-    {postItemInjectCode}
-
-    <!--CATEGORIES-->
-    {.repeated section categories}
-      <a class="category" href="{collection.fullUrl}?category={@|url-encode}">{@}</a>{.alternates with},
-    {.end}
-
-    <!--TAGS-->
-    {.repeated section tags}
-      <a class="tag" href="{collection.fullUrl}?tag={@|url-encode}">{@}</a>{.alternates with},
-    {.end}
-    {@|comments}
-
-  </div>
-
 {.end}
+</div>
 
 

@@ -1,0 +1,65 @@
+<nav class="site-navigation flex-center-spacebetween" id="site-navigation-wrapper">
+          <div class="hover flex-center-center flex-column" id="hamburger" onclick="toggleMenu()">
+            <img src="../assets/ham1.svg"/>
+            <img src="../assets/ham2.svg"/>
+            <img src="../assets/ham3.svg"/>
+          </div>
+          <img src={website.logoImageUrl} onclick="window.open('/','_self')" class="logo hover" id="header-logo" alt="{website.siteTitle} logo"/>
+          <div class="nav-blank-space"></div>
+        </nav>
+
+        <script>
+function toggleMenu(){
+  var navMenuList = document.getElementById('nav-menu-list');
+  var navMenuItems = document.getElementsByClassName('site-navigation-item');
+  var navHamburger = document.getElementById('hamburger');
+  console.log('clicked')
+  if (navMenuList.style.display === "block"){
+    navMenuList.style.display = "none"
+    navHamburger.classList.remove('hamburger-x')
+    
+  } else {
+    navMenuList.style.display = "block"
+    navHamburger.classList.add('hamburger-x');
+    for (i=0; i<navMenuItems.length; i++){
+      navMenuItems[i].style.animation = "fade-in-left " + i * 0.1 + "s cubic-bezier(.25,.46,.45,.94) both"
+    }
+  }
+  
+  
+
+}
+
+        var isAtTop = true; // Flag to track if scroll view is at the top
+
+function detectScrollFromTop() {
+  var scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+  var logo = document.getElementById('header-logo');
+  var wrapper = document.getElementById('site-navigation-wrapper');
+  if (scrollPosition > 0 && isAtTop) {
+    
+    logo.src = "{website.socialLogoImageUrl}"
+    logo.style.maxHeight = "50px"
+    logo.style.margin = "0px"
+    wrapper.style.position = "fixed"
+    wrapper.style.top = 0;
+    wrapper.style.left = 0;
+    wrapper.style.backgroundImage = 'url(assets/texture.jpg)'
+    console.log('Scrolled down from the top of the page!');
+  
+  } else if(scrollPosition === 0 ){
+    console.log("back at top")
+    wrapper.style.backgroundImage = ''
+    logo.style.maxHeight = "30px"
+    logo.style.margin = "15px"
+    logo.src = "{website.logoImageUrl}"
+    wrapper.style.position = "relative"
+  }
+
+  
+  isAtTop = (scrollPosition === 0);
+}
+
+// Attach the function to the scroll event
+window.addEventListener('scroll', detectScrollFromTop);
+</script>
