@@ -1,42 +1,19 @@
 
-{.section categoryFilter}
-  <p class="filtered-by">Filtered by Category: {@|safe}</p>
-{.end}
-
-{.section tagFilter}
-  <p class="filtered-by">Filtered by Tag: {@|safe}</p>
-{.end}
-
-{.if authorFilter}
-  <p class="filtered-by">Filtered by Author: {author.displayName}</p>
-{.end}
 
 <!-- item loop -->
+
 {.repeated section items}
 
-  <article id="post-{id}" class="blog-list-item {@|item-classes}" data-item-id="{id}">
-    <!-- main image (thumbnail) -->
-    {.main-image?}
-      <a href="{fullUrl}" class="main-image content-fill">
-        <img {@|image-meta} />
-      </a>
-    {.end}
-    <!-- post title -->
-    <h1 class="title" data-content-field="title">
-      {.passthrough?}
-        <a href="{sourceUrl}" target="_blank">{title}</a>
-      {.or}
-        <a href="{fullUrl}">{title}</a>
-      {.end}
-    </h1>
-    <!-- excerpt or body -->
-    {.if excerpt}
-      {excerpt}
-      <a class="link" href="{fullUrl}">Read More</a>
-    {.or}
-      {body}
-    {.end}
-  </article>
+<div class="flex-center-center">
+
+    <div></div>
+    <div class="exhibition-details hover" onclick="window.open('{urlId}')">
+        <h6 style="margin-left: 20px;">{structuredContent.startDate|date %B %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
+        <h3><img src="../assets/motif1.svg" style="height: 24px" />&nbsp;{title}</h3>
+    </div>
+</div>
+
+ 
 
 {.or}
 
