@@ -19,12 +19,4 @@
   </ul>
   
 
-<div class="flex-center-center flex-column">
-    
-    <a class="home-navigation-item home-bottom-item" href="/contact">Contact</a>
-    
-    <div class="home-navigation-block">
-        <squarespace:block-field id="homeFooter" columns="12"/>
-    </div>
-</div>
 
