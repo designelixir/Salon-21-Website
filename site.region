@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     {squarespace-headers}
   </head>
-  <body class="flex-start-start" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
+  <body class="flex-start-start" >
     
     <squarespace:navigation navigationId="siteNav" template="site-navigation" />
     
-    <div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container">
+    <div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
 
       <header class="site-header">
         <nav class="site-navigation flex-center-spacebetween">
@@ -26,7 +26,7 @@
           <div class="header-icon-container" id="{website.siteTitle}-icon-container">
             <squarespace:block-field id="{collection.title}-icon" columns="1"/>
           </div>
-          <h1 style="padding: 25px;">{collection.title}</h1>
+          <h1>{collection.title}</h1>
         </div>
       </header>
 
@@ -66,6 +66,13 @@ function toggleMenu(){
   
 
 }
+var figcaption = document.querySelectorAll('figcaption');
+var figcaptionText = figcaption.item(0).innerHTML;
+var formattedFigcaption = figcaptionText.replace('— /', '');
+console.log(formattedFigcaption)
+var figure = document.querySelectorAll('.quote-block .sqs-block-content figure');
+figure.item(0).style.backgroundImage = 'url(../assets/' + formattedFigcaption + ".png)";
+
     </script>
     <!-- other scripts, and footer code injection -->
     {squarespace-footers}
