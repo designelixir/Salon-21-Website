@@ -2,7 +2,7 @@
 
 <!-- item loop -->
 {.section items}
-<h1>{collection.title}</h1>
+<h1 style="text-align: center;">{collection.title}</h1>
 {.end}
 {.repeated section items}
 
