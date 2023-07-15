@@ -31,11 +31,11 @@
 
       
 
-      
-        <main role="main" data-content-field="main-content">
+      <div class="flex-center-center">
+        <main role="main" data-content-field="main-content" class="flex-center-center flex-column">
         {squarespace.main-content}
         </main>
-      
+      </div>
 
       <!--Footer with open block field -->
       {@|apply footer.block}
