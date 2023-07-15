@@ -2,7 +2,7 @@
 {.section item}
 
   <div id="post-{id}" data-item-id="{id}" class="flex-start-start flex-column">
-    <div class="flex-start-start" style="width: 100%; border: 1px solid blue;">
+    <div class="flex-start-start" style="width: 100%;">
     <img src="{assetUrl}" style="max-width: 300px"/>
     <div>
     {.if starred}ON VIEW{.end}
