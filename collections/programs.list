@@ -1,8 +1,9 @@
 
 
+
 <!-- item loop -->
 {.section items}
-<h1 style="text-align: center;">{collection.title}</h1>
+<h1 style="text-align: center;">{collection.title} egg</h1>
 {.end}
 {.repeated section items}
 
@@ -44,3 +45,28 @@
 
   </nav>
 {.end}
+
+
+<script>
+function getNextFourMonths() {
+  var currentDate = new Date();
+  var currentMonth = currentDate.getMonth(); // Get the current month (0-11)
+
+  var monthsList = []; // Array to store the next four months
+
+  for (var i = 0; i < 4; i++) {
+    // Calculate the month for each iteration
+    var nextMonth = (currentMonth + i + 1) % 12; // Using modulo 12 to wrap around to January after December
+    var nextMonthName = new Date(0, nextMonth).toLocaleDateString('en-US', { month: 'long' }); // Get the month name
+
+    monthsList.push(nextMonthName); // Add the month name to the list
+  }
+
+  return monthsList;
+}
+
+// Call the function to get the list of next four months
+var nextFourMonths = getNextFourMonths();
+console.log(nextFourMonths);
+
+</script>
