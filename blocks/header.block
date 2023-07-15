@@ -9,55 +9,70 @@
         </nav>
 
         <script>
-function toggleMenu(){
-  var navMenuList = document.getElementById('nav-menu-list');
+
+var isAtTop = true; // Flag to track if scroll view is at the top
+var menuOpen = false;
+
+var navBar = document.getElementById('site-navigation-wrapper')
+var navMenuList = document.getElementById('nav-menu-list');
   var navMenuItems = document.getElementsByClassName('site-navigation-item');
   var navHamburger = document.getElementById('hamburger');
-  console.log('clicked')
+var body = document.querySelector('body')
+var logo = document.getElementById('header-logo');
+var fixedNav = (navBar.style.position === "fixed");
+var divWidth = navMenuList.offsetWidth;
+ 
+
+function toggleMenu(){
   if (navMenuList.style.display === "block"){
     navMenuList.style.display = "none"
     navHamburger.classList.remove('hamburger-x')
+    body.style.marginLeft = 0;
     
   } else {
     navMenuList.style.display = "block"
     navHamburger.classList.add('hamburger-x');
+    body.style.marginLeft = "200px"
     for (i=0; i<navMenuItems.length; i++){
       navMenuItems[i].style.animation = "fade-in-left " + i * 0.1 + "s cubic-bezier(.25,.46,.45,.94) both"
     }
+     
+    
   }
-  
-  
-
+   
 }
 
-        var isAtTop = true; // Flag to track if scroll view is at the top
+    
 
 function detectScrollFromTop() {
   var scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-  var logo = document.getElementById('header-logo');
-  var wrapper = document.getElementById('site-navigation-wrapper');
+ 
+    
+
+
+
   if (scrollPosition > 0 && isAtTop) {
     
     logo.src = "{website.socialLogoImageUrl}"
     logo.style.maxHeight = "50px"
     logo.style.margin = "0px"
-    wrapper.style.position = "fixed"
-    wrapper.style.top = 0;
-    wrapper.style.left = 0;
-    wrapper.style.backgroundImage = 'url(assets/texture.jpg)'
-    console.log('Scrolled down from the top of the page!');
-  
+    navBar.style.position = "fixed"
+    navBar.style.top = 0;
+    navBar.style.backgroundImage = 'url(assets/texture.jpg)'
+   
+    
   } else if(scrollPosition === 0 ){
-    console.log("back at top")
-    wrapper.style.backgroundImage = ''
+    navBar.style.backgroundImage = ''
     logo.style.maxHeight = "30px"
     logo.style.margin = "15px"
     logo.src = "{website.logoImageUrl}"
-    wrapper.style.position = "relative"
+    navBar.style.position = "relative"
+
   }
 
-  
+    
   isAtTop = (scrollPosition === 0);
+  
 }
 
 // Attach the function to the scroll event

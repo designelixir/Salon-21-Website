@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     {squarespace-headers}
   </head>
+  <squarespace:navigation navigationId="siteNav" template="site-navigation" />
   <body class="flex-start-start">
     
-    <squarespace:navigation navigationId="siteNav" template="site-navigation" />
+    
     
     <div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
 
