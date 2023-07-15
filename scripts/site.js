@@ -35,7 +35,7 @@ function quoteBlockBackground(){
     var figcaptionText = figcaption.item(0).innerHTML;
     var formattedFigcaption = figcaptionText.replace('— /', '');
     var figure = document.querySelectorAll('.quote-block .sqs-block-content figure');
-    figure.item(0).style.backgroundImage = 'url("assets/" + formattedFigcaption + ".png")';
+    figure.item(0).style.backgroundImage = 'url(assets/' + formattedFigcaption + '.png)';
   
   
 }
