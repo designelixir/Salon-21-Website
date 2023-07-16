@@ -7,17 +7,18 @@
   </head>
   <squarespace:navigation navigationId="siteNav" template="site-navigation" />
   <body class="flex-start-start">
+    {@|apply header.block}
     
     
-    
-    <div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
+    <div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" >
 
       <header class="site-header">
-        {@|apply header.block}
+        
         
         <div class="flex-center-center flex-column">
-          <div class="header-icon-container" id="{website.siteTitle}-icon-container">
-            <squarespace:block-field id="{collection.title}-icon" columns="1"/>
+          <div class="header-icon-container" id="{website.siteTitle}-icon-container" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
+            
+            
           </div>
           <h1>{collection.title}</h1>
         </div>

@@ -21,6 +21,7 @@ var body = document.querySelector('body')
 var logo = document.getElementById('header-logo');
 var fixedNav = (navBar.style.position === "fixed");
 var divWidth = navMenuList.offsetWidth;
+
  
 
 function toggleMenu(){
@@ -46,33 +47,12 @@ function toggleMenu(){
 
 function detectScrollFromTop() {
   var scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
- 
-    
-
-
-
   if (scrollPosition > 0 && isAtTop) {
-    
-    logo.src = "{website.socialLogoImageUrl}"
-    logo.style.maxHeight = "50px"
-    logo.style.margin = "0px"
-    navBar.style.position = "fixed"
-    navBar.style.top = 0;
-    navBar.style.backgroundImage = 'url(assets/texture.jpg)'
-   
-    
+    logo.style.maxHeight = "20px"
   } else if(scrollPosition === 0 ){
-    navBar.style.backgroundImage = ''
     logo.style.maxHeight = "30px"
-    logo.style.margin = "15px"
-    logo.src = "{website.logoImageUrl}"
-    navBar.style.position = "relative"
-
   }
-
-    
   isAtTop = (scrollPosition === 0);
-  
 }
 
 // Attach the function to the scroll event
