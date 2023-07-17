@@ -19,11 +19,17 @@ h5 {font-family: 'Reckless-Reg', serif; font-weight: 600; font-size: 18px;}
 h6 {font-size: 18px; font-weight: 100; line-height: 18px; padding: 0px; margin: 0px; font-family: 'Armoire', sans-serif; padding: 10px; text-transform: uppercase; color: var(--red)}
 
 p {font-family: 'Reckless-Reg', serif; font-size: 18px; text-align: justify;
-  text-justify: inter-word;}
+  }
  
 p a {font-size: 18px;}
 p a:hover {text-decoration: underline;} 
 p span {color: var(--red); text-decoration: none!important;}
+
+// SQS blocjks
+.image-subtitle-wrapper p{font-size: 18px; font-family: 'Reckless-Reg', sans-serif!important;}
+.image-subtitle-wrapper p span {color: var(--red); text-decoration: none!important;}
+.image-subtitle-wrapper p a {color: var(--red)!important}
+.sqs-block-image .design-layout-card .image-card-wrapper {background-color: unset!important;}
 
 header {width: 100%;}
 .header-icon-container {height: 250px; margin: 0px 0px 50px; width: 100%; background-position: center center; background-size: contain; background-repeat: no-repeat;}
@@ -124,6 +130,7 @@ figcaption {display: none;}
 }
 
 .sqs-image-shape-container-element img {object-fit: unset!important; width: auto!important;}
+
 
 .sqs-gallery-controls .next::before {
   content: url('../assets/next.png');
