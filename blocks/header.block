@@ -30,6 +30,7 @@ function toggleMenu(){
     navHamburger.classList.remove('hamburger-x')
     body.style.marginLeft = 0;
     
+    
   } else {
     navMenuList.style.display = "block"
     navHamburger.classList.add('hamburger-x');

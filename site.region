@@ -16,10 +16,9 @@
         
         
         <div class="flex-center-center flex-column">
-          <div class="header-icon-container" id="{website.siteTitle}-icon-container" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
-            
-            
-          </div>
+          {.if collection.mainImage}
+            <div class="header-icon-container" id="{website.siteTitle}-icon-container" style="background-image: url({collection.mainImage.assetUrl})"></div>
+          {.end}
           <h1>{collection.title}</h1>
         </div>
       </header>
