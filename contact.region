@@ -12,10 +12,17 @@
     
     <div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" >
 
-      <header class="site-header">
-        <div class="contact-header">
-            <h1>{collection.title}</h1>
+      <header class="contact-header flex-center-center">
+        <div class="inner-content-container flex-center-spacebetween " style="height: 800px;">
+            <div style="width: 50vw; height: 100%; border: 1px solid red;">
+                <h1>{collection.title}</h1>
+            </div>
+            <div class="contact-details">
+                <squarespace:block-field id="contactBlock" columns="12"/>
+            </div>
         </div>
+        
+        
       </header>
       
 
