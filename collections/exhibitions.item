@@ -1,29 +1,69 @@
-
-<div style=" width: 100%;">
+<script>
+	function isDateInFutureOrPast(start, end, id) {
+	  const today = new Date();
+	  const targetDiv = document.getElementById(id)
+	  const startDate = new Date(start)
+	  const endDate = new Date(end)
+	var eventTypeDiv = document.getElementById("eventType-" + id)
+	
+	  if (startDate > today) {
+	    targetDiv.classList.add("future-event")
+	    eventTypeDiv.innerHTML = "Upcoming"
+	  } else if (startDate < today && endDate > today){
+	    targetDiv.classList.add("current-event")
+	    eventTypeDiv.innerHTML = "On View"
+	  } else if (startDate < today) {
+	    targetDiv.classList.add("past-event")
+	    eventTypeDiv.innerHTML = "Past Event"
+	  }  else {
+	    console.log("no event defined")
+	  }
+	}
+	
+	
+	
+</script>
 {.section item}
-
-    <div id="post-{id}" data-item-id="{id}" class="flex-start-start flex-column">
-        <div class="flex-start-start exhibition-details" style="width: 100%;">
-            <div>
-                <h6 style="color: black;">{structuredContent.startDate|date %B %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
-                <img src="{assetUrl}" style="max-width: 400px"/>
-            </div>
-            <div class="exhibition-details-body">
-                {.if starred}<p><span class="pill">On View</span></p>{.end}
-                    <p>{excerpt}</p>
-                    {.section location}
-                    {.section addressTitle}
-                        {addressTitle}
-                        {addressLine1}
-                        {addressLine2}
-                    {.end}
-                {.end}
-            </div>
-        </div>
-        
-        <div style="padding: 20px 0px">{body}</div>
-    </div>
-{.end}
+<div class="inner-content-container" id="{id}" data-item-id="{id}" >
+	<div class="flex-center-center flex-column exhibition-container">
+		<div class="flex-start-start exhibition-details" >
+			<div class="exhibition-details-image-container flex-start-start">
+				<div class="mask1 flex-start-start">
+					<img class="masked-image" src="{assetUrl}">
+				</div>
+			</div>
+			<div class="exhibition-details-body">
+				{.if customContent.dateNotDefined}
+				<h6><span class="exhibition-type-label" id="eventType-{id}"></span><br><i style="opacity: 0.25">Check back for dates</i></h6>
+				{.or}
+				<h6>
+					<span class="exhibition-type-label" id="eventType-{id}"></span>&nbsp;&nbsp;<br>
+					<br><span style="font-size: 18px;"> {structuredContent.startDate|date %b %d} - {structuredContent.endDate|date %B %d, %Y} </span>
+				</h6>
+				<h6 style="margin: 0; font-size: 14px;">{structuredContent.startDate|date %l:%M %p} - {structuredContent.endDate|date %l:%M %p}</h6>
+				{.end}
+				{.if location}
+				{.section location}
+				<a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.5">📍{.if addressTitle}{addressTitle}, {.end}{addressLine1}, {addressLine2}</a><br>
+				{.end}
+				{.end}
+				{.if customContent.hideArtistTags}
+				{.or}
+				{.if tags}
+				<img src="../assets/spear.svg" alt="decorative frame" style=" margin-right: 10px;">
+				<p style="font-size: 14px; line-height: 14px;"><i>Featuring:</i></p>
+				<div class="flex-start-start flex-wrap">
+					{.repeated section tags}
+					<a class="artist-tag hover" href="{collection.fullUrl}?tag={@|url-encode}">{@}</a>
+					{.end}
+				</div>
+				{.end}
+				{.end}
+			</div>
+		</div>
+		<script>isDateInFutureOrPast(`{structuredContent.startDate|date %Y-%m-%dT%T}`, `{structuredContent.endDate|date %Y-%m-%dT%T}`, `{id}`)</script>
+		<i>{excerpt}</i>
+		{body}
+	</div>
+	{.end}
 </div>
-
-

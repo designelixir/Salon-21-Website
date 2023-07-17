@@ -37,32 +37,51 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
 </div>
 
 <div id="events-list">
-
+{.if items}
   {.repeated section items}
-      <div class="exhibition hover fade-in" id="{id}">
+    
+      <div class="exhibition fade-in" id="{id}">
           <div class="exhibition-content">
-              {.if customContent.dateNotDefined}<h6><span id="eventType-{id}"></span><br><i>Check back for dates</i></h6>{.or}
-              <h6 class="red-text"><span id="eventType-{id}"></span>&nbsp;&nbsp;<br> {structuredContent.startDate|date %b %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
+              {.if customContent.dateNotDefined}<h6><span class="exhibition-type-label" id="eventType-{id}"></span><br><i style="opacity: 0.25">Check back for dates</i></h6>{.or}
+              <h6 class="red-text"><span class="exhibition-type-label" id="eventType-{id}"></span>&nbsp;&nbsp;<br> {structuredContent.startDate|date %b %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
               {.end}
+              
               <h3 onclick="window.open('{fullUrl}', '_self')">{title}</h3>
-              {.if excerpt}<p>{excerpt}</p>{.end}
+              
+              {.if excerpt}
+                <p class="light-weight" style="font-size: 12px!important;"><i>{excerpt}</i></p>
+              {.end}
               <script>isDateInFutureOrPast(`{structuredContent.startDate|date %Y-%m-%dT%T}`, `{structuredContent.endDate|date %Y-%m-%dT%T}`, `{id}`)</script>
-              <div class="artist-tags-wrapper flex-start-start flex-wrap">
+              
+                {.if customContent.hideArtistTags}
+                {.or}
+                
                 {.if tags}
+                <img src="../assets/spear.svg" alt="decorative frame" style=" margin-right: 10px;">
+                <div class="artist-tags-wrapper flex-start-start flex-wrap">
+
                   {.repeated section tags}
                     <a class="artist-tag hover" href="{collection.fullUrl}?tag={@|url-encode}">{@}</a>
                   {.end}
+                  </div>
                 {.end}
-              </div>
-              <img src="../assets/spear.svg" alt="decorative frame" style=" margin-right: 10px;">
+                {.end}
+              
+              
           </div>
       
       </div>
-      
+    
+  {.end}
+  {.or}
+    <p>No events that fit this criteria.</p>
   {.end}
 </div>
 
-
+<div class="flex-start-spacebetween frames-container" style="margin-top: -50px;">
+  <img src="../assets/frame-decor-right.svg" alt="decorative frame" style="transform: rotate(180deg)">
+  <img src="../assets/frame-decor.svg" alt="decorative frame" style="transform: rotate(180deg)">
+</div>
 
 
 </section>

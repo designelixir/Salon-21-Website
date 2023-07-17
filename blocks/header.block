@@ -4,7 +4,7 @@
             <img src="../assets/ham2.svg"/>
             <img src="../assets/ham3.svg"/>
           </div>
-          <img src={website.logoImageUrl} onclick="toggleMenu()" class="logo hover" id="header-logo" alt="{website.siteTitle} logo"/>
+          <img src={website.logoImageUrl} onclick="window.open('/','_self')" class="logo hover" id="header-logo" alt="{website.siteTitle} logo"/>
           <div class="nav-blank-space"></div>
         </nav>
 

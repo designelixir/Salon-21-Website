@@ -10,14 +10,15 @@
 @font-face {font-family: 'Reckless-Reg'; src: url('../assets/fonts/Reckless-Reg.woff'); font-weight: 100;}
 html { overflow-x: hidden; min-height: 100vh;  }
 body { height: 100%; overflow-x:hidden; background-image: url('../assets/texture.jpg'); background-size: cover; }
-.content-container { width: 100vw; min-width: 100vw; padding-top: 150px; min-height: 100vh; }
+.content-container { width: 100vw; min-width: 100vw; min-height: 100vh; }
+.inner-content-container {width: 90vw; margin: 0 5vw; max-width: 1000px; padding: 0px 25px;}
 .custom-bg-region {background-size: 100%; background-position: center top; background-repeat:repeat-y}
 h1 {font-family: 'Armoire', sans-serif; text-transform: uppercase; font-size: 48px;}
 h2 {font-family: 'Reckless-Reg', serif; font-weight: 600; font-size: 28px}
-h3 {font-family: 'Reckless-Reg', serif; font-weight: 400; font-size: 28px;}
+h3 {font-family: 'Reckless-Reg', serif; font-weight: 600; font-size: 28px;}
 
 h5 {font-family: 'Reckless-Reg', serif; font-weight: 600; font-size: 18px;}
-h6 {font-size: 16px; font-weight: 800; line-height: 18px; padding: 0px; margin: 0px; font-family: 'Armoire', sans-serif; padding: 10px 0px; text-transform: uppercase;}
+h6 {font-size: 14px; font-weight: 800; line-height: 18px; padding: 0px; margin: 0px; font-family: 'Armoire', sans-serif; padding: 10px 0px; text-transform: uppercase;}
 
 p {font-family: 'Reckless-Reg', serif; font-size: 18px; text-align: justify;}
  
@@ -26,7 +27,7 @@ p a:hover {text-decoration: underline;}
 p span {color: var(--red); text-decoration: none!important;}
 
 .red-text {color: var(--red)!important;}
-
+.light-weight {font-weight: 100!important;}
 // SQS blocjks
 .image-subtitle-wrapper p{font-size: 18px; font-family: 'Reckless-Reg', sans-serif!important;}
 .image-subtitle-wrapper p span {color: var(--red); text-decoration: none!important;}
@@ -34,17 +35,22 @@ p span {color: var(--red); text-decoration: none!important;}
 .sqs-block-image .design-layout-card .image-card-wrapper {background-color: unset!important;}
 
 header {width: 100%;}
-.header-icon-container {height: 250px; margin: 0px 0px 50px; width: 100%; background-position: center center; background-size: contain; background-repeat: no-repeat;}
+.site-header {margin-top: 100px;}
+.site-header h1 {text-align: center; padding: 0px 20px}
+.header-icon-container {height: 250px; width: 100%; background-position: center center; background-size: contain; background-repeat: no-repeat;}
 .header-title {margin: 25px; text-align: center;}
 .stamp-container {margin: 25px;}
 .logo {max-height: 30px;}
 .nav-blank-space {height: 30px; width: 50px;}
-#nav-menu-list {display: none; height: 100vh; position: fixed; top: 0; left: 0; min-width: 200px; overflow: hidden; background-image: url('../assets/red-texture.png'); background-size: contain;  box-shadow:inset -2px -2px 4px rgba(0,0,0,0.25); }
+#nav-menu-list {display: none; height: 100vh; padding: 10px; position: fixed; top: 0; left: 0; min-width: 200px; overflow: hidden; background-image: url('../assets/red-texture.png'); background-size: contain;  box-shadow:inset -2px -2px 4px rgba(0,0,0,0.25); }
 #site-navigation-wrapper {width: 100vw; top: 0; padding: 15px; position: fixed; background-size: cover; z-index: 300000; background-image: url('../assets/texture.jpg'); background-repeat: no-repeat; }
 .site-navigation-list {padding: 0px; margin: 0px;}
 .site-navigation-item {list-style-type: none; padding: 20px 40px 20px 10px;}
 .site-navigation-item a {font-family: 'Armoire', sans-serif; font-size: 18px; color: white; text-decoration: none; text-transform: uppercase;}
 .site-navigation-item a:hover {font-weight: 900; transform: scale(1.01)}
+
+.site-navigation-footer .home-navigation-item {color: white;}
+
 .active-link a {text-decoration: underline;}
 #hamburger { width: 50px; }
 #hamburger img {margin-bottom: 6px;}
@@ -59,8 +65,12 @@ header {width: 100%;}
 .home-navigation-item, a {font-family: 'Armoire', sans-serif; font-weight: 600; color: var(--red); font-size: 24px; text-decoration: none; text-transform: uppercase;}
 
 .home-navigation-item:hover {text-decoration: underline;}
-
 .home-bottom-item {font-size: 16px; text-align: center;}
+
+@media screen and (max-width: 750px)  {
+  .header-icon-container {height: 175px;}
+}
+
 // BASIC SETTINGS
 .hover:hover {transform: scale(1.01); cursor: pointer;}
 .flex-center-center {display: flex; align-items: center; justify-content: center;}
@@ -70,18 +80,22 @@ header {width: 100%;}
 .flex-center-end {display: flex; align-content: space-between; align-items: center; justify-content: flex-end;}
 .flex-start-center {display: flex; align-items: flex-start; justify-content: center;}
 .flex-start-spacebetween {display: flex; align-items: flex-start; justify-content: space-between;}
+.flex-center-start {display: flex; align-items: center; justify-content: flex-start;}
 
 .flex-wrap {flex-wrap: wrap;}
 .flex-column {flex-direction: column;}
 .sqs-layout > .sqs-row {margin: 0;}
 .pill {padding: 5px 10px; background-color: var(--peach); border-radius: 25px;}
-main {margin: 0px 50px;  max-width: 1000px;}
-
+main {padding: 0px 50px;  max-width: 1000px;}
+.sqs-block {margin: 0px 0px 50px;}
 // BUTTONS 
 .sqs-block-button .sqs-block-button-element {background-color: var(--red); margin-top: 15px;}
 .sqs-block-button .sqs-block-button-element--medium {background-color: none!important;}
 .sqs-block-button .sqs-block-button-element {font-family: 'Armoire', sans-serif!important;}
+button {border: 0px; padding: 10px 20px;}
 
+.tan-button {background-color: var(--tan); color: black!important;}
+.tan-button a {color: black!important;}
 @media screen and (max-width: 1000px) {
   #site-navigation-wrapper {background-size: 100%;}
 
@@ -90,10 +104,8 @@ main {margin: 0px 50px;  max-width: 1000px;}
 @media screen and (max-width: 640px) {
   @import 'sqs-grid-breaker';
   
-  .exhibition {padding: 0px 25px!important;}
-  .exhibition-details-body {padding: 0px!important;}
-  #events-list {padding: 10px!important;}
-  .exhibition-content {padding: 0px;}
+
+  
 }
 
 .mobile-break {display: block;}
@@ -101,7 +113,8 @@ main {margin: 0px 50px;  max-width: 1000px;}
   .mobile-break { display: none; }
   h1 {font-size: 36px;}
   h2 {font-size: 24px;}
-  h3 {font-size: 22px!important;}
+  h3 {font-size: 24px!important;}
+  
 }
 
 // EXHIBITIONs
@@ -110,24 +123,49 @@ main {margin: 0px 50px;  max-width: 1000px;}
 .frames-container {width: 100%;}
 .frames-container img {height: 100px;}
 
+@media screen and (max-width: 750px)  {
+  .exhibition-details {flex-direction: column; justify-content: flex-start!important;}
+  .exhibition-container {justify-content: flex-start!important; align-items: flex-start!important;}
+  .exhibition-details-body {margin-left: 0px!important;}
+  .exhibition {padding: 0px 10px!important; margin: 10px 25px!important;}
+  
+  #events-list {padding: 10px!important; margin-top: -60px!important;}
+  .exhibition-content {padding: 0px;}
+  
+}
 
 
-.exhibition-content h6 span {color: black; font-weight: 400; background-color: rgba(255,255,255,0.25); line-height: 24px; padding:2px 2px 0px; margin-bottom: 5px;}
 
 .exhibitions-panel h5 {color: gray;}
 .active-cat {color: var(--red)!important}
 .exhibition h3 {padding: 0px; margin: 0;}
 .exhibition h3:hover {text-decoration: underline; cursor:pointer}
-.exhibition-details-body {width: 100%;}
-.exhibition {display: none; width: 100%; padding: 20px 50px; }
+.exhibition-details-body {width: 100%; margin-left: 25px;}
+.exhibition {display: none; padding: 10px; margin: 20px 50px; background-color: rgba(255,255,255,0.15) }
 .exhibition-content {padding: 20px;}
 
 
 .show-event {display: block;}
 
 .artist-tags-wrapper {padding: 20px 0px;}
-.artist-tag {margin: 5px; color: black; border: 0.25px solid black; font-size: 12px; padding: 5px 10px; border-radius: 25px;}
-.artist-tag:hover {background-color: var(--gold);}
+.artist-tag {margin: 5px; color: black; border: 0.1px solid rgba(0,0,0,0.25); font-size: 12px; padding: 5px 10px; }
+.artist-tag:hover {background-color: var(--gold); color: white;}
+
+
+.exhibition-details-date h6 {text-align: center;}
+.exhibition-details-image-container {width: 350px; height: 452px; background-image: url('../assets/frame3.png'); background-size: contain; background-repeat: no-repeat;  }
+.mask1 {
+  -webkit-mask-image: url('../assets/frame3-mask.png');
+  mask-image: url('../assets/frame3-mask.png');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;    
+  mask-size: contain;
+  margin: 40px 35px;
+  
+}
+.masked-image {width: auto; height: 374px; width: 283px; object-fit: cover; }
+
+.exhibition-type-label {color: black; font-weight: 400; background-color: rgba(255,255,255,0.25); line-height: 24px; padding:2px 2px 0px; margin-bottom: 5px;}
 
 // BLOCKQUOTE 
 .quote-block {display: flex; align-items: center; justify-content: center;}
@@ -136,6 +174,11 @@ blockquote span {display: none;}
 .quote-block .sqs-block-content figure {background-image: url(''); background-size: 100% 100%; background-position: center center; background-repeat: no-repeat; }
 blockquote {font-family: 'Reckless-Reg', sans-serif; font-weight: 600;  font-size: 22px; padding:3.5rem; text-align: center; }
 figcaption {display: none;}
+
+@media screen and (max-width: 750px)  {
+  blockquote {font-size: 18px; padding: 3rem 2.5rem;}
+}
+
 // GALLERY
 .sqs-gallery-controls {
   
@@ -160,11 +203,15 @@ figcaption {display: none;}
 .previous {order: 1; }
 .next {order: 2;}
 
-.sqs-gallery-meta-container { display: flex;
+.sqs-gallery-meta-container { 
+ height: 75px;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.sqs-block-gallery {min-height: 550px; }
+.sqs-block-gallery .sqs-intrinsic {padding-bottom: 70%!important; margin-bottom: 75px;}
 .sqs-image-shape-container-element img {object-fit: unset!important; width: auto!important;}
 
 
@@ -175,8 +222,13 @@ figcaption {display: none;}
   content: url('../assets/prev.png');
 }
 
+@media screen and (max-width: 750px)  {
+  .sqs-block-gallery .sqs-intrinsic {padding-bottom: 100%!important;  margin-bottom: 0px;}
+  .sqs-block-gallery {min-height: 450px;}
+}
+
 // FOOTER
-footer {margin-top: 50px; padding: 25px;}
+footer { padding: 25px;}
 #de-link {font-size: 12px; font-family: 'Reckless-Reg', sans-serif;  color: rgba(0,0,0,0.75); text-decoration: none; margin: 10px 0px; text-transform:none}
 footer p {font-size: 16px; margin: 10px 0px 0px 0px;}
 
