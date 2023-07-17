@@ -3,6 +3,7 @@
   --tan: #E1DBCD;
   --red: #e32027;
   --peach: #F4AB8D;
+  --gold: #a7865d;
 }
 @font-face {font-family: 'Armoire'; src: url('../assets/fonts/ArmoireVFWeb-VariableVF.woff');}
 
@@ -68,6 +69,7 @@ header {width: 100%;}
 .flex-start-center {display: flex; align-items: flex-start; justify-content: center;}
 .flex-start-spacebetween {display: flex; align-items: flex-start; justify-content: space-between;}
 
+.flex-wrap {flex-wrap: wrap;}
 .flex-column {flex-direction: column;}
 .sqs-layout > .sqs-row {margin: 0;}
 .pill {padding: 5px 10px; background-color: var(--peach); border-radius: 25px;}
@@ -95,9 +97,15 @@ main {margin: 0px 50px;  max-width: 1000px;}
 .active-cat {color: var(--red)!important}
 .exhibition-details h3 {padding: 0px; margin: 0;}
 .exhibition-details-body {width: 100%; padding: 25px}
-.exhibition-details {margin: 25px 0px; display: none; width: 100%;}
+.exhibition-details {display: none; width: 100%;}
+.exhibition-content { padding: 20px; margin: 10px;}
+.exhibition-details:hover { cursor: pointer; border: 1px solid black;}
+.exhibition-details:hover .exhibition-content {background-color: var(--tan);}
 .show-event {display: block;}
 
+.artist-tags-wrapper {padding: 20px 0px;}
+.artist-tag {margin: 5px; color: black; border: 0.25px solid black; font-size: 12px; padding: 5px 10px; border-radius: 25px;}
+.artist-tag:hover {background-color: var(--gold);}
 // BLOCKQUOTE 
 .quote-block {display: flex; align-items: center; justify-content: center;}
 .sqs-block-quote .sqs-block-content { max-width: 600px; margin: 25px 0px;}
