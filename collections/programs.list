@@ -28,7 +28,7 @@
 
 
 {.end}
-
+<squarespace:block-field id="eventsBlockField" columns="12"/>
 
 <script>
 
