@@ -1,0 +1,38 @@
+<!doctype html>
+<html style="background: var(--tan)">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    {squarespace-headers}
+  </head>
+  <squarespace:navigation navigationId="siteNav" template="site-navigation" />
+  <body class="flex-start-start">
+    {@|apply header.block}
+    
+    
+    <div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" >
+
+      <header class="site-header">
+        <div class="contact-header">
+            <h1>{collection.title}</h1>
+        </div>
+      </header>
+      
+
+      <div class="flex-center-center">
+        <main role="main" data-content-field="main-content" class="flex-center-center flex-column">
+        {squarespace.main-content}
+        </main>
+      </div>
+
+      <!--Footer with open block field -->
+      {@|apply footer.block}
+
+    <squarespace:script src="site.js" combo="{.if authenticatedAccount}false{.or}true{.end}" />
+    <!-- other scripts, and footer code injection -->
+    {squarespace-footers}
+
+  </div>
+</body>
+
+</html>
