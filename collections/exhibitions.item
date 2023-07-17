@@ -1,6 +1,7 @@
-<h1><span style="color: var(--red); cursor: pointer;" onclick="window.open('{collection.fullUrl}','_self')">{.section item}{collection.title}/</span> <br> {title}{.or}{title}{.end}</h1>
+
 <div style=" width: 100%;">
 {.section item}
+
     <div id="post-{id}" data-item-id="{id}" class="flex-start-start flex-column">
         <div class="flex-start-start exhibition-details" style="width: 100%;">
             <div>

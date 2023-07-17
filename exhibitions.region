@@ -6,17 +6,15 @@
     {squarespace-headers}
   </head>
   <squarespace:navigation navigationId="siteNav" template="site-navigation" />
-  <body class="flex-start-start">
+  <body class="flex-center-center flex-column">
     {@|apply header.block}
     
     
     <div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" >
 
       <header class="site-header">
-        
-        
         <div class="flex-center-center flex-column">
-          <h1>{collection.title}</h1>
+          <h1 class="hover" onclick="window.open('{collection.fullUrl}','_self')" id="page-title-h1">{collection.title}{.if item.title}/<br><span class="red-text">{item.title}{.end}</h1>
         </div>
       </header>
       

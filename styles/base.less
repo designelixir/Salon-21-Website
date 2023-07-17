@@ -17,13 +17,15 @@ h2 {font-family: 'Reckless-Reg', serif; font-weight: 600; font-size: 28px}
 h3 {font-family: 'Reckless-Reg', serif; font-weight: 400; font-size: 28px;}
 
 h5 {font-family: 'Reckless-Reg', serif; font-weight: 600; font-size: 18px;}
-h6 {font-size: 16px; font-weight: 100; line-height: 18px; padding: 0px; margin: 0px; font-family: 'Armoire', sans-serif; padding: 10px 0px; text-transform: uppercase; color: var(--red)}
+h6 {font-size: 16px; font-weight: 800; line-height: 18px; padding: 0px; margin: 0px; font-family: 'Armoire', sans-serif; padding: 10px 0px; text-transform: uppercase;}
 
 p {font-family: 'Reckless-Reg', serif; font-size: 18px; text-align: justify;}
  
 p a {font-size: 18px;}
 p a:hover {text-decoration: underline;} 
 p span {color: var(--red); text-decoration: none!important;}
+
+.red-text {color: var(--red)!important;}
 
 // SQS blocjks
 .image-subtitle-wrapper p{font-size: 18px; font-family: 'Reckless-Reg', sans-serif!important;}
@@ -82,30 +84,51 @@ main {margin: 0px 50px;  max-width: 1000px;}
 
 @media screen and (max-width: 1000px) {
   #site-navigation-wrapper {background-size: 100%;}
+
 }
 
 @media screen and (max-width: 640px) {
   @import 'sqs-grid-breaker';
-  h1 {font-size: 36px;}
-  .exhibition-details {flex-wrap: wrap;}
+  
+  .exhibition {padding: 0px 25px!important;}
   .exhibition-details-body {padding: 0px!important;}
+  #events-list {padding: 10px!important;}
+  .exhibition-content {padding: 0px;}
+}
+
+.mobile-break {display: block;}
+@media screen and (max-width: 600px)  {
+  .mobile-break { display: none; }
+  h1 {font-size: 36px;}
+  h2 {font-size: 24px;}
+  h3 {font-size: 22px!important;}
 }
 
 // EXHIBITIONs
-#exhibitions-list {padding: 20px;}
+#exhibitions-list {width: 90vw; max-width: 1000px;}
+#events-list {margin-top: -50px; }
+.frames-container {width: 100%;}
+.frames-container img {height: 100px;}
+
+
+
+.exhibition-content h6 span {color: black; font-weight: 400; background-color: rgba(255,255,255,0.25); line-height: 24px; padding:2px 2px 0px; margin-bottom: 5px;}
+
 .exhibitions-panel h5 {color: gray;}
 .active-cat {color: var(--red)!important}
-.exhibition-details h3 {padding: 0px; margin: 0;}
-.exhibition-details-body {width: 100%; padding: 25px}
-.exhibition-details {display: none; width: 100%;}
-.exhibition-content { padding: 20px; margin: 10px;}
-.exhibition-details:hover { cursor: pointer; border: 1px solid black;}
-.exhibition-details:hover .exhibition-content {background-color: var(--tan);}
+.exhibition h3 {padding: 0px; margin: 0;}
+.exhibition h3:hover {text-decoration: underline; cursor:pointer}
+.exhibition-details-body {width: 100%;}
+.exhibition {display: none; width: 100%; padding: 20px 50px; }
+.exhibition-content {padding: 20px;}
+
+
 .show-event {display: block;}
 
 .artist-tags-wrapper {padding: 20px 0px;}
 .artist-tag {margin: 5px; color: black; border: 0.25px solid black; font-size: 12px; padding: 5px 10px; border-radius: 25px;}
 .artist-tag:hover {background-color: var(--gold);}
+
 // BLOCKQUOTE 
 .quote-block {display: flex; align-items: center; justify-content: center;}
 .sqs-block-quote .sqs-block-content { max-width: 600px; margin: 25px 0px;}

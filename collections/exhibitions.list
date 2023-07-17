@@ -1,4 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script>
 
 function isDateInFutureOrPast(start, end, id) {
@@ -12,73 +11,67 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
 
   if (startDate > today) {
     targetDiv.classList.add("future-event")
-    eventTypeDiv.innerHTML = "Upcoming - "
-    console.log("future")
+    eventTypeDiv.innerHTML = "Upcoming"
   } else if (startDate < today && endDate > today){
     targetDiv.classList.add("current-event")
-    eventTypeDiv.innerHTML = "On View - "
-    console.log("current")
+    eventTypeDiv.innerHTML = "On View"
   } else if (startDate < today) {
     targetDiv.classList.add("past-event")
-    console.log("past")
+    eventTypeDiv.innerHTML = "Past Event"
   }  else {
     console.log("no event defined")
   }
-  
 }
-
-// Usage example:
-
-
-
 </script>
 
-<!-- item loop -->
-<div id="exhibitions-list" >
+<section id="exhibitions-list">
 
 <div class="exhibitions-panel flex-start-start">
   <h5 id="on-view-cat" class="active-cat hover" onclick="toggleSections('onview')">On View & Upcoming</h5>
   <h5 >&nbsp;/&nbsp;</h5>
   <h5 id="archive-cat" class="hover" onclick="toggleSections('archive')">Archive</h5>
 </div>
+<div class="flex-start-spacebetween frames-container">
+  <img src="../assets/frame-decor.svg" alt="decorative frame">
+  <img src="../assets/frame-decor-right.svg" alt="decorative frame">
+</div>
 
+<div id="events-list">
 
-
-
-<div class="flex-start-start flex-column" style="width: 90vw; max-width: 1000px; padding: 0px 50px;">
-<div class="flex-start-spacebetween" style="position: absolute; width: 90vw; left: 0; margin: 0 5vw;">
-    <img src="../assets/frame-decor.svg" style="height: 100px; ">
-    <img src="../assets/frame-decor-right.svg" style="height: 100px">
-  </div>
-  <div style="height: 25px"></div>
-{.repeated section items}
-    <div class="exhibition-details fade-in" onclick="window.open('{fullUrl}', '_self')" id="{id}">
-        <div class="exhibition-content">
-            <h6><span style="color: black; font-weight: 800;" id="eventType-{id}"></span>{structuredContent.startDate|date %b %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
-            <h3>{title}</h3>
-            {.if excerpt}<p>{excerpt}</p>{.end}
-            <script>isDateInFutureOrPast(`{structuredContent.startDate|date %Y-%m-%dT%T}`, `{structuredContent.endDate|date %Y-%m-%dT%T}`, `{id}`)</script>
-            <div class="artist-tags-wrapper flex-start-start flex-wrap">
-            {#  <p style="line-height: 0; font-size: 14px;">Featuring Artists:</p>  }
-              {.if tags}
-                {.repeated section tags}
-                  <a class="artist-tag hover" href="{collection.fullUrl}?tag={@|url-encode}">{@}</a>
-                {.end}
+  {.repeated section items}
+      <div class="exhibition hover fade-in" id="{id}">
+          <div class="exhibition-content">
+              {.if customContent.dateNotDefined}<h6><span id="eventType-{id}"></span><br><i>Check back for dates</i></h6>{.or}
+              <h6 class="red-text"><span id="eventType-{id}"></span>&nbsp;&nbsp;<br> {structuredContent.startDate|date %b %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
               {.end}
-            </div>
-        </div>
-    </div>
-{.end}
+              <h3 onclick="window.open('{fullUrl}', '_self')">{title}</h3>
+              {.if excerpt}<p>{excerpt}</p>{.end}
+              <script>isDateInFutureOrPast(`{structuredContent.startDate|date %Y-%m-%dT%T}`, `{structuredContent.endDate|date %Y-%m-%dT%T}`, `{id}`)</script>
+              <div class="artist-tags-wrapper flex-start-start flex-wrap">
+                {.if tags}
+                  {.repeated section tags}
+                    <a class="artist-tag hover" href="{collection.fullUrl}?tag={@|url-encode}">{@}</a>
+                  {.end}
+                {.end}
+              </div>
+              <img src="../assets/spear.svg" alt="decorative frame" style=" margin-right: 10px;">
+          </div>
+      
+      </div>
+      
+  {.end}
 </div>
 
 
 
-</div>
+
+</section>
+
 
 <script>
 
 function toggleSections(section){
-  var events = document.getElementsByClassName('exhibition-details')
+  var events = document.getElementsByClassName('exhibition')
   var eventsLength = events.length;
 
   var archivedEvents = document.getElementsByClassName('past-event')
