@@ -28,7 +28,7 @@
 
 
 {.end}
-<div class="flex-center-center" style="border: 1px solid red; width: 100%;">
+<div class="flex-center-center" style="border: 1px solid red; width: 100%; height: 50vh;">
   <squarespace:block-field id="eventsBlockField" columns="12"/>
 </div>
 
