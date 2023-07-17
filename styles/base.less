@@ -4,6 +4,9 @@
   --red: #e32027;
   --peach: #F4AB8D;
   --gold: #a7865d;
+  --color-1: #eb4730;
+    --color-2: #f6cacf;
+    --color-3: #f4ab8d;
 }
 @font-face {font-family: 'Armoire'; src: url('../assets/fonts/ArmoireVFWeb-VariableVF.woff');}
 
@@ -130,11 +133,8 @@ button {border: 0px; padding: 10px 20px;}
   .exhibition {padding: 0px 10px!important; margin: 10px 25px!important;}
   
   #events-list {padding: 10px!important; margin-top: -60px!important;}
-  .exhibition-content {padding: 0px;}
-  
+  .exhibition-content {padding: 0px;} 
 }
-
-
 
 .exhibitions-panel h5 {color: gray;}
 .active-cat {color: var(--red)!important}
@@ -166,6 +166,22 @@ button {border: 0px; padding: 10px 20px;}
 .masked-image {width: auto; height: 374px; width: 283px; object-fit: cover; }
 
 .exhibition-type-label {color: black; font-weight: 400; background-color: rgba(255,255,255,0.25); line-height: 24px; padding:2px 2px 0px; margin-bottom: 5px;}
+
+// CALENDAR
+#month-list {margin-bottom: 25px;}
+th, td {padding: 2px;}
+.month-label {padding: 15px 20px 10px; font-size: 18px;}
+.active-month {background-image: url('../assets/circled-event-1.png'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center center;}
+td {width: 100px; height: 100px; }
+.date-cell { height: 100%; width: 100%; padding: 5px;}
+.dead-date {opacity: 0.25; height: 100%; width: 100%;}
+
+.cal-color-1 {background-color: var(--color-1);}
+.cal-color-2 {background-color: var(--color-2);}
+.cal-color-3 {background-color: var(--color-3);}
+
+.hidden-calendar-table {display: none;}
+.active-calendar-table {display: block!important;}
 
 // BLOCKQUOTE 
 .quote-block {display: flex; align-items: center; justify-content: center;}

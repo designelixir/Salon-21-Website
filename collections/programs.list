@@ -1,10 +1,16 @@
 
 
+<div class="flex-center-center" id="month-list">
+
+</div>
+
+<div id="calendar-container">
+
+</div>
+
 
 <!-- item loop -->
-{.section items}
-<h1 style="text-align: center;">{collection.title} egg</h1>
-{.end}
+
 {.repeated section items}
 
 <div class="flex-center-center">
@@ -18,55 +24,142 @@
 
  
 
-{.or}
 
-  <!-- no items means no blog posts -->
-  <p><em>No blog posts yet.</em></p>
 
-{.end}
 
-<!-- pagination -->
-{.if pagination}
-  <nav class="blog-list-pagination">
-
-    <!-- newer page -->
-    {.if pagination.prevPage}
-      <a href="{pagination.prevPageUrl}">Newer</a>
-    {.or}
-      <a class="disabled">Newer</a>
-    {.end}
-
-    <!-- older page -->
-    {.if pagination.nextPage}
-      <a href="{pagination.nextPageUrl}">Older</a>
-    {.or}
-      <a class="disabled">Older</a>
-    {.end}
-
-  </nav>
 {.end}
 
 
 <script>
-function getNextFourMonths() {
+
+
+ var monthListDiv = document.getElementById('month-list')
+  
+const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+function createCalendar(month, year) {
+  
+  const firstDayOfMonth = new Date(year, month, 1);
+  const lastDayOfMonth = new Date(year, month + 1, 0);
+  const numDaysInMonth = lastDayOfMonth.getDate();
+  const startingDayOfWeek = firstDayOfMonth.getDay();
+
+  const table = document.createElement('table');
+  console.log('creating calendar for ' + `${monthNames[month]}`)
+  table.id = `${monthNames[month]}` + '-table'
+
+  if (month === todaysMonth){
+    table.classList.add('active-calendar-table')
+  } else {
+    table.classList.add('hidden-calendar-table')
+  }
+  
+
+
+  const headerRow = table.insertRow();
+  for (const dayOfWeek of daysOfWeek) {
+    const th = document.createElement('th');
+    th.innerText = dayOfWeek;
+    headerRow.appendChild(th);
+  }
+
+  let currentDate = 1;
+  for (let i = 0; i < 6; i++) { // Maximum 6 rows for the calendar
+    const weekRow = table.insertRow();
+    for (let j = 0; j < 7; j++) {
+      const cell = weekRow.insertCell();
+      if (i === 0 && j < startingDayOfWeek) {
+        cell.innerHTML = '<div class="date-cell dead-date"></div>';
+        
+      } else if (currentDate <= numDaysInMonth) {
+        cell.innerHTML = '<div class="date-cell live-date"><div class="date-cell-day">'+ currentDate +'</div></div>';
+        currentDate++;
+      }
+    }
+  }
+
+  return table.outerHTML;
+}
+
+// Example usage:
   var currentDate = new Date();
-  var currentMonth = currentDate.getMonth(); // Get the current month (0-11)
+  var currentMonth = currentDate.getMonth(); 
+  var year = currentDate.getFullYear();
+const todaysMonth = 6; // July (0-based index)
+const todaysYear = 2023;
+const calendar = createCalendar(currentMonth, todaysYear);
+var calContainer = document.getElementById('calendar-container')
 
+calContainer.innerHTML = calendar;
+
+function createNextFourCalendars(monthsList){
+  console.log("months list " + monthsList)
+  for (var i = 1; i <= monthsList.length; i++){
+    var newCalendar = createCalendar(currentMonth + i, year)
+    calContainer.innerHTML += newCalendar
+}
+}
+
+
+function getNextFourMonths() {
+
+ var currentMonthLabel = '<h6 class="month-label active-month" onclick="toggleCalendars('+ `${monthNames[currentMonth]}` +')">' + `${monthNames[currentMonth]}` + '</h6>'
+  monthListDiv.innerHTML += currentMonthLabel;
   var monthsList = []; // Array to store the next four months
-
+  var monthsNumberList = []
   for (var i = 0; i < 4; i++) {
-    // Calculate the month for each iteration
-    var nextMonth = (currentMonth + i + 1) % 12; // Using modulo 12 to wrap around to January after December
+    
+    var nextMonth = (currentMonth + i + 1) % 12; 
+    monthsNumberList.push(nextMonth)
     var nextMonthName = new Date(0, nextMonth).toLocaleDateString('en-US', { month: 'long' }); // Get the month name
 
     monthsList.push(nextMonthName); // Add the month name to the list
   }
 
-  return monthsList;
+  for (var i = 0; i < monthsNumberList.length; i++){
+    var workingMonth = monthNames[monthsNumberList[i]]
+    console.log(workingMonth)
+    var monthLabel = '<h6 class="month-label" onclick="toggleCalendars("'+ `${workingMonth}` +'-table")">' + monthsList[i] + '</h6>'
+    monthListDiv.innerHTML += '<div class="next-month-calendar">' + monthLabel + '</div>';
+  }
+  createNextFourCalendars(monthsNumberList)
+  return monthsList
+
 }
 
 // Call the function to get the list of next four months
 var nextFourMonths = getNextFourMonths();
-console.log(nextFourMonths);
 
+function toggleCalendars(month){
+  var targetDiv = document.getElementById(month + '-table');
+  console.log(targetDiv)
+  targetDiv.classList.add('active-calendar-table')
+
+  
+}
+
+
+
+function colorCalendar(){
+  var dateCells = document.getElementsByClassName('date-cell');
+  var counter = 1;
+  for (var i = 0; i < dateCells.length; i++){
+    counter++;
+    if (counter > 3){
+      counter = 1;
+    }
+    if (counter === 1){
+      dateCells[i].classList.add("cal-color-1")
+      
+    } else if (counter === 2) {
+      dateCells[i].classList.add("cal-color-2")
+      
+    } else if (counter === 3) {
+      
+      dateCells[i].classList.add('cal-color-3')
+    }
+  }
+  console.log(dateCells)
+}
+colorCalendar();
 </script>
