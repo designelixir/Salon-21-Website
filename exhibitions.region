@@ -5,22 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     {squarespace-headers}
   </head>
-  <body class="flex-start-start" >
+  <squarespace:navigation navigationId="siteNav" template="site-navigation" />
+  <body class="flex-start-start">
+    {@|apply header.block}
     
-    <squarespace:navigation navigationId="siteNav" template="site-navigation" />
     
-    <div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
+    <div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" >
 
       <header class="site-header">
-        {@|apply header.block}
+        
         
         <div class="flex-center-center flex-column">
-          <div class="header-icon-container" id="{website.siteTitle}-icon-container">
-            <squarespace:block-field id="{collection.title}-icon" columns="1"/>
-          </div>
+          <h1>{collection.title}</h1>
         </div>
       </header>
-
       
 
       <div class="flex-center-center">
@@ -31,9 +29,8 @@
 
       <!--Footer with open block field -->
       {@|apply footer.block}
-    
-    <squarespace:script src="site.js" combo="{.if authenticatedAccount}false{.or}true{.end}" />
 
+    <squarespace:script src="site.js" combo="{.if authenticatedAccount}false{.or}true{.end}" />
     <!-- other scripts, and footer code injection -->
     {squarespace-footers}
 

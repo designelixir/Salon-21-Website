@@ -1,46 +1,103 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
 
+function isDateInFutureOrPast(start, end, id) {
+  const today = new Date();
+  const targetDiv = document.getElementById(id)
+  const startDate = new Date(start)
+  const endDate = new Date(end)
+  console.log(start,  end)
+  
+
+
+  if (startDate > today) {
+    targetDiv.classList.add("future-event")
+    console.log("future")
+  } else if (startDate < today) {
+    targetDiv.classList.add("past-event")
+    console.log("past")
+  } else if (startDate < today && endDate > today){
+    targetDiv.classList.add("current-event")
+    console.log("current")
+  } else {
+    console.log("no event defined")
+  }
+  
+}
+
+// Usage example:
+
+
+
+</script>
 
 <!-- item loop -->
-{.section items}
-<h1 style="text-align: center;">{collection.title}</h1>
-{.end}
-{.repeated section items}
+<div id="exhibitions-list" >
 
-<div class="flex-center-center">
-
-    <div></div>
-    <div class="exhibition-details hover" onclick="window.open('{fullUrl}', '_self')">
-        <h6 style="margin-left: 20px;">{structuredContent.startDate|date %B %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
-        <h3><img src="../assets/motif1.svg" style="height: 24px" />&nbsp;{title}</h3>
-    </div>
+<div class="exhibitions-panel flex-start-start">
+  <h5 id="on-view-cat" class="active-cat hover" onclick="toggleSections('onview')">On View & Upcoming</h5>
+  <h5 >&nbsp;/&nbsp;</h5>
+  <h5 id="archive-cat" class="hover" onclick="toggleSections('archive')">Archive</h5>
 </div>
 
- 
+<div class="flex-start-spacebetween" style="position: absolute; width: 90vw; left: 0; margin: 0 5vw;">
+<img src="../assets/frame-decor.svg" style="height: 100px">
+<img src="../assets/frame-decor-right.svg" style="height: 100px">
+</div>
 
-{.or}
 
-  <!-- no items means no blog posts -->
-  <p><em>No blog posts yet.</em></p>
 
+<div class="flex-start-start flex-column" style="width: 90vw; max-width: 1000px; padding: 50px;">
+
+{.repeated section items}
+    <div class="exhibition-details hover fade-in" onclick="window.open('{fullUrl}', '_self')" id="{id}">
+        <h6 >{structuredContent.startDate|date %B %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
+        <h3>{title}</h3>
+        <script>isDateInFutureOrPast(`{structuredContent.startDate|date %Y-%m-%dT%T}`, `{structuredContent.endDate|date %Y-%m-%dT%T}`, `{id}`)</script>
+    </div>
 {.end}
+</div>
 
-<!-- pagination -->
-{.if pagination}
-  <nav class="blog-list-pagination">
 
-    <!-- newer page -->
-    {.if pagination.prevPage}
-      <a href="{pagination.prevPageUrl}">Newer</a>
-    {.or}
-      <a class="disabled">Newer</a>
-    {.end}
 
-    <!-- older page -->
-    {.if pagination.nextPage}
-      <a href="{pagination.nextPageUrl}">Older</a>
-    {.or}
-      <a class="disabled">Older</a>
-    {.end}
+</div>
 
-  </nav>
-{.end}
+<script>
+
+function toggleSections(section){
+  var events = document.getElementsByClassName('exhibition-details')
+  var eventsLength = events.length;
+
+  var archivedEvents = document.getElementsByClassName('past-event')
+  var archivedEventsLength = archivedEvents.length;
+
+  var currentEvents = document.getElementsByClassName('current-event')
+  var currentEventsLength = currentEvents.length;
+
+  var futureEvents = document.getElementsByClassName('future-event')
+  var futureEventsLength = futureEvents.length; 
+
+  for (i=0; i < eventsLength; i++){
+    events[i].classList.remove('show-event')
+  }
+  if (section === 'onview'){
+    document.getElementById('archive-cat').classList.remove('active-cat')
+    document.getElementById('on-view-cat').classList.add('active-cat')
+    console.log("seen")
+    for (i=0; i < currentEventsLength; i++){
+      currentEvents[i].classList.add('show-event')
+    }
+    for (i=0; i < futureEventsLength; i++){
+      futureEvents[i].classList.add('show-event')
+    }
+  } else {
+    document.getElementById('archive-cat').classList.add('active-cat')
+    document.getElementById('on-view-cat').classList.remove('active-cat')
+    for (i=0; i < archivedEventsLength; i++){
+      archivedEvents[i].classList.add('show-event')
+    }
+  }
+}
+
+toggleSections('onview')
+</script>

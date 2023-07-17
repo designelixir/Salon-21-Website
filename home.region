@@ -17,9 +17,9 @@
         <div class="flex-center-center" style="padding: 15px;">
             <a class="home-navigation-item home-bottom-item" href="/contact">Contact</a>
             <img src="assets/column.svg" style='height: 45px; padding: 0px 10px' alt="column"/>
-            <a class="home-navigation-item home-bottom-item" href="/press">Press</a>
-            <img src="assets/column.svg" style='height: 45px; padding: 0px 10px' alt="column"/>
             <a class="home-navigation-item home-bottom-item" href="https://instagram.com/salon.21" target="_blank">@salon.21</a>
+            <img src="assets/column.svg" style='height: 45px; padding: 0px 10px' alt="column"/>
+            <a class="home-navigation-item home-bottom-item" href="/press">Press</a>
         </div>
 
     </div>
