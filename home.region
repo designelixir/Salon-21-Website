@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     {squarespace-headers}
   </head>
-  <body class="flex-start-start" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
+  <body class="flex-start-start fade-in" id="homeBody">
     <div class="flex-center-end flex-column" style="height: 100vh; width: 100vw;">
         <div style="height: 30vh; max-width: 350px;" class="flex-center-center">
             <img src="{website.socialLogoImageUrl}" style="height: 100%;"/>
@@ -16,9 +16,9 @@
         </div>
         <div class="flex-center-center" style="padding: 15px;">
             <a class="home-navigation-item home-bottom-item" href="/contact">Contact</a>
-            <img src="assets/column.svg" style='height: 45px; padding: 0px 10px' alt="column"/>
+            <img src="assets/column-top.svg" style='height: 15px; padding: 0px 10px' alt="column"/>
             <a class="home-navigation-item home-bottom-item" href="https://instagram.com/salon.21" target="_blank">@salon.21</a>
-            <img src="assets/column.svg" style='height: 45px; padding: 0px 10px' alt="column"/>
+            <img src="assets/column-top.svg" style='height: 15px; padding: 0px 10px' alt="column"/>
             <a class="home-navigation-item home-bottom-item" href="/press">Press</a>
         </div>
 
