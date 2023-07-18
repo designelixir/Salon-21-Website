@@ -26,9 +26,7 @@
 					{squarespace.main-content}
 				</main>
 			</div>
-      <div id="startTheConvo">
-        {@|apply startTheConvo.block}
-      </div>
+      
 			{@|apply footer.block}
 			<squarespace:script src="site.js" combo="{.if authenticatedAccount}false{.or}true{.end}" />
 			{squarespace-footers}
