@@ -1,0 +1,13 @@
+<div class="flex-center-center stamp-container" id="startTheConvo">
+<img class="hover" id="startConvo" onclick="window.open('/contact','_self')" src="../assets/start.png" style="height: 250px"/>
+</div>
+
+<script>
+var start = document.getElementById('startConvo')
+start.addEventListener("mouseover", function() {
+    start.src = "../assets/end.png"
+})
+start.addEventListener("mouseout", function() {
+    start.src = "../assets/start.png"
+})
+</script>
