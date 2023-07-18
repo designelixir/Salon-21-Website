@@ -1,7 +1,30 @@
-<footer class="flex-center-center flex-column">
+<footer class="flex-center-center flex-column inner-content-child">
 
-<div class="footer-mailer inner-content-container">
-    <squarespace:block-field id="mailerBlock" columns="12" />
+<div class="footer-mailer flex-center-center">
+    <div id="footerFrames" style="width: calc(100vw - 50px); max-width: 1000px">
+        <img src="../assets/mailing-list-corner.svg" style=" width: 100px; position: absolute; left: -5px; transform: scaleX(-1) ;  top: -1px; " alt="decorative frame" />
+        <img src="../assets/frame-corner-bl.svg" style=" width: 100px; position: absolute;  transform: scaleX(-1); bottom: -5px; left: -5px; " alt="decorative frame" />
+
+
+        <img src="../assets/mailing-list-corner.svg" style=" width: 100px; position: absolute; right: -5px; top: -1px; " alt="decorative frame" />
+        <img src="../assets/frame-corner-bl.svg" style=" width: 100px; position: absolute; bottom: -5px; right: -5px; " alt="decorative frame" />
+    </div>
+    
+        
+    
+
+
+    <div class="flex-start-center flex-column" id="mailerHolder">
+        <div style=" padding: 0 100px; text-align: center; width: 100%;">
+        <h1 style="margin: 0; padding: 0;">Join our mailing list</h1>
+        <p style="text-align: center!important; ">Be the first to know about our upcoming exhibitions and events at The Salon</p>
+        </div>
+        <div style="width: 100%; padding: 0px 50px;">
+            <squarespace:block-field id="mailerBlock" columns="12" />
+        </div>
+    </div>
+    
+    
 </div>
 
 
@@ -11,3 +34,17 @@
 
 </footer>
 
+<script>
+
+window.addEventListener('resize', frameSizer )
+window.addEventListener('scroll', frameSizer )
+
+function frameSizer(){
+    var holder = document.getElementById('mailerHolder').clientHeight;
+    console.log(holder)
+    var frames = document.getElementById('footerFrames')
+    frames.style.height = (holder - 50) + "px"
+   
+}
+frameSizer
+</script>
