@@ -3,7 +3,9 @@
 
 <div class="flex-start-start flex-wrap">
     {.repeated section items}
-    <div style="border: 1px solid rgba(0,0,0,0.5); background-color: white; margin: 25px; max-width: 350px;">
+    <div style="border: 1px solid rgba(0,0,0,0.5); background-color: white; margin: 25px; max-width: 350px;" onclick="window.open('{fullUrl}')">
+      <img src="{customContent.pressLogo.assetUrl}" style="height: 50px"/>
+      
       <div class="flex-center-center" style=" width: 350px; height: 300px; ">
         
         <img src="{assetUrl}" style="width: 90%;"/>

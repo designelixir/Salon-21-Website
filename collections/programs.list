@@ -13,7 +13,7 @@
 
 {.repeated section items}
 
-<div class="flex-center-center">
+<div class="flex-center-center" style="display: none;">
 
     <div></div>
     <div class="exhibition-details hover" onclick="window.open('{fullUrl}', '_self')">
@@ -22,14 +22,9 @@
     </div>
 </div>
 
- 
-
-
-
-
 {.end}
-<div class="flex-center-center" style="border: 1px solid red; width: 100%; height: 50vh;">
-  <squarespace:block-field id="eventsBlockField" columns="12"/>
+<div class="flex-center-center" style="padding: 20px;width: 100%;">
+  <p>{collection.description}</p>
 </div>
 
 <script>
