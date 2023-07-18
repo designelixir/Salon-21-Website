@@ -1,4 +1,4 @@
-<div class="flex-center-center stamp-container" id="startTheConvo">
+<div class="flex-center-center stamp-container" >
 <img class="hover" id="startConvo" onclick="window.open('/contact','_self')" src="../assets/start.png" style="height: 250px"/>
 </div>
 
