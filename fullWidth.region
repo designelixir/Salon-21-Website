@@ -7,7 +7,7 @@
 		{squarespace-headers}
 	</head>
 	<squarespace:navigation navigationId="siteNav" template="site-navigation" />
-	<body class="flex-start-start ">
+	<body class="flex-start-start full-width-region">
 		{@|apply header.block}
 		<div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" >
 			<header class="site-header">

@@ -4,17 +4,12 @@ function createEvent(eventTitle, eventStartMonth, eventStartDay, eventEndMonth, 
   
   var event = [eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl]
   events.push(event);
-  console.log(events)
 
 }
 </script>
-
-<div class="flex-center-center textured-bg" id="month-list">
-
-</div>
-
-<div id="calendar-container" class="textured-bg">
-
+<div id="calendarWrapper">
+  <div class="flex-center-center textured-bg" id="month-list"></div>
+  <div id="calendar-container" class="textured-bg"></div>
 </div>
 
 <i style="text-align: center;">Note that dates and info are subject to change. <br> Please check back and join our mailing list for upcoming event updates.  </i>
@@ -23,14 +18,6 @@ function createEvent(eventTitle, eventStartMonth, eventStartDay, eventEndMonth, 
 {.repeated section items}
 {#  title, start Month, start day, end month, end day, full url  }
 <script>createEvent("{title}", {structuredContent.startDate|date %m}, {structuredContent.startDate|date %e}, {structuredContent.endDate|date %m}, {structuredContent.endDate|date %e}, "{fullUrl}")</script>
-<div class="flex-center-center" >
-    <div class="exhibition-details hover" onclick="window.open('{fullUrl}', '_self')">
-        <h6 style="margin-left: 20px;">{structuredContent.startDate|date %B %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
-        <h3><img src="../assets/motif1.svg" style="height: 24px" />&nbsp;{title}</h3>
-
-    </div>
-</div>
-
 {.end}
 <div class="flex-center-center" style="padding: 20px;width: 100%;">
   <p>{collection.description}</p>
@@ -50,8 +37,7 @@ function createCalendar(month, year) {
   const startingDayOfWeek = firstDayOfMonth.getDay();
 
   const table = document.createElement('table');
-  console.log('creating calendar for ' + `${monthNames[month]}`)
-  table.id = `${monthNames[month]}` + '-table'
+  table.id = month + '-table'
   
 
   if (month === currentMonth){
@@ -79,7 +65,7 @@ function createCalendar(month, year) {
         
       } else if (currentDate <= numDaysInMonth) {
         var cellDate = []
-        cell.innerHTML = '<div class="date-cell live-date" data-cell-date="'+ currentDate +'" data-cell-month="' + month +'"><div class="date-cell-day">'+ currentDate +'</div></div>';
+        cell.innerHTML = '<div class="date-cell live-date" id="'+ currentDate +'" data-cell-month="' + month +'"><div class="date-cell-day">'+ currentDate +'</div></div>';
         currentDate++;
       }
     }
@@ -87,10 +73,6 @@ function createCalendar(month, year) {
 
   return table.outerHTML;
 }
-
-// Example usage:
-
-
 
 {#  remove stuff from parenthesis when september passes  }
   var currentDate = new Date(2023, 8 );
@@ -103,7 +85,6 @@ var calContainer = document.getElementById('calendar-container')
 calContainer.innerHTML = calendar;
 
 function createNextFourCalendars(monthsList){
-  console.log("months list " + monthsList)
   for (var i = 0; i <= monthsList.length - 1; i++){
     
     var newCalendar = createCalendar(monthsList[i], year)
@@ -115,7 +96,7 @@ function createNextFourCalendars(monthsList){
 
 
 function getNextFourMonths() {
-  var currentMonthLabel = '<h6 class="month-label active-month" onclick="toggleMonths('+ `monthNames[currentMonth]` +')" >' + `${monthNames[currentMonth]}` + '</h6>'
+  var currentMonthLabel = '<h6 class="month-label active-month-label" id="'+ currentMonth + '-label" onclick="toggleMonths('+ currentMonth +')" >' + `${monthNames[currentMonth]}` + '</h6>'
   monthListDiv.innerHTML += currentMonthLabel;
   var monthsList = []; 
   var monthsNumberList = []
@@ -129,38 +110,60 @@ function getNextFourMonths() {
 
   for (var i = 0; i < monthsNumberList.length; i++){
     var workingMonth = monthNames[monthsNumberList[i]]
-    var monthLabel = '<h6 class="month-label" onclick="toggleMonths('+ monthsList[i] +')" id='+ `${monthsList[i]}` +'>' + monthsList[i] + '</h6>'
-    monthListDiv.innerHTML += '<div class="month-calendar" id='+ `${monthsList[i]}` +'>' + monthLabel + '</div>';
+    var monthLabel = '<h6 class="month-label" onclick="toggleMonths('+ monthsNumberList[i] +')" id="'+ monthsNumberList[i] +'-label">' + monthsList[i] + '</h6>'
+    monthListDiv.innerHTML +=  monthLabel ;
   }
   createNextFourCalendars(monthsNumberList)
   return monthsList
 
 }
 
-
 // Call the function to get the list of next four months
 var nextFourMonths = getNextFourMonths();
 
-function toggleCalendars(month){
-  var targetDiv = document.getElementById(month + '-table');
-  console.log(targetDiv)
-  targetDiv.classList.add('active-calendar-table')
 
+function addEvent(eventList){
   
+  for (var i = 0; i < eventList.length; i++){
+    var event = eventList[i];
+    var eventTitle = "<div class='event-details'><p>" + event[0] + "</p></div>"
+    
+    var monthNum = event[1];
+      var monthName =  (monthNum - 1) + '-table'
+      
+      if ((event[4] - event[2]) === 0){
+        console.log("got here" + event[2] + event[0] + " " + monthName)
+        $("#" + monthName).find('td #' + event[2]).append(eventTitle)
+        $("#" + monthName).find('td #' + event[2]).addClass('has-event')
+      } else {
+        console.log("else " + event[2] + event[0] + " " + monthName)
+        var eventRange = event[4] - event[2];
+        for (i = 0; i < eventRange + 1; i++){
+          var nextDay = event[2] + i
+          $("#" + monthName).find('td #' + nextDay).append(eventTitle)
+          $("#" + monthName).find('td #' + nextDay).addClass('has-event')
+        }
+      }
+      
+    
+  }
 }
+
+addEvent(events)
 
 function toggleMonths(monthName){
-  console.log(monthName)
   var id = monthName + '-table';
-  console.log(id)
-  var target = document.getElementById(id);
-  target.classList.add('active-calendar')
+  var labelId = monthName + '-label'
+  $('.active-calendar-table').addClass('hidden-calendar-table')
+  $('.active-calendar-table').removeClass('active-calendar-table')
+  $('#' + id).addClass('active-calendar-table')
+  $('.active-month-label').removeClass('active-month-label')
+  $('#' + labelId).addClass('active-month-label')
 }
-
 
 var clickableMonths = document.getElementsByClassName('month-label')
 
-$('.month-label').click(function(){console.log("clicked " + $(this.id))})
+
 
 
 
@@ -183,7 +186,9 @@ function colorCalendar(){
       dateCells[i].classList.add('cal-color-3')
     }
   }
-  console.log(dateCells)
+  
 }
 colorCalendar();
+
+
 </script>
