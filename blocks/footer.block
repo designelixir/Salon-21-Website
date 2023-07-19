@@ -42,7 +42,6 @@ window.addEventListener('scroll', frameSizer )
 
 function frameSizer(){
     var holder = document.getElementById('mailerHolder').clientHeight;
-    console.log(holder)
     var frames = document.getElementById('footerFrames')
     frames.style.opacity = 1;
     frames.style.height = (holder - 50) + "px"

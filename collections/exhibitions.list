@@ -9,7 +9,7 @@ function isDateInFutureOrPast(start, end, id) {
   const targetDiv = document.getElementById(id)
   const startDate = new Date(start)
   const endDate = new Date(end)
-  console.log(start,  end)
+  
   
 var eventTypeDiv = document.getElementById("eventType-" + id)
 
@@ -25,6 +25,7 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
   }  else {
     console.log("no event defined")
   }
+
 }
 </script>
 
@@ -40,7 +41,7 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
   <img src="../assets/frame-decor.svg" alt="decorative frame" style="transform: scaleX(-1)">
 </div>
 
-<div id="events-list">
+<div id="events-list" class="flex-start-start flex-column-reverse">
 
 <div id="noExhibitions" style="display: none;">
   <p style="padding: 20px; text-align: center;"><i>No events to show</i></p>
@@ -51,9 +52,9 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
 {.if items}
   {.repeated section items}
     
-      <div class="exhibition fade-in" id="{id}">
+      <div class="exhibition fade-in" id="{id}" data-event-date="{structuredContent.startDate|date %Y-%m-%dT%T}">
           <div class="exhibition-content">
-              {.if customContent.dateNotDefined}<h6 class="red-text"><span class="exhibition-type-label" id="eventType-{id}"></span><br style="margin-bottom: 10px;">{structuredContent.startDate|date %B}</h6>{.or}
+              {.if customContent.dateNotDefined}<h6 class="red-text"><span class="exhibition-type-label" id="eventType-{id}"></span><br style="margin-bottom: 10px;">{structuredContent.startDate|date %B %Y}</h6>{.or}
               <h6 class="red-text"><span class="exhibition-type-label" id="eventType-{id}"></span><br style="margin-bottom: 10px;"> {structuredContent.startDate|date %B %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
               {.end}
               
@@ -72,7 +73,7 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
                 <div class="artist-tags-wrapper flex-start-start flex-wrap">
 
                   {.repeated section tags}
-                    <a class="artist-tag hover" href="{collection.fullUrl}?tag={@|url-encode}">{@}</a>
+                    <a class="artist-tag hover" href="/artists/{@|url-encode}">{@}</a>
                   {.end}
                   </div>
                 {.end}
@@ -100,6 +101,38 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
 
 <script>
 
+function isSooner(date1, date2) {
+  return new Date(date1) > new Date(date2);
+}
+
+function sortDatesBySoonest(arr) {
+  try {
+    const sortedDates = arr.sort((a, b) => new Date(a) - new Date(b));
+    return sortedDates;
+  } catch (error) {
+    console.error("Error: Please make sure all elements in the array are valid date strings.");
+    return null;
+  }
+}
+
+function checkAndSortDates(arr) {
+  const result = [];
+  if (arr.length <= 1) {
+    return arr;
+  }
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (isSooner(arr[i], arr[i + 1])) {
+      result.push(arr[i]);
+    } else {
+      result.unshift(arr[i]);
+    }
+  }
+  result.push(arr[arr.length - 1]);
+
+  return sortDatesBySoonest(result);
+}
+
 function toggleSections(section){
   var events = document.getElementsByClassName('exhibition')
   var eventsLength = events.length;
@@ -113,12 +146,18 @@ function toggleSections(section){
   var futureEvents = document.getElementsByClassName('future-event')
   var futureEventsLength = futureEvents.length; 
 
-  
+  var upcomingEvents = [...futureEvents, ...currentEvents]
+  const sortedDates = checkAndSortDates(futureEvents);
+  var sortedDatesLength = sortedDates.length;
+    
+  console.log(upcomingEvents)
+  console.log(sortedDates)
   if (archivedEventsLength === 0 && section === 'archive'){
     document.getElementById('noExhibitions').style.display = "block"
   } else {
     document.getElementById('noExhibitions').style.display = "none"
   }
+
 
   for (i=0; i < eventsLength; i++){
     events[i].classList.remove('show-event')
@@ -126,13 +165,16 @@ function toggleSections(section){
   if (section === 'onview'){
     document.getElementById('archive-cat').classList.remove('active-cat')
     document.getElementById('on-view-cat').classList.add('active-cat')
-    console.log("seen")
     for (i=0; i < currentEventsLength; i++){
       currentEvents[i].classList.add('show-event')
+      
     }
     for (i=0; i < futureEventsLength; i++){
       futureEvents[i].classList.add('show-event')
+      futureEvents[i].style.order = [i]
     }
+
+    
   } else {
     document.getElementById('archive-cat').classList.add('active-cat')
     document.getElementById('on-view-cat').classList.remove('active-cat')

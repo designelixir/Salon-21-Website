@@ -96,6 +96,7 @@ header {width: 100%;}
 
 .flex-wrap {flex-wrap: wrap;}
 .flex-column {flex-direction: column;}
+.flex-column-reverse {flex-direction: column-reverse;}
 .sqs-layout > .sqs-row {margin: 0;}
 .pill {padding: 5px 10px; background-color: var(--peach); border-radius: 25px;}
 main {padding: 0px 50px;  max-width: 1000px;}
@@ -140,7 +141,9 @@ button {border: 0px; padding: 10px 20px; font-family: 'Armoire', sans-serif!impo
 #events-list {margin-top: -50px; }
 .frames-container {width: 100%;}
 .frames-container img {height: 100px;}
-#noExhibitions {display: none;  text-align: center; padding: 10px; margin: 20px 50px; background-color: rgba(255,255,255,0.15)}
+#noExhibitions { text-align: center; padding: 10px; margin: 20px 50px; background-color: rgba(255,255,255,0.15)}
+
+.current {order: -1;}
 
 @media screen and (max-width: 750px)  {
   .exhibition-details {flex-direction: column; justify-content: flex-start!important;}
@@ -157,7 +160,7 @@ button {border: 0px; padding: 10px 20px; font-family: 'Armoire', sans-serif!impo
 .exhibition h3 {padding: 0px; margin: 0;}
 .exhibition h3:hover {text-decoration: underline; cursor:pointer}
 .exhibition-details-body {width: 100%; margin-left: 25px;}
-.exhibition {display: none; padding: 10px; margin: 20px 50px; background-color: rgba(255,255,255,0.15) }
+.exhibition {display: none; width: 100%; padding: 10px; margin: 20px 50px; background-color: rgba(255,255,255,0.15) }
 .exhibition-content {padding: 20px;}
 
 
@@ -183,6 +186,7 @@ button {border: 0px; padding: 10px 20px; font-family: 'Armoire', sans-serif!impo
 
 .exhibition-type-label {color: black; font-weight: 400; line-height: 24px; padding:2px 2px 0px 0px;  font-size: 18px;}
 
+
 // CALENDAR
 #month-list {margin-bottom: 25px;}
 th, td {padding: 2px;}
@@ -204,19 +208,6 @@ td {width: 100px; height: 100px; }
 .contact-details {width: 50vw;  padding-top: 400px; }
 
 // Press page
-.flex-container {
-  display: flex;
-  flex-direction: wrap;
-  font-size: 30px;
-  text-align: center;
-}
-.flex-item {flex: 30vw; margin: 0.5%;}
-
-@media (max-width: 1000px) {
-  .flex-container {
-    flex-direction: column;
-  }
-}
 
 
 // BLOCKQUOTE 

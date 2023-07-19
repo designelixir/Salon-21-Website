@@ -30,14 +30,16 @@
 <div class="inner-content-container" id="{id}" data-item-id="{id}" >
 	<div class="flex-center-center flex-column exhibition-container">
 		<div class="flex-start-start exhibition-details" >
+			{.if assetUrl}
 			<div class="exhibition-details-image-container flex-start-start">
 				<div class="mask1 flex-start-start">
 					<img class="masked-image" src="{assetUrl}">
 				</div>
 			</div>
+			{.end}
 			<div class="exhibition-details-body">
 				{.if customContent.dateNotDefined}
-				<h6><span class="exhibition-type-label" id="eventType-{id}"></span><br><br>{structuredContent.startDate|date %B } - <i>Check back for dates</i></h6>
+				<h6><span class="exhibition-type-label" id="eventType-{id}"></span><br><br>{structuredContent.startDate|date %B %Y } - <i>Check back for dates</i></h6>
 				{.or}
 				<h6>
 					<span class="exhibition-type-label" id="eventType-{id}"></span>&nbsp;&nbsp;<br>
