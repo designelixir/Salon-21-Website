@@ -38,7 +38,7 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
   <img src="../assets/frame-decor.svg" alt="decorative frame" style="transform: scaleX(-1)">
 </div>
 
-<div id="events-list" class="flex-start-start flex-column-reverse">
+<div id="events-list" class="flex-center-center flex-column-reverse">
 
 <div id="noExhibitions" style="display: none;">
   <p style="padding: 20px; text-align: center;"><i>No events to show</i></p>
@@ -49,7 +49,7 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
 {.if items}
   {.repeated section items}
     
-      <div class="exhibition fade-in" id="{id}" data-event-date="{structuredContent.startDate|date %Y-%m-%dT%T}">
+      <div class="exhibition fade-in"  id="{id}" data-event-date="{structuredContent.startDate|date %Y-%m-%dT%T}">
           <div class="exhibition-content">
               {.if customContent.dateNotDefined}<h6 class="red-text"><span class="exhibition-type-label" id="eventType-{id}"></span><br style="margin-bottom: 10px;">{structuredContent.startDate|date %B %Y}</h6>{.or}
               <h6 class="red-text"><span class="exhibition-type-label" id="eventType-{id}"></span><br style="margin-bottom: 10px;"> {structuredContent.startDate|date %B %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
@@ -130,7 +130,7 @@ function toggleSections(section){
     }
     for (i=0; i < futureEventsLength; i++){
       futureEvents[i].classList.add('show-event')
-      futureEvents[i].style.order = [i]
+      
     }
 
     

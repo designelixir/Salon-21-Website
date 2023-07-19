@@ -1,10 +1,10 @@
 
 
-<div class="flex-center-center flex-wrap" id="month-list">
+<div class="flex-center-center textured-bg" id="month-list">
 
 </div>
 
-<div id="calendar-container">
+<div id="calendar-container" class="textured-bg">
 
 </div>
 
@@ -103,8 +103,7 @@ function createNextFourCalendars(monthsList){
 
 
 function getNextFourMonths() {
-  var name = String(monthNames[currentMonth]);
-  var currentMonthLabel = '<h6 class="month-label active-month" id='+ `${monthNames[currentMonth]}` +'>' + `${monthNames[currentMonth]}` + '</h6>'
+  var currentMonthLabel = '<h6 class="month-label active-month" onclick="toggleMonths('+ `monthNames[currentMonth]` +')" >' + `${monthNames[currentMonth]}` + '</h6>'
   monthListDiv.innerHTML += currentMonthLabel;
   var monthsList = []; 
   var monthsNumberList = []
@@ -118,13 +117,14 @@ function getNextFourMonths() {
 
   for (var i = 0; i < monthsNumberList.length; i++){
     var workingMonth = monthNames[monthsNumberList[i]]
-    var monthLabel = '<h6 class="month-label" id='+ `${monthsList[i]}` +'>' + monthsList[i] + '</h6>'
+    var monthLabel = '<h6 class="month-label" onclick="toggleMonths('+ monthsList[i] +')" id='+ `${monthsList[i]}` +'>' + monthsList[i] + '</h6>'
     monthListDiv.innerHTML += '<div class="month-calendar" id='+ `${monthsList[i]}` +'>' + monthLabel + '</div>';
   }
   createNextFourCalendars(monthsNumberList)
   return monthsList
 
 }
+
 
 // Call the function to get the list of next four months
 var nextFourMonths = getNextFourMonths();
@@ -139,6 +139,10 @@ function toggleCalendars(month){
 
 function toggleMonths(monthName){
   console.log(monthName)
+  var id = monthName + '-table';
+  console.log(id)
+  var target = document.getElementById(id);
+  target.classList.add('active-calendar')
 }
 
 

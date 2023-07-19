@@ -15,7 +15,7 @@ html { overflow-x: hidden; background-color: var(--tan) }
 body { overflow-x:hidden; min-height: 100vh; overflow-y: scroll; background-image: url('../assets/texture.jpg'); background-size: 100% 100%; background-attachment: fixed; -webkit-animation:fade-in 2.5s cubic-bezier(.39,.575,.565,1.000) both;animation:fade-in 2.5s cubic-bezier(.39,.575,.565,1.000) both  }
 .content-container { width: 100vw; min-width: 100vw; max-width: 100vw;  }
 .inner-content-container {width: 90vw; margin: 0 5vw; max-width: 1000px; padding: 0px 25px;}
-.custom-bg-region {background-size: 100%; background-position: center top; background-repeat:repeat-y}
+.custom-bg-region {background-size: 100%; background-position: center -15px; background-repeat:repeat-y; background-attachment: fixed;}
 h1 {font-family: 'Armoire', sans-serif; text-transform: uppercase; font-size: 48px;}
 h2 {font-family: 'Reckless-Reg', serif; font-weight: 600; font-size: 28px}
 h2 span {text-decoration: none!important; color: var(--red)}
@@ -147,7 +147,7 @@ button {border: 0px; padding: 10px 20px; font-family: 'Armoire', sans-serif!impo
   .exhibition-details {flex-direction: column; justify-content: flex-start!important;}
   .exhibition-container {justify-content: flex-start!important; align-items: flex-start!important;}
   .exhibition-details-body {margin-left: 0px!important;}
-  .exhibition {padding: 0px 10px!important; margin: 10px 25px!important;}
+  .exhibition {padding: 0px 10px!important; margin: 10px 0px!important;}
   
   #events-list {padding: 10px!important; margin-top: -60px!important;}
   .exhibition-content {padding: 0px;} 
@@ -158,7 +158,7 @@ button {border: 0px; padding: 10px 20px; font-family: 'Armoire', sans-serif!impo
 .exhibition h3 {padding: 0px; margin: 0;}
 .exhibition h3:hover {text-decoration: underline; cursor:pointer}
 .exhibition-details-body {width: 100%; margin-left: 25px;}
-.exhibition {display: none; width: 100%; padding: 10px; margin: 20px 50px; background-color: rgba(255,255,255,0.15) }
+.exhibition {display: none; padding: 10px; margin: 20px 50px; width: 90%; background-color: rgba(255,255,255,0.15) }
 .exhibition-content {padding: 20px;}
 
 
@@ -198,17 +198,22 @@ button {border: 0px; padding: 10px 20px; font-family: 'Armoire', sans-serif!impo
 .press-frame {border: 1px solid rgba(0,0,0,0.5); background-color: white; width: 100%; margin: 1%;  }
 .press-frame:hover .press-info {display: block;}
 .press-info {width: 100%; cursor: pointer; overflow-y: hidden; background: white; padding: 20px; display: none; height: 100%;}
-.press-info i p {text-align: center!important; font-size: 14px; line-height: 16px;}
+.press-info i p {text-align: center!important; font-size: 16px; line-height: 18px;}
 
 @media screen and (max-width: 750px)  {
   .press-frame {min-width: 300px; min-height: 300px;}
 }
 
+// BOOK 
+.step-pane {background-color: none!important; border: 0px solid black!important;}
+
+
 // CALENDAR
-#month-list {margin-bottom: 25px;}
+#month-list {margin-bottom: 25px;  }
 th, td {padding: 2px;}
 .month-label {padding: 15px 20px 10px; font-size: 18px;}
 .active-month {background-image: url('../assets/circled-event-1.png'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center center;}
+.textured-bg { background-image: url('../assets/texture.jpg');background-size: 100vw 100vh; background-position: center 10vh; background-attachment: fixed;}
 td {width: 100px; height: 100px; }
 .date-cell { height: 100%; width: 100%; padding: 5px;}
 .dead-date {opacity: 0.25; height: 100%; width: 100%;}
