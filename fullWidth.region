@@ -7,23 +7,13 @@
 		{squarespace-headers}
 	</head>
 	<squarespace:navigation navigationId="siteNav" template="site-navigation" />
-	<body class="flex-start-start full-width-region">
+	<body class="flex-start-start full-width-region" >
 		{@|apply header.block}
-		<div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" >
+		<div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container custom-bg-region" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
 			<header class="site-header">
-				<div>
-        {.if collection.mainImage}
-					<div class="flex-center-center" id="headerIcon">
-              <img src="{collection.mainImage.assetUrl}" alt="header icon" id="headerImg"/>
-					</div>
-          {.or}
-          
-          <div style='height: 50px'></div>
-          {.end}
-					<h1 class="hover" onclick="window.open('{collection.fullUrl}','_self')"  id="page-title-h1">{collection.title}{.if item.title}/<br><span class="red-text sub-title">{item.title}{.end}</h1>
-				</div>
+			    <h1 class="hover" onclick="window.open('{collection.fullUrl}','_self')"  id="page-title-h1">{collection.title}{.if item.title}/<br><span class="red-text sub-title">{item.title}{.end}</h1>
 			</header>
-			<div class="flex-center-center">
+			<div class="flex-center-center flex-column">
 				
 					{squarespace.main-content}
 				

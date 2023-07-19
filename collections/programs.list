@@ -1,3 +1,7 @@
+<style>
+.custom-bg-region {background-repeat: no-repeat; background-position: center 50px; padding-top: 50px;}
+</style>
+
 <script>
 var events = [] 
 function createEvent(eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl){
@@ -7,12 +11,15 @@ function createEvent(eventTitle, eventStartMonth, eventStartDay, eventEndMonth, 
 
 }
 </script>
-<div id="calendarWrapper">
-  <div class="flex-center-center textured-bg" id="month-list"></div>
-  <div id="calendar-container" class="textured-bg"></div>
+<div id="calendarWrapper" class="textured-bg">
+  <div class="flex-center-center flex-wrap" id="month-list"></div>
+  <div id="calendar-container"></div>
 </div>
 
-<i style="text-align: center;">Note that dates and info are subject to change. <br> Please check back and join our mailing list for upcoming event updates.  </i>
+<div class="inner-content-container flex-center-center flex-column">
+  <i style="text-align: center;">Note that dates and info are subject to change. <br> Please check back and join our mailing list for upcoming event updates.  </i>
+  <p>Salon 21 is currently available for buyouts to brands, designers, and press as a venue to host private dinners, cocktail events, trunk shows, editorial and content photoshoots, and more. Our team will work directly with you to create your perfect, customized event, with add-ons including florals, food and drink menus and tablescapes. Our space is located in a 1,600-sq foot loft in Manhattan's SoHo district. To learn more about our space, full event capabilities and availability, please contact <a href="mailto:alex@salontwenty-one.com">alex@salontwenty-one.com</a></p>
+</div>
 
 
 {.repeated section items}
@@ -56,16 +63,16 @@ function createCalendar(month, year) {
   }
 
   let currentDate = 1;
-  for (let i = 0; i < 6; i++) { // Maximum 6 rows for the calendar
+  for (let i = 0; i < 6; i++) {
     const weekRow = table.insertRow();
     for (let j = 0; j < 7; j++) {
       const cell = weekRow.insertCell();
       if (i === 0 && j < startingDayOfWeek) {
-        cell.innerHTML = '<div class="date-cell dead-date"></div>';
+        cell.innerHTML = '<div style="width: calc(90vw / 7); height: calc(90vw / 7)" class="date-cell dead-date"></div>';
         
       } else if (currentDate <= numDaysInMonth) {
         var cellDate = []
-        cell.innerHTML = '<div class="date-cell live-date" id="'+ currentDate +'" data-cell-month="' + month +'"><div class="date-cell-day">'+ currentDate +'</div></div>';
+        cell.innerHTML = '<div class="date-cell live-date" style="width: calc(90vw / 7); height: calc(90vw / 7)" id="'+ currentDate +'" data-cell-month="' + month +'"><div class="date-cell-day">'+ currentDate +'</div></div>';
         currentDate++;
       }
     }

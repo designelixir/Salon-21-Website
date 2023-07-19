@@ -214,14 +214,14 @@ button {border: 0px; padding: 10px 20px; font-family: 'Armoire', sans-serif!impo
 
 
 // CALENDAR
-#calendarWrapper {border: 4px solid teal;}
+#calendarWrapper { max-width: 1100px}
 #month-list {margin-bottom: 25px;  }
 th, td {padding: 2px;}
-.month-label {padding: 15px 20px 10px; font-size: 18px;}
+.month-label {padding: 15px 20px 10px; font-size: 18px; cursor: pointer;}
 .active-month-label {background-image: url('../assets/circled-event-1.png'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center center;}
 .textured-bg { background-image: url('../assets/texture.jpg');background-size: 100vw 100vh; background-position: center 10vh; background-attachment: fixed;}
 td {width: 100px; height: 100px; }
-.date-cell { height: 100%; width: 100%; padding: 5px; opacity: 0.5}
+.date-cell { height: 100%; width: 100%; padding: 5px; opacity: 0.25; min-height: 120px; max-height: 150px; max-width: 150px; overflow: hidden;}
 .dead-date {opacity: 0.25; height: 100%; width: 100%;}
 
 .cal-color-1 {background-color: var(--color-1);}
