@@ -8,7 +8,7 @@
       <div class="press-info flex-center-center flex-wrap">
         {.if sourceUrl}
         <div class="flex-center-center">
-          <img src="{sourceUrl}" style="width: 150px"/>
+          <img src="{sourceUrl}" style="width: 100px"/>
         </div>
         {.end}
         <p><i style="text-align: center!important;">{body|truncate 200}</i></p>
