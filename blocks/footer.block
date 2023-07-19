@@ -1,6 +1,6 @@
 <footer class="flex-center-center flex-column inner-content-child">
 
-<div class="footer-mailer flex-center-center">
+<div class="footer-mailer flex-center-center" id="footerMailer">
     <div id="footerFrames" style="width: calc(100vw - 50px); max-width: 1000px">
         <img src="../assets/mailing-list-corner.svg" style=" width: 100px; position: absolute; left: -5px; transform: scaleX(-1) ;  top: -1px; " alt="decorative frame" />
         <img src="../assets/frame-corner-bl.svg" style=" width: 100px; position: absolute;  transform: scaleX(-1); bottom: -5px; left: -5px; " alt="decorative frame" />

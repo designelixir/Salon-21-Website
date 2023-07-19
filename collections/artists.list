@@ -1,4 +1,6 @@
 <script>
+$('#headerIcon').css("display", "none");
+
 
 var artistList = document.getElementsByClassName('artist-frame')
 function sizeArtistGrid(){
@@ -32,7 +34,7 @@ window.addEventListener('resize', sizeArtistGrid)
 {.repeated section items}
    <div class="artist-frame" onclick="window.open('{fullUrl}', '_self')">
       <img src="{assetUrl}" style="width: 100%; pointer-events: none;" />
-      
+      <p>{title}</p>
    </div>
 {.end}
 <script>sizeArtistGrid()</script>
