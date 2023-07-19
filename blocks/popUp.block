@@ -1,0 +1,10 @@
+<div id="popUpWindow" style="display: none;">
+<iframe src="" id="popUpIframe"></iframe>
+</div>
+
+<script>
+function togglePopUp(url){
+    $('#popUpWindow').css('display', 'block')
+    $('#popUpIframe').attr('src', url)
+}
+</script>
