@@ -12,25 +12,23 @@
     
     <div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" >
 
-      <header class="contact-header flex-center-center">
+      <header class="contact-header flex-start-start">
         <div class=" flex-start-spacebetween" id="contact-container">
             <div id="contact-title">
                 <h1>{collection.title}</h1>
             </div>
             <div class="contact-details">
-                <p>Find us at <a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" >{.if website.location.addressTitle}{website.location.addressTitle}, {.end}{website.location.addressLine1}, {website.location.addressLine2}</a> by appointment only.</P
-                <squarespace:block-field id="contactBlock" columns="12"/>
+                <p>Find us at <a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" >{.if website.location.addressTitle}{website.location.addressTitle}, {.end}{website.location.addressLine1}, {website.location.addressLine2}</a> by appointment only.</p>
+                {collection.description}
             </div>
         </div>
-        
-        
       </header>
       
 
       <div class="flex-center-center flex-column">
-        <div role="main" data-content-field="main-content" class="flex-center-center flex-column">
+        <main role="main" data-content-field="main-content" class="flex-center-center flex-column">
         {squarespace.main-content}
-        </div>
+        </main>
         
       </div>
       {@|apply footer.block}
