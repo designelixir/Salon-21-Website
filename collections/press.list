@@ -11,7 +11,7 @@
           <img src="{sourceUrl}" style="width: 100px"/>
         </div>
         {.end}
-        <p><i style="text-align: center!important;">{body|truncate 200}</i></p>
+        <p><i style="text-align: center!important;">{body|truncate 100}</i></p>
       </div>
       {.end}
    </div>
