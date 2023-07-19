@@ -192,6 +192,7 @@ function addEvent(eventList){
       
     
   }
+  $('.special-event').parent('.date-cell').css("border", "3px solid white")
 }
 console.log(events)
 addEvent(exhibitionEvents)

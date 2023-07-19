@@ -216,12 +216,12 @@ button {border: 0px; padding: 10px 20px; font-family: 'Armoire', sans-serif!impo
 // CALENDAR
 #calendarWrapper { max-width: 1100px}
 #month-list {margin-bottom: 25px;  }
-th, td {padding: 2px;}
+
 .month-label {padding: 15px 20px 10px; font-size: 18px; cursor: pointer;}
 .active-month-label {background-image: url('../assets/circled-event-1.png'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center center;}
 .textured-bg { background-image: url('../assets/texture.jpg');background-size: 100vw 100vh; background-position: center 10vh; background-attachment: fixed;}
 td {width: 100px; height: 100px; }
-.date-cell { height: 100%; width: 100%; opacity: 0.25; padding: 7px; height: 100%; min-height: 150px; max-width: 150px;}
+.date-cell { height: 100%; width: 100%; margin: 2px; opacity: 0.25; padding: 7px; height: 100%; min-height: 150px; max-width: 150px;}
 .dead-date {opacity: 0.25; height: 100%; width: 100%;}
 @media screen and (max-width: 750px)  {
   .date-cell-day {flex-wrap: wrap;}
@@ -245,7 +245,7 @@ td {width: 100px; height: 100px; }
 .event-details {margin-top: 10px;}
 .event-details p { text-align: center!important; padding: 0px; margin: 0px;}
 .special-event { width: 100%;}
-.special-event p {text-align: center!important; color: var(--red) }
+.special-event p {text-align: center!important; }
 .event-subtitle p {font-size: 12px; margin: 0px; padding: 0px; }
 
 .ongoing-event-details p {text-align: center;}
