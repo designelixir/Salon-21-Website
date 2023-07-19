@@ -1,24 +1,9 @@
-<footer class="flex-center-center flex-column inner-content-child">
-
-<div class="footer-mailer flex-center-center" id="footerMailer">
-    <div class="flex-start-center flex-column" id="mailerHolder">
-        <div style=" padding: 0 100px; text-align: center; width: 100%;">
+<footer>
+    <div class="footer-mailer flex-center-center flex-column" id="footerMailer">
         
-        <p style="text-align: center!important; ">Be the first to know about our upcoming exhibitions and events at The Salon</p>
-        <br>
-        </div>
-        <div style="width: 100%; padding: 0px 50px;">
-            <squarespace:block-field id="mailerBlock" columns="12" />
-        </div>
+        <squarespace:block-field id="mailerBlock" columns="12" />
+        <p>Copyright &copy; {website.siteTitle}</p>
+        <a href="https://designelixir.studio" id="de-link" target="_blank">Made with &hearts; by Design Elixir</a>
     </div>
-    
-    
-</div>
-
-
-<p>Copyright &copy; {website.siteTitle}</p>
-<a href="https://designelixir.studio" id="de-link" target="_blank">Made with &hearts; by Design Elixir</a>
- 
-
 </footer>
 
