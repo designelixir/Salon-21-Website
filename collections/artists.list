@@ -8,7 +8,7 @@ function sizeArtistGrid(){
   var divWidth = target.offsetWidth;
 
   if (divWidth > 800){
-  var columnHeight =  (artistList.length * 375) / 4;
+  var columnHeight =  (artistList.length * 400) / 4;
    $('.artist-frame').css("width", "23%");
    $('#artistList').css("max-height", columnHeight);
 
@@ -32,7 +32,7 @@ window.addEventListener('resize', sizeArtistGrid)
 <div id="artistList">
 <!-- item loop -->
 {.repeated section items}
-   <div class="artist-frame" onclick="window.open('{fullUrl}', '_self')">
+   <div class="artist-frame hover" onclick="window.open('{fullUrl}', '_self')">
       <img src="{assetUrl}" style="width: 100%; pointer-events: none;" />
       <p>{title}</p>
    </div>
