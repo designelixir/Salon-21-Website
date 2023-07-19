@@ -1,24 +1,27 @@
 <script>
-var artistList = document.getElementsByClassName('press-item')
+
+
+
+var artistList = document.getElementsByClassName('artist-frame')
 function sizeArtistGrid(){
-  var target = document.getElementById('pressList')
+  var target = document.getElementById('artistList')
   var divWidth = target.offsetWidth;
-  console.log(divWidth)
+
   if (divWidth > 800){
-  var columnHeight =  (artistList.length * 500) / 4;
-   $('.press-item').css("width", "23%");
-   $('#pressList').css("max-height", columnHeight);
+  var columnHeight =  (artistList.length * 375) / 4;
+   $('.artist-frame').css("width", "23%");
+   $('#artistList').css("max-height", columnHeight);
 
   } else if (divWidth < 800 && divWidth > 650) {
-  var columnHeight =  (artistList.length * 500) / 3;
-  $('.press-item').css("width", "31%");
-  $('#pressList').css("max-height", columnHeight);
+  var columnHeight =  (artistList.length * 375) / 3;
+  $('.artist-frame').css("width", "31%");
+  $('#artistList').css("max-height", columnHeight);
   
   } else if (divWidth < 650) {
-    var columnHeight =  (artistList.length * 500) / 2 ;
-    $('.press-item').css("width", "48%");
+    var columnHeight =  (artistList.length * 300) / 2 ;
+    $('.artist-frame').css("width", "48%");
     
-    $('#pressList').css("max-height", columnHeight);
+    $('#artistList').css("max-height", columnHeight);
   } 
 }
 
@@ -26,26 +29,18 @@ window.addEventListener('resize', sizeArtistGrid)
 
 </script>
 
-<div id="pressList">
+<div id="artistList">
 <!-- item loop -->
 {.repeated section items}
-    <div class="press-item"  onclick="window.open('{fullUrl}')">
-      
-      
-      
-        
-        <img src="{assetUrl}" style="width: 90%;"/>
-      
-      <div style="padding: 5%">
-      <img src="../assets/spear.svg" style="width: calc(60%);" alt="decorative spear" />
-      <h6>{publishOn|date %b %d, %Y}</h6>
-      <p ><i>{title}</i></p>
-      </div>
-    </div>
-    {.end}
+   <div class="artist-frame" onclick="window.open('{fullUrl}', '_self')">
+      <img src="{assetUrl}" style="width: 100%; pointer-events: none;" />
+      <p>{title}</p>
+   </div>
+{.end}
 <script>sizeArtistGrid()</script>
 </div>
 
+{@|apply popUp.block}
 
 <!-- pagination -->
 {.if pagination}
@@ -67,5 +62,3 @@ window.addEventListener('resize', sizeArtistGrid)
 
   </nav>
 {.end}
-
-
