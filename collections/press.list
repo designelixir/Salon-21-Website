@@ -19,21 +19,23 @@
 <script>
 
 function sizeGrid(){
-  var bodyWidth = $('#pressList').width()
+  var bodyWidth = $(window).width()
   console.log(bodyWidth)
   if (bodyWidth > 800){
-    var divider = 4;
-  } else if (bodyWidth < 799 && bodyWidth >= 400) {
-    var divider = 3;
-  } else if (bodyWidth < 399){
-    divider = 1;
+    $('.press-frame').css("max-width", "23%");
+  } else if (bodyWidth < 800 && bodyWidth >= 650) {
+    $('.press-frame').css("max-width", "31%");
+  } else if (bodyWidth < 650){
+    $('.press-frame').css("max-width", "48%");
   }
+  var pressWidth = $('.press-frame').width()
+  $('.press-frame').css("height", pressWidth);
 
-  $('.press-frame').css({'height': bodyWidth / divider + 'px', 'width': bodyWidth / divider + 'px'})
+
 
 }
 
-sizeGrid()
+$(document).ready(sizeGrid)
 window.addEventListener('resize', sizeGrid)
 
 
