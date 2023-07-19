@@ -4,12 +4,27 @@
 
 <script>
 var events = [] 
+var exhibitionEvents = []
+var specialEvents = []
 function createEvent(eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl){
   
-  var event = [eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl]
+  var event = [eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl, "regular-event"]
   events.push(event);
 
 }
+
+function createExhibitionEvent(eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl){
+  var exhibitionEvent = [eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl, "exhibition-event"]
+  
+  exhibitionEvents.push(exhibitionEvent)
+}
+
+function createSpecialEvent(eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl, excerpt){
+  var specialEvent = [eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl, "special-event", excerpt]
+  
+  specialEvents.push(specialEvent)
+}
+
 </script>
 <div id="calendarWrapper" class="textured-bg">
   <div class="flex-center-center flex-wrap" id="month-list"></div>
@@ -24,7 +39,18 @@ function createEvent(eventTitle, eventStartMonth, eventStartDay, eventEndMonth, 
 
 {.repeated section items}
 {#  title, start Month, start day, end month, end day, full url  }
+
+{.if starred}
+<script>createSpecialEvent("{title}", {structuredContent.startDate|date %m}, {structuredContent.startDate|date %e}, {structuredContent.endDate|date %m}, {structuredContent.endDate|date %e}, "{fullUrl}", '{excerpt}')</script>
+{.or}
+{.if categories}
+<script>createExhibitionEvent("{title}", {structuredContent.startDate|date %m}, {structuredContent.startDate|date %e}, {structuredContent.endDate|date %m}, {structuredContent.endDate|date %e}, "{fullUrl}")</script>
+{.or}
 <script>createEvent("{title}", {structuredContent.startDate|date %m}, {structuredContent.startDate|date %e}, {structuredContent.endDate|date %m}, {structuredContent.endDate|date %e}, "{fullUrl}")</script>
+{.end}
+{.end}
+
+
 {.end}
 <div class="flex-center-center" style="padding: 20px;width: 100%;">
   <p>{collection.description}</p>
@@ -68,11 +94,11 @@ function createCalendar(month, year) {
     for (let j = 0; j < 7; j++) {
       const cell = weekRow.insertCell();
       if (i === 0 && j < startingDayOfWeek) {
-        cell.innerHTML = '<div style="width: calc(90vw / 7); height: calc(90vw / 7)" class="date-cell dead-date"></div>';
+        cell.innerHTML = '<div style="width: calc(90vw / 7); " class="date-cell dead-date "></div>';
         
       } else if (currentDate <= numDaysInMonth) {
         var cellDate = []
-        cell.innerHTML = '<div class="date-cell live-date" style="width: calc(90vw / 7); height: calc(90vw / 7)" id="'+ currentDate +'" data-cell-month="' + month +'"><div class="date-cell-day">'+ currentDate +'</div></div>';
+        cell.innerHTML = '<div class="date-cell flex-center-start flex-column live-date" style="width: calc(90vw / 7); " id="'+ currentDate +'" data-cell-month="' + month +'"><div class="date-cell-day flex-start-start">'+ currentDate +'</div></div>';
         currentDate++;
       }
     }
@@ -130,33 +156,48 @@ var nextFourMonths = getNextFourMonths();
 
 
 function addEvent(eventList){
-  
+  console.log(eventList)
   for (var i = 0; i < eventList.length; i++){
     var event = eventList[i];
-    var eventTitle = "<div class='event-details'><p>" + event[0] + "</p></div>"
+    
     
     var monthNum = event[1];
       var monthName =  (monthNum - 1) + '-table'
-      
+      if (event[6] === 'exhibition-event'){
+        var targetDiv = ' .date-cell-day'
+        var eventTitle = "<div class='ongoing-event-details "+ event[6]+"'><p> - " + event[0] + "</p></div>"
+      } else if(event[6] === 'special-event'){
+        targetDiv = ''
+        
+        var eventTitle = "<div class='event-details "+ event[6]+"'><p>" + event[0] + "</p><span class='event-subtitle'>"+ event[7] + "</span></div>"
+      }else {
+        targetDiv = ''
+        var eventTitle = "<div class='event-details "+ event[6]+"'><p>" + event[0] + "</p></div>"
+      }
       if ((event[4] - event[2]) === 0){
         console.log("got here" + event[2] + event[0] + " " + monthName)
-        $("#" + monthName).find('td #' + event[2]).append(eventTitle)
+        $("#" + monthName).find('td #' + event[2] + targetDiv).append(eventTitle)
         $("#" + monthName).find('td #' + event[2]).addClass('has-event')
+    
+        
       } else {
         console.log("else " + event[2] + event[0] + " " + monthName)
         var eventRange = event[4] - event[2];
         for (i = 0; i < eventRange + 1; i++){
           var nextDay = event[2] + i
-          $("#" + monthName).find('td #' + nextDay).append(eventTitle)
-          $("#" + monthName).find('td #' + nextDay).addClass('has-event')
+          $("#" + monthName).find('td #' + nextDay + targetDiv).append(eventTitle)
+          $("#" + monthName).find('td #' + nextDay).addClass('has-event', event[5])
         }
       }
       
     
   }
 }
-
+console.log(events)
+addEvent(exhibitionEvents)
 addEvent(events)
+addEvent(specialEvents)
+console.log(specialEvents)
 
 function toggleMonths(monthName){
   var id = monthName + '-table';
