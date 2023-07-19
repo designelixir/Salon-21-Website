@@ -1,3 +1,6 @@
+<style>
+  #headerIcon {display: none!important;}
+</style>
 <script>
 	function isDateInFutureOrPast(start, end, id) {
 	  const today = new Date();
@@ -34,18 +37,20 @@
 			</div>
 			<div class="exhibition-details-body">
 				{.if customContent.dateNotDefined}
-				<h6><span class="exhibition-type-label" id="eventType-{id}"></span><br><i style="opacity: 0.25">Check back for dates</i></h6>
+				<h6><span class="exhibition-type-label" id="eventType-{id}"></span><br><br>{structuredContent.startDate|date %B } - <i>Check back for dates</i></h6>
 				{.or}
 				<h6>
 					<span class="exhibition-type-label" id="eventType-{id}"></span>&nbsp;&nbsp;<br>
-					<br><span style="font-size: 18px;"> {structuredContent.startDate|date %b %d} - {structuredContent.endDate|date %B %d, %Y} </span>
+					<br><span style="font-size: 18px;"> {structuredContent.startDate|date %B %d} - {structuredContent.endDate|date %B %d, %Y} </span>
 				</h6>
-				<h6 style="margin: 0; font-size: 14px;">{structuredContent.startDate|date %l:%M %p} - {structuredContent.endDate|date %l:%M %p}</h6>
+				
 				{.end}
 				{.if location}
 				{.section location}
-				<a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.5">📍{.if addressTitle}{addressTitle}, {.end}{addressLine1}, {addressLine2}</a><br>
+				<a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if addressTitle}{addressTitle}, {.end}{addressLine1}, {addressLine2}</a><br>
 				{.end}
+				{.or}
+				<a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if website.location.addressTitle}{website.location.addressTitle}, {.end}{website.location.addressLine1}, {website.location.addressLine2}</a><br>
 				{.end}
 				{.if customContent.hideArtistTags}
 				{.or}

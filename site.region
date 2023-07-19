@@ -11,14 +11,14 @@
 		<div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" >
 			<header class="site-header">
 				<div>
-					<div class="flex-center-center flex-column">
-						{.if collection.mainImage}
-						
+        {.if collection.mainImage}
+					<div class="flex-center-center" id="headerIcon">
               <img src="{collection.mainImage.assetUrl}" alt="header icon" style="max-height: 250px; max-width: 250px;"/>
-            
-						{.end}
 					</div>
-					<h1 class="hover" onclick="window.open('{collection.fullUrl}','_self')" id="page-title-h1">{collection.title}{.if item.title}/<span class="red-text">{item.title}{.end}</h1>
+          {.or}
+          <div style='height: 50px'></div>
+          {.end}
+					<h1 class="hover" onclick="window.open('{collection.fullUrl}','_self')"  id="page-title-h1">{collection.title}{.if item.title}/<br><span class="red-text sub-title">{item.title}{.end}</h1>
 				</div>
 			</header>
 			<div class="flex-center-center">

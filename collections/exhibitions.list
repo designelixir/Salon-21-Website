@@ -1,3 +1,7 @@
+<style>
+  #headerIcon {display: none!important;}
+</style>
+
 <script>
 
 function isDateInFutureOrPast(start, end, id) {
@@ -14,7 +18,7 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
     eventTypeDiv.innerHTML = "Upcoming"
   } else if (startDate < today && endDate > today){
     targetDiv.classList.add("current-event")
-    eventTypeDiv.innerHTML = "On View"
+    eventTypeDiv.innerHTML = "<span style='background-color: rgba(255,255,255,0.5); color: black; padding: 2px;'>On View</span>"
   } else if (startDate < today) {
     targetDiv.classList.add("past-event")
     eventTypeDiv.innerHTML = "Past Event"
@@ -33,17 +37,24 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
 </div>
 <div class="flex-start-spacebetween frames-container">
   <img src="../assets/frame-decor.svg" alt="decorative frame">
-  <img src="../assets/frame-decor-right.svg" alt="decorative frame">
+  <img src="../assets/frame-decor.svg" alt="decorative frame" style="transform: scaleX(-1)">
 </div>
 
 <div id="events-list">
+
+<div id="noExhibitions" style="display: none;">
+  <p style="padding: 20px; text-align: center;"><i>No events to show</i></p>
+</div>
+
+
+
 {.if items}
   {.repeated section items}
     
       <div class="exhibition fade-in" id="{id}">
           <div class="exhibition-content">
-              {.if customContent.dateNotDefined}<h6><span class="exhibition-type-label" id="eventType-{id}"></span><br><i style="opacity: 0.25">Check back for dates</i></h6>{.or}
-              <h6 class="red-text"><span class="exhibition-type-label" id="eventType-{id}"></span>&nbsp;&nbsp;<br> {structuredContent.startDate|date %b %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
+              {.if customContent.dateNotDefined}<h6 class="red-text"><span class="exhibition-type-label" id="eventType-{id}"></span><br style="margin-bottom: 10px;">{structuredContent.startDate|date %B}</h6>{.or}
+              <h6 class="red-text"><span class="exhibition-type-label" id="eventType-{id}"></span><br style="margin-bottom: 10px;"> {structuredContent.startDate|date %B %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
               {.end}
               
               <h3 onclick="window.open('{fullUrl}', '_self')">{title}</h3>
@@ -79,7 +90,7 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
 </div>
 
 <div class="flex-start-spacebetween frames-container" style="margin-top: -50px;">
-  <img src="../assets/frame-decor-right.svg" alt="decorative frame" style="transform: rotate(180deg)">
+  <img src="../assets/frame-decor.svg" alt="decorative frame" style="transform: scaleY(-1)">
   <img src="../assets/frame-decor.svg" alt="decorative frame" style="transform: rotate(180deg)">
 </div>
 
@@ -101,6 +112,13 @@ function toggleSections(section){
 
   var futureEvents = document.getElementsByClassName('future-event')
   var futureEventsLength = futureEvents.length; 
+
+  
+  if (archivedEventsLength === 0 && section === 'archive'){
+    document.getElementById('noExhibitions').style.display = "block"
+  } else {
+    document.getElementById('noExhibitions').style.display = "none"
+  }
 
   for (i=0; i < eventsLength; i++){
     events[i].classList.remove('show-event')
