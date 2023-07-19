@@ -1,23 +1,41 @@
 
-<div id="pressList" class="flex-start-start flex-wrap">
+<div id="pressList" class="flex-center-center">
 <!-- item loop -->
 {.repeated section items}
-   <div class="press-frame" id={id} onclick="window.open('{clickthroughUrl}')" style="background-image: url({assetUrl}); background-size: cover;">
+   <div class="press-frame {.if clickthroughUrl}hover{.end}" id={id} {.if clickthroughUrl}onclick="window.open('{clickthroughUrl}')"{.end} style="background-image: url({assetUrl}); background-size: cover;">
       
-      
-      <div class="press-info">
+      {.if body}
+      <div class="press-info flex-center-center flex-wrap">
+        {.if sourceUrl}
         <div class="flex-center-center">
-          <img src="{sourceUrl}" style="width: 100px"/>
+          <img src="{sourceUrl}" style="width: 150px"/>
         </div>
-        <p style="text-align: center;"><i>{body|truncate 200}</i></p>
+        {.end}
+        <p><i style="text-align: center!important;">{body|truncate 200}</i></p>
       </div>
+      {.end}
    </div>
 {.end}
 <script>
 
-var bodyWidth = $(window).width()
-console.log(bodyWidth)
-$('.press-frame').css({'height': bodyWidth / 4 + 'px', 'width': bodyWidth / 4 + 'px'})
+function sizeGrid(){
+  var bodyWidth = $('#pressList').width()
+  console.log(bodyWidth)
+  if (bodyWidth > 800){
+    var divider = 4;
+  } else if (bodyWidth < 799 && bodyWidth >= 400) {
+    var divider = 3;
+  } else if (bodyWidth < 399){
+    divider = 1;
+  }
+
+  $('.press-frame').css({'height': bodyWidth / divider + 'px', 'width': bodyWidth / divider + 'px'})
+
+}
+
+sizeGrid()
+window.addEventListener('resize', sizeGrid)
+
 
 </script>
 </div>
