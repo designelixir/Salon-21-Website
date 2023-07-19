@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		{squarespace-headers}
+	</head>
+	<squarespace:navigation navigationId="siteNav" template="site-navigation" />
+	<body class="flex-start-start ">
+		{@|apply header.block}
+		<div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" >
+			<header class="site-header">
+				<div>
+        {.if collection.mainImage}
+					<div class="flex-center-center" id="headerIcon">
+              <img src="{collection.mainImage.assetUrl}" alt="header icon" id="headerImg"/>
+					</div>
+          {.or}
+          
+          <div style='height: 50px'></div>
+          {.end}
+					<h1 class="hover" onclick="window.open('{collection.fullUrl}','_self')"  id="page-title-h1">{collection.title}{.if item.title}/<br><span class="red-text sub-title">{item.title}{.end}</h1>
+				</div>
+			</header>
+			
+				
+					{squarespace.main-content}
+				
+			
+      
+			{@|apply footer.block}
+			<squarespace:script src="site.js" combo="{.if authenticatedAccount}false{.or}true{.end}" />
+			{squarespace-footers}
+		</div>
+	</body>
+</html>

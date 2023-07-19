@@ -1,55 +1,24 @@
 
+<div id="pressList" class="flex-start-start flex-wrap">
 <!-- item loop -->
 {.repeated section items}
-
-  <article id="post-{id}" class="blog-list-item {@|item-classes}" data-item-id="{id}">
-    <!-- main image (thumbnail) -->
-    {.main-image?}
-      <a href="{fullUrl}" class="main-image content-fill">
-        <img {@|image-meta} />
-      </a>
-    {.end}
-    <!-- post title -->
-    <h1 class="title" data-content-field="title">
-      {.passthrough?}
-        <a href="{sourceUrl}" target="_blank">{title}</a>
-      {.or}
-        <a href="{fullUrl}">{title}</a>
-      {.end}
-    </h1>
-    <!-- excerpt or body -->
-    {.if excerpt}
-      {excerpt}
-      <a class="link" href="{fullUrl}">Read More</a>
-    {.or}
-      {body}
-    {.end}
-  </article>
-
-{.or}
-
-  <!-- no items means no blog posts -->
-  <p><em>No blog posts yet.</em></p>
-
+   <div class="press-frame" id={id} onclick="window.open('{clickthroughUrl}')" style="background-image: url({assetUrl}); background-size: cover;">
+      
+      
+      <div class="press-info">
+        <div class="flex-center-center">
+          <img src="{sourceUrl}" style="width: 100px"/>
+        </div>
+        <p style="text-align: center;"><i>{body|truncate 200}</i></p>
+      </div>
+   </div>
 {.end}
+<script>
 
-<!-- pagination -->
-{.if pagination}
-  <nav class="blog-list-pagination">
+var bodyWidth = $(window).width()
+console.log(bodyWidth)
+$('.press-frame').css({'height': bodyWidth / 4 + 'px', 'width': bodyWidth / 4 + 'px'})
 
-    <!-- newer page -->
-    {.if pagination.prevPage}
-      <a href="{pagination.prevPageUrl}">Newer</a>
-    {.or}
-      <a class="disabled">Newer</a>
-    {.end}
+</script>
+</div>
 
-    <!-- older page -->
-    {.if pagination.nextPage}
-      <a href="{pagination.nextPageUrl}">Older</a>
-    {.or}
-      <a class="disabled">Older</a>
-    {.end}
-
-  </nav>
-{.end}
