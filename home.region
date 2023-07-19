@@ -1,38 +1,29 @@
 <!doctype html>
-<html style="background: var(--tan)">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    {squarespace-headers}
-  </head>
-  <body class="flex-start-start fade-in" id="homeBody">
-    <div class="flex-center-end flex-column" style="height: 100vh; width: 100vw;">
-        <div style="height: 30vh; max-width: 350px;" class="flex-center-center">
-            <img src="{website.socialLogoImageUrl}" style="height: 100%;"/>
-        </div>
-        
-        <div id="homepage-nav" class="flex-start-center">
-            <squarespace:navigation navigationId="homeNav" template="home-navigation" />
-        </div>
-        <div class="flex-center-center" style="padding: 15px;">
-            <a class="home-navigation-item home-bottom-item" href="/contact">Contact</a>
-            <img src="assets/column-top.svg" style='height: 15px; padding: 0px 10px' alt="column"/>
-            <a class="home-navigation-item home-bottom-item" href="https://instagram.com/salon.21" target="_blank">@salon.21</a>
-            <img src="assets/column-top.svg" style='height: 15px; padding: 0px 10px' alt="column"/>
-            <a class="home-navigation-item home-bottom-item" href="/press">Press</a>
-        </div>
-
-    </div>
-    <main role="main" data-content-field="main-content" class="flex-center-center flex-column" style="display: none;">
-    {squarespace.main-content}
-    </main>
-  
-
-    
-    <squarespace:script src="site.js" combo="{.if authenticatedAccount}false{.or}true{.end}" />
-    
-
-  
-</body>
-
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+		{squarespace-headers}
+	</head>
+	<body class="flex-start-start fade-in" id="homeBody">
+		<div class="flex-center-end flex-column home-wrapper">
+			<div class="flex-center-center home-logo-wrapper">
+				<img src="{website.socialLogoImageUrl}" alt="salon 21 logo icon" />
+			</div>
+			<div id="homepage-nav" class="flex-start-center">
+				<squarespace:navigation navigationId="homeNav" template="home-navigation" />
+			</div>
+			<div class="flex-center-center basic-padding" >
+				<a class="home-navigation-item home-bottom-item" href="/contact">Contact</a>
+				<img src="assets/column-top.svg" class="column-icon" alt="column"/>
+				<a class="home-navigation-item home-bottom-item" href="https://instagram.com/salon.21" target="_blank">@salon.21</a>
+				<img src="assets/column-top.svg" class="column-icon" alt="column"/>
+				<a class="home-navigation-item home-bottom-item" href="/press">Press</a>
+			</div>
+		</div>
+		<main role="main" data-content-field="main-content" class="flex-center-center flex-column" style="display: none;">
+			{squarespace.main-content}
+		</main>
+		<squarespace:script src="site.js" combo="{.if authenticatedAccount}false{.or}true{.end}" />
+	</body>
 </html>

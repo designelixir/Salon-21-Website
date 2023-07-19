@@ -70,7 +70,7 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
                 <div class="artist-tags-wrapper flex-start-start flex-wrap">
 
                   {.repeated section tags}
-                    <a class="artist-tag hover" href="/artists/{@|slugify}">{@}</a>
+                    <a class="artist-tag hover" target="_blank" href="/artists/{@|slugify}">{@}</a>
                   {.end}
                   </div>
                 {.end}

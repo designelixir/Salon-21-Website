@@ -61,7 +61,7 @@
 				<p style="font-size: 14px; line-height: 14px;"><i>Featuring:</i></p>
 				<div class="flex-start-start flex-wrap">
 					{.repeated section tags}
-					<a class="artist-tag hover" href="{collection.fullUrl}?tag={@|url-encode}">{@}</a>
+					<a class="artist-tag hover" href="/artists/{@|slugify}" target="_blank">{@}</a>
 					{.end}
 				</div>
 				{.end}
