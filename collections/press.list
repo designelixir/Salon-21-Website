@@ -11,7 +11,7 @@
           <img src="{sourceUrl}" style="width: 100px"/>
         </div>
         {.end}
-        <i style="text-align: center!important;">{body|truncate 115}</i>
+        <i style="text-align: center!important; overflow-y: hidden;">{body}</i>
       </div>
       {.end}
    </div>
