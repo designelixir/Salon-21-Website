@@ -1,4 +1,13 @@
+<script>
+var events = [] 
+function createEvent(eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl){
+  
+  var event = [eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl]
+  events.push(event);
+  console.log(events)
 
+}
+</script>
 
 <div class="flex-center-center textured-bg" id="month-list">
 
@@ -8,15 +17,17 @@
 
 </div>
 
+<i style="text-align: center;">Note that dates and info are subject to change. <br> Please check back and join our mailing list for upcoming event updates.  </i>
 
-<!-- item loop -->
 
 {.repeated section items}
-
-<div class="flex-center-center" style="display: none;">
+{#  title, start Month, start day, end month, end day, full url  }
+<script>createEvent("{title}", {structuredContent.startDate|date %m}, {structuredContent.startDate|date %e}, {structuredContent.endDate|date %m}, {structuredContent.endDate|date %e}, "{fullUrl}")</script>
+<div class="flex-center-center" >
     <div class="exhibition-details hover" onclick="window.open('{fullUrl}', '_self')">
         <h6 style="margin-left: 20px;">{structuredContent.startDate|date %B %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
         <h3><img src="../assets/motif1.svg" style="height: 24px" />&nbsp;{title}</h3>
+
     </div>
 </div>
 
@@ -33,7 +44,6 @@
 const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 function createCalendar(month, year) {
-  
   const firstDayOfMonth = new Date(year, month, 1);
   const lastDayOfMonth = new Date(year, month + 1, 0);
   const numDaysInMonth = lastDayOfMonth.getDate();
@@ -42,6 +52,7 @@ function createCalendar(month, year) {
   const table = document.createElement('table');
   console.log('creating calendar for ' + `${monthNames[month]}`)
   table.id = `${monthNames[month]}` + '-table'
+  
 
   if (month === currentMonth){
     table.classList.add('active-calendar-table')
@@ -67,7 +78,8 @@ function createCalendar(month, year) {
         cell.innerHTML = '<div class="date-cell dead-date"></div>';
         
       } else if (currentDate <= numDaysInMonth) {
-        cell.innerHTML = '<div class="date-cell live-date"><div class="date-cell-day">'+ currentDate +'</div></div>';
+        var cellDate = []
+        cell.innerHTML = '<div class="date-cell live-date" data-cell-date="'+ currentDate +'" data-cell-month="' + month +'"><div class="date-cell-day">'+ currentDate +'</div></div>';
         currentDate++;
       }
     }
