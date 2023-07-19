@@ -1,19 +1,6 @@
 <footer class="flex-center-center flex-column inner-content-child">
 
 <div class="footer-mailer flex-center-center" id="footerMailer">
-    {#  <div id="footerFrames" style="width: calc(100vw - 50px); max-width: 1000px">
-        <img src="../assets/mailing-list-corner.svg" style=" width: 100px; position: absolute; left: -5px; transform: scaleX(-1) ;  top: -1px; " alt="decorative frame" />
-        <img src="../assets/frame-corner-bl.svg" style=" width: 100px; position: absolute;  transform: scaleX(-1); bottom: -5px; left: -5px; " alt="decorative frame" />
-
-
-        <img src="../assets/mailing-list-corner.svg" style=" width: 100px; position: absolute; right: -5px; top: -1px; " alt="decorative frame" />
-        <img src="../assets/frame-corner-bl.svg" style=" width: 100px; position: absolute; bottom: -5px; right: -5px; " alt="decorative frame" />
-    </div>  }
-    
-        
-    
-
-
     <div class="flex-start-center flex-column" id="mailerHolder">
         <div style=" padding: 0 100px; text-align: center; width: 100%;">
         
@@ -35,18 +22,3 @@
 
 </footer>
 
-{#  <script>
-
-window.addEventListener('resize', frameSizer )
-window.addEventListener('scroll', frameSizer )
-
-function frameSizer(){
-    var holder = document.getElementById('mailerHolder').clientHeight;
-    var frames = document.getElementById('footerFrames')
-    frames.style.opacity = 1;
-    frames.style.height = (holder - 50) + "px"
-    frames.style.maxHeight = holder + "px"
-   
-}
-frameSizer
-</script>  }
