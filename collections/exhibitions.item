@@ -27,7 +27,7 @@
 	
 </script>
 {.section item}
-<div class="inner-content-container" id="{id}" data-item-id="{id}" >
+<div class="inner-content-container textured-bg" id="{id}" data-item-id="{id}" >
 	<div class=" exhibition-container">
 		<div class="flex-start-start exhibition-details"  >
 			<div class="exhibition-details-body" >
