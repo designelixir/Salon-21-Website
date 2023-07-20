@@ -14,11 +14,11 @@
 				<squarespace:navigation navigationId="homeNav" template="home-navigation" />
 			</div>
 			<div class="flex-center-center basic-padding" >
-				<a class="home-navigation-item home-bottom-item" href="/contact">Contact</a>
+				<a class="home-navigation-item home-bottom-item hover" href="/contact">Contact</a>
 				<img src="assets/column-top.svg" class="column-icon" alt="column"/>
-				<a class="home-navigation-item home-bottom-item" href="https://instagram.com/salon.21" target="_blank">@salon.21</a>
+				<a class="home-navigation-item home-bottom-item hover" href="https://instagram.com/salon.21" target="_blank">@salon.21</a>
 				<img src="assets/column-top.svg" class="column-icon" alt="column"/>
-				<a class="home-navigation-item home-bottom-item" href="/press">Press</a>
+				<a class="home-navigation-item home-bottom-item hover" href="/press">Press</a>
 			</div>
 		</div>
 		<main role="main" data-content-field="main-content" class="flex-center-center flex-column" style="display: none;">
