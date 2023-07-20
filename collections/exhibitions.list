@@ -52,7 +52,7 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
       <div class="exhibition fade-in"  id="{id}" data-event-date="{structuredContent.startDate|date %Y-%m-%dT%T}">
           <div class="exhibition-content">
               {.if customContent.dateNotDefined}<h6 class="red-text"><span class="exhibition-type-label" id="eventType-{id}"></span><br style="margin-bottom: 10px;">{structuredContent.startDate|date %B %Y}</h6>{.or}
-              <h6 class="red-text"><span class="exhibition-type-label" id="eventType-{id}"></span><br style="margin-bottom: 10px;"> {structuredContent.startDate|date %B %d} - {structuredContent.endDate|date %B %d, %Y} </h6>
+              <h6 class="red-text"><span class="exhibition-type-label" id="eventType-{id}"></span><br style="margin-bottom: 10px;"> {structuredContent.startDate|date %B %e} - {structuredContent.endDate|date %B %e, %Y} </h6>
               {.end}
               
               <h3 onclick="window.open('{fullUrl}', '_self')">{title}</h3>
