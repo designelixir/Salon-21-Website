@@ -13,23 +13,3 @@ $('#headerImg').attr('src', `{assetUrl}`)
 {.end}
 
 
-<!--PAGINATION-->
-{.section pagination}
-  <nav class="blog-item-pagination">
-
-    <!--NEWER PAGE-->
-    {.section prevItem}
-      <a href="{fullUrl}"><img src="../assets/prev.png" style="height: 15px; margin-left: 20px;"/></a>
-    {.or}
-      <a class="disabled"><img src="../assets/prev.png" style="height: 15px; margin-left: 20px;"/></a>
-    {.end}
-
-    <!--OLDER PAGE-->
-    {.section nextItem}
-      <a href="{fullUrl}"><img src="../assets/next.png" style="height: 15px; margin-right: 20px;"/>&nbsp;</a>
-    {.or}
-      <a class="disabled"><img src="../assets/next.png" style="height: 15px; margin-right: 20px;"/>&nbsp;&nbsp;&nbsp;</a>
-    {.end}
-
-  </nav>
-{.end}
