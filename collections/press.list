@@ -2,12 +2,12 @@
 <div id="pressList" class="flex-center-center">
 <!-- item loop -->
 {.repeated section items}
-   <div class="press-frame {.if clickthroughUrl}hover{.end}" id={id} {.if clickthroughUrl}onclick="window.open('{clickthroughUrl}')"{.end} style="background-image: url({assetUrl}); background-size: cover;">
+   <div class="press-frame {.if clickthroughUrl}hover{.end}" id={id} {.if clickthroughUrl}onclick="window.open('{clickthroughUrl}')"{.end} style="background-image: url({assetUrl}); background-size: 100% 100%;">
       
       {.if body}
       <div class="press-info flex-center-center flex-wrap">
         {.if sourceUrl}
-        <div class="flex-center-center">
+        <div class="flex-center-center" >
           <img src="{sourceUrl}" style="width: 100px"/>
         </div>
         {.end}

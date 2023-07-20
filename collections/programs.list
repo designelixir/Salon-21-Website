@@ -212,7 +212,30 @@ function toggleMonths(monthName){
 
 var clickableMonths = document.getElementsByClassName('month-label')
 
-
+function mobilizeCalendar(){
+  var windowWidth = $(window).width()
+  console.log(windowWidth)
+  if (windowWidth < 850){
+    $('#calendar-container').css({"max-height": "70vh", "overflow": "scroll"})
+    $('.dead-date').parent('td').css("display", "none")
+    $('td').css({"width": "unset", "height": "unset"})
+    $('tr').css({"width": "100%"})
+    $('tr').addClass('flex-start-start flex-column')
+    $('.date-cell').css({"min-width": "100vw", "width": "100%", "justify-content": "flex-start!important", "min-height": "10px", "height": "unset"})
+    $('.date-cell-day').css({"padding": "10px"})
+    $('.has-event').css({"padding": "20px"})
+    $('.event-details p').css({"padding": "15px 30px", "text-align": "left", "font-size": "16px"})
+    $('.date-cell').removeClass(' flex-center-start')
+    $('.special-event p').css({"text-align": "left!important"})
+    $('.ongoing-event-details p').css({"font-size": "14px"})
+    $('.ongoing-event').addClass('flex-center-start')
+    $('.date-cell').addClass('flex-start-start')
+  } else {
+    console.log("revert")
+  }
+}
+$(document).ready(mobilizeCalendar)
+window.addEventListener('resize', mobilizeCalendar)
 
 
 
