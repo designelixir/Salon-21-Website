@@ -11,7 +11,7 @@
 		{@|apply header.block}
 		<div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container custom-bg-region" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
 			<header class="site-header">
-			    <h1 class="hover" onclick="window.open('{collection.fullUrl}','_self')"  id="page-title-h1">{collection.title}{.if item.title}/<br><span class="red-text sub-title">{item.title}{.end}</h1>
+			    <h1 class="hover" onclick="window.open('{collection.fullUrl}','_self')"  id="page-title-h1">{collection.title}{.if item.title}<br><span class="red-text sub-title">{item.title}{.end}</h1>
 			</header>
 			<div class="flex-center-center flex-column">
 				
