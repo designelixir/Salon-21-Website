@@ -38,12 +38,11 @@
 
 	function detectScrollFromTop() {
 	  var scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-	  if (scrollPosition > 0 && isAtTop) {
+	  if (scrollPosition > 0) {
 	    logo.style.maxHeight = "20px"
 	  } else if(scrollPosition === 0 ){
 	    logo.style.maxHeight = "30px"
 	  }
-	  isAtTop = (scrollPosition === 0);
 	}
 	
 	window.addEventListener('scroll', detectScrollFromTop);
