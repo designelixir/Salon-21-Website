@@ -12,16 +12,16 @@
     
     <div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" >
 
-      <header class="contact-header flex-start-start">
-        <div class=" flex-start-spacebetween" id="contact-container">
-            <div id="contact-title">
+      <header class="contact-header flex-start-start" style="margin-top: 100px">
+        
+            
                 <h1>{collection.title}</h1>
-            </div>
-            <div class="contact-details">
+            
+            
                 <p>Find us at <a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" >{.if website.location.addressTitle}{website.location.addressTitle}, {.end}{website.location.addressLine1}, {website.location.addressLine2}</a> by appointment only.</p>
                 {collection.description}
-            </div>
-        </div>
+            
+        
       </header>
       
 
