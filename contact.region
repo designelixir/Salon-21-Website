@@ -15,7 +15,7 @@
 			</header>
 
 			<div class="flex-center-center flex-column">
-      <img src="assets/sohov4.png" style="height: 40vh; margin-top: -100px"/>
+      <img src="assets/sohov4.png" style="height: 40vh; margin-top: -100px; min-height: 300px;"/>
 				<main role="main" data-content-field="main-content" class="flex-center-center flex-column ">
 					{squarespace.main-content}
 				</main>
