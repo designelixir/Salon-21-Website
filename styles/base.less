@@ -147,13 +147,13 @@ button {border: 0px; padding: 10px 20px; font-family: 'Armoire', sans-serif!impo
 #noExhibitions { text-align: center; padding: 10px; margin: 20px 50px; background-color: rgba(255,255,255,0.15)}
 
 .current {order: -1;}
-
+.exhibition-image {width: 100%; max-width: 50%; margin-right: 25px; float: left; pointer-events: none;}
 @media screen and (max-width: 750px)  {
   .exhibition-details {flex-direction: column; justify-content: flex-start!important;}
   .exhibition-container {justify-content: flex-start!important; align-items: flex-start!important;}
-  .exhibition-details-body {margin-left: 0px!important;}
+  .exhibition-details-body {margin-left: 0px!important; display: block;}
   .exhibition {padding: 0px 10px!important; margin: 10px 0px!important;}
-  
+  .exhibition-image {max-width: 100%; margin-right: 0px; margin-bottom: 25px;}
   #events-list {padding: 10px!important; margin-top: -60px!important;}
   .exhibition-content {padding: 0px;} 
 }
@@ -162,7 +162,7 @@ button {border: 0px; padding: 10px 20px; font-family: 'Armoire', sans-serif!impo
 .active-cat {color: var(--red)!important}
 .exhibition h3 {padding: 0px; margin: 0;}
 .exhibition h3:hover {text-decoration: underline; cursor:pointer}
-.exhibition-details-body {width: 100%; }
+.exhibition-details-body {width: 100%; display: inline-block}
 .exhibition {display: none; padding: 10px; margin: 20px 50px; width: 90%; background-color: rgba(255,255,255,0.15) }
 .exhibition-content {padding: 20px;}
 

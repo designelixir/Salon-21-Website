@@ -1,5 +1,5 @@
 <style>
-  #headerIcon {display: none!important;}
+	#headerIcon {display: none!important;}
 </style>
 <script>
 	function isDateInFutureOrPast(start, end, id) {
@@ -28,12 +28,12 @@
 </script>
 {.section item}
 <div class="inner-content-container" id="{id}" data-item-id="{id}" >
-	<div class="flex-center-center flex-column exhibition-container">
-		<div class="flex-start-start exhibition-details" >
-			{.if customContent.exhibitionImage}
-				<img src="{customContent.exhibitionImage.assetUrl}" style="width: 100%; margin-right: 25px; pointer-events: none;">
-			{.end}
-			<div class="exhibition-details-body">
+	<div class=" exhibition-container">
+		<div class="flex-start-start exhibition-details"  >
+			<div class="exhibition-details-body" >
+				{.if customContent.exhibitionImage}
+				<img src="{customContent.exhibitionImage.assetUrl}" class="exhibition-image">
+				{.end}
 				{.if customContent.dateNotDefined}
 				<h6><span class="exhibition-type-label" id="eventType-{id}"></span><br><br>{structuredContent.startDate|date %B %Y } - <i>Check back for dates</i></h6>
 				{.or}
@@ -41,7 +41,6 @@
 					<span class="exhibition-type-label" id="eventType-{id}"></span>&nbsp;&nbsp;<br>
 					<br><span style="font-size: 18px;"> {structuredContent.startDate|date %B %e} - {structuredContent.endDate|date %B %e, %Y} </span>
 				</h6>
-				
 				{.end}
 				{.if location}
 				{.section location}
@@ -51,10 +50,13 @@
 				<a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if website.location.addressTitle}{website.location.addressTitle}, {.end}{website.location.addressLine1}, {website.location.addressLine2}</a><br>
 				{.end}
 				{.if customContent.hideArtistTags}
-				<br>
-				<i>{excerpt}</i>
-				<br>
-				{body}
+				    {.repeated section tags}
+						<br>
+						{body|safe}
+					{.end}
+					
+					
+					
 				{.or}
 				{.if tags}
 				<img src="../assets/spear.svg" alt="decorative frame" style=" margin-right: 10px;">
@@ -64,8 +66,9 @@
 					<a class="artist-tag hover" href="/artists/{@|slugify}" target="_blank">{@}</a>
 					{.end}
 					<script>$('.artist-tags-wrapper a').sort(function(a, b) {
-                      return $(a).text().localeCompare($(b).text());
-                    }).appendTo('.artist-tags-wrapper');</script>
+						return $(a).text().localeCompare($(b).text());
+						}).appendTo('.artist-tags-wrapper');
+					</script>
 				</div>
 				<i>{excerpt}</i>
 				{body}
@@ -74,7 +77,6 @@
 			</div>
 		</div>
 		<script>isDateInFutureOrPast(`{structuredContent.startDate|date %Y-%m-%dT%T}`, `{structuredContent.endDate|date %Y-%m-%dT%T}`, `{id}`)</script>
-		
 	</div>
 	{.end}
 </div>
