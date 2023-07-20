@@ -68,7 +68,7 @@ function createCalendar(month, year) {
   const lastDayOfMonth = new Date(year, month + 1, 0);
   const numDaysInMonth = lastDayOfMonth.getDate();
   const startingDayOfWeek = firstDayOfMonth.getDay();
-
+  console.log("start day is" + startingDayOfWeek)
   const table = document.createElement('table');
   table.id = month + '-table'
   
@@ -79,8 +79,6 @@ function createCalendar(month, year) {
     table.classList.add('hidden-calendar-table')
   }
   
-
-
   const headerRow = table.insertRow();
   for (const dayOfWeek of daysOfWeek) {
     const th = document.createElement('th');
@@ -94,11 +92,11 @@ function createCalendar(month, year) {
     for (let j = 0; j < 7; j++) {
       const cell = weekRow.insertCell();
       if (i === 0 && j < startingDayOfWeek) {
-        cell.innerHTML = '<div style="width: calc(90vw / 7); " class="date-cell dead-date "></div>';
+        cell.innerHTML = '<div style="width: calc(90vw / 7); data-day-of-week="'+ j +'" " class="date-cell dead-date "></div>';
         
       } else if (currentDate <= numDaysInMonth) {
         var cellDate = []
-        cell.innerHTML = '<div class="date-cell flex-center-start flex-column live-date" style="width: calc(90vw / 7); " id="'+ currentDate +'" data-cell-month="' + month +'"><div class="date-cell-day flex-start-start">'+ currentDate +'</div></div>';
+        cell.innerHTML = '<div class="date-cell flex-start-start flex-wrap live-date" style="width: calc(90vw / 7); " id="'+ currentDate +'" data-cell-month="' + month +'"><div class="date-cell-day flex-start-start"><div class="day-wrapper"><span class="day-of-week">'+ daysOfWeek[j] +'</span>'+ currentDate +'</div></div></div>';
         currentDate++;
       }
     }
@@ -164,28 +162,20 @@ function addEvent(eventList){
     var monthNum = event[1];
       var monthName =  (monthNum - 1) + '-table'
       if (event[6] === 'exhibition-event'){
-        var targetDiv = ' .date-cell-day'
-        var eventTitle = "<div class='ongoing-event-details "+ event[6]+"'><p> - " + event[0] + "</p></div>"
+        var eventTitle = "<div class='event-details "+ event[6]+"'><p>" + event[0] + "</p></div>"
       } else if(event[6] === 'special-event'){
-        targetDiv = ''
-        
         var eventTitle = "<div class='event-details "+ event[6]+"'><p>" + event[0] + "</p><span class='event-subtitle'>"+ event[7] + "</span></div>"
       }else {
-        targetDiv = ''
         var eventTitle = "<div class='event-details "+ event[6]+"'><p>" + event[0] + "</p></div>"
       }
       if ((event[4] - event[2]) === 0){
-        console.log("got here" + event[2] + event[0] + " " + monthName)
-        $("#" + monthName).find('td #' + event[2] + targetDiv).append(eventTitle)
+        $("#" + monthName).find('td #' + event[2]).append(eventTitle)
         $("#" + monthName).find('td #' + event[2]).addClass('has-event')
-    
-        
       } else {
-        console.log("else " + event[2] + event[0] + " " + monthName)
         var eventRange = event[4] - event[2];
         for (i = 0; i < eventRange + 1; i++){
           var nextDay = event[2] + i
-          $("#" + monthName).find('td #' + nextDay + targetDiv).append(eventTitle)
+          $("#" + monthName).find('td #' + nextDay).append(eventTitle)
           $("#" + monthName).find('td #' + nextDay).addClass('has-event', event[5])
         }
       }
@@ -223,13 +213,15 @@ function mobilizeCalendar(){
     $('tr').addClass('flex-start-start flex-column')
     $('.date-cell').css({"min-width": "100vw", "width": "100%", "justify-content": "flex-start!important", "min-height": "10px", "height": "unset"})
     $('.date-cell-day').css({"padding": "10px"})
-    $('.has-event').css({"padding": "20px"})
+    $('.date-cell-day').removeClass('flex-start-start')
+    $('.date-cell-day').addClass('flex-center-start')
     $('.event-details p').css({"padding": "15px 30px", "text-align": "left", "font-size": "16px"})
     $('.date-cell').removeClass(' flex-center-start')
     $('.special-event p').css({"text-align": "left!important"})
     $('.ongoing-event-details p').css({"font-size": "14px"})
     $('.ongoing-event').addClass('flex-center-start')
     $('.date-cell').addClass('flex-start-start')
+    $('.day-wrapper').css({"padding": "10px", "text-align": "center", "border": "1px solid black"})
   } else {
     console.log("revert")
   }
