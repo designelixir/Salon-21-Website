@@ -1,61 +1,44 @@
 <nav class="site-navigation flex-center-spacebetween" id="site-navigation-wrapper">
-          <div class="hover flex-center-center flex-column" id="hamburger" onclick="toggleMenu()">
-            <img src="../assets/ham1.svg"/>
-            <img src="../assets/ham2.svg"/>
-            <img src="../assets/ham3.svg"/>
-          </div>
-          <img src={website.logoImageUrl} onclick="window.open('/','_self')" class="logo hover" id="header-logo" alt="{website.siteTitle} logo"/>
-          <div class="nav-blank-space"></div>
-        </nav>
-
-        <script>
-
-var isAtTop = true; // Flag to track if scroll view is at the top
-var menuOpen = false;
-
-var navBar = document.getElementById('site-navigation-wrapper')
-var navMenuList = document.getElementById('nav-menu-list');
+	<div class="hover flex-center-center flex-column" id="hamburger" onclick="toggleMenu()">
+		<img class="hover" src="../assets/ham1.svg" alt="hamburger menu"/>
+		<img class="hover" src="../assets/ham2.svg" alt="hamburger menu"/>
+		<img class="hover" src="../assets/ham3.svg" alt="hamburger menu"/>
+	</div>
+	<img src={website.logoImageUrl} onclick="window.open('/','_self')" class="logo hover fade-in" id="header-logo" alt="{website.siteTitle} logo"/>
+	<div class="nav-blank-space"></div>
+</nav>
+<script>
+	var menuOpen = false;
+	var navMenuList = document.getElementById('nav-menu-list');
   var navMenuItems = document.getElementsByClassName('site-navigation-item');
   var navHamburger = document.getElementById('hamburger');
-var body = document.querySelector('body')
-var logo = document.getElementById('header-logo');
-var fixedNav = (navBar.style.position === "fixed");
-var divWidth = navMenuList.offsetWidth;
+	var body = document.querySelector('body') 
+	var logo = document.getElementById('header-logo');
+	
+	function toggleMenu(){
+	  if (navMenuList.style.display === "block"){
+	    navMenuList.style.display = "none"
+	    navHamburger.classList.remove('hamburger-x')
+	    body.style.marginLeft = 0;
+	  } else {
+	    navMenuList.style.display = "block"
+	    navHamburger.classList.add('hamburger-x');
+	    body.style.marginLeft = "200px"
+	    for (i=0; i<navMenuItems.length; i++){
+	      navMenuItems[i].style.animation = "fade-in-left " + i * 0.1 + "s cubic-bezier(.25,.46,.45,.94) both"
+	    }
+	  }
+	}
 
- 
-
-function toggleMenu(){
-  if (navMenuList.style.display === "block"){
-    navMenuList.style.display = "none"
-    navHamburger.classList.remove('hamburger-x')
-    body.style.marginLeft = 0;
-    
-    
-  } else {
-    navMenuList.style.display = "block"
-    navHamburger.classList.add('hamburger-x');
-    body.style.marginLeft = "200px"
-    for (i=0; i<navMenuItems.length; i++){
-      navMenuItems[i].style.animation = "fade-in-left " + i * 0.1 + "s cubic-bezier(.25,.46,.45,.94) both"
-    }
-     
-    
-  }
-   
-}
-
-    
-
-function detectScrollFromTop() {
-  var scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-  if (scrollPosition > 0 && isAtTop) {
-    logo.style.maxHeight = "20px"
-  } else if(scrollPosition === 0 ){
-    logo.style.maxHeight = "30px"
-  }
-  isAtTop = (scrollPosition === 0);
-}
-
-// Attach the function to the scroll event
-window.addEventListener('scroll', detectScrollFromTop);
+	function detectScrollFromTop() {
+	  var scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+	  if (scrollPosition > 0 && isAtTop) {
+	    logo.style.maxHeight = "20px"
+	  } else if(scrollPosition === 0 ){
+	    logo.style.maxHeight = "30px"
+	  }
+	  isAtTop = (scrollPosition === 0);
+	}
+	
+	window.addEventListener('scroll', detectScrollFromTop);
 </script>
