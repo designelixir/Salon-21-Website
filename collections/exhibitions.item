@@ -31,11 +31,7 @@
 	<div class="flex-center-center flex-column exhibition-container">
 		<div class="flex-start-start exhibition-details" >
 			{.if customContent.exhibitionImage}
-			<div class="exhibition-details-image-container flex-start-start">
-				<div class="mask1 flex-start-start">
-					<img class="masked-image" src="{customContent.exhibitionImage.assetUrl}">
-				</div>
-			</div>
+				<img src="{customContent.exhibitionImage.assetUrl}" style="width: 100%; margin-right: 25px; pointer-events: none;">
 			{.end}
 			<div class="exhibition-details-body">
 				{.if customContent.dateNotDefined}
@@ -54,7 +50,7 @@
 				{.or}
 				<a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if website.location.addressTitle}{website.location.addressTitle}, {.end}{website.location.addressLine1}, {website.location.addressLine2}</a><br>
 				{.end}
-				{.if customContent.hideArtistTags}
+				
 				{.or}
 				{.if tags}
 				<img src="../assets/spear.svg" alt="decorative frame" style=" margin-right: 10px;">
