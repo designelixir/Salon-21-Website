@@ -1,45 +1,29 @@
 <!doctype html>
 <html>
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    {squarespace-headers}
-  </head>
-  <squarespace:navigation navigationId="siteNav" template="site-navigation" />
-  <body class="flex-start-start">
-    {@|apply header.block}
-    
-    
-    <div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" >
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		{squarespace-headers}
+	</head>
+	<squarespace:navigation navigationId="siteNav" template="site-navigation" />
+	<body class="flex-start-start ">
+		{@|apply header.block}
+		<div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container" >
+			<header class="site-header">
+				<h1 class="hover" onclick="window.open('{collection.fullUrl}','_self')"  id="page-title-h1">{collection.title}{.if item.title}<br><span class="red-text sub-title">{item.title}{.end}</h1>
+			</header>
 
-      <header class="contact-header flex-start-start" style="margin-top: 100px">
-        
-            
-                <h1>{collection.title}</h1>
-            
-            
-                <p>Find us at <a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" >{.if website.location.addressTitle}{website.location.addressTitle}, {.end}{website.location.addressLine1}, {website.location.addressLine2}</a> by appointment only.</p>
-                {collection.description}
-            
-        
-      </header>
+			<div class="flex-center-center flex-column">
+      <img src="assets/sohov4.png" style="height: 40vh; margin-top: -100px"/>
+				<main role="main" data-content-field="main-content" class="flex-center-center flex-column ">
+					{squarespace.main-content}
+				</main>
+			</div>
       
-
-      <div class="flex-center-center flex-column">
-        <main role="main" data-content-field="main-content" class="flex-center-center flex-column">
-        {squarespace.main-content}
-        </main>
-        
-      </div>
-      {@|apply footer.block}
-      <!--Footer with open block field -->
-      
-
-    <squarespace:script src="site.js" combo="{.if authenticatedAccount}false{.or}true{.end}" />
-    <!-- other scripts, and footer code injection -->
-    {squarespace-footers}
-
-  </div>
-</body>
-
+			{@|apply footer.block}
+			<squarespace:script src="site.js" combo="{.if authenticatedAccount}false{.or}true{.end}" />
+			{squarespace-footers}
+		</div>
+	</body>
 </html>
