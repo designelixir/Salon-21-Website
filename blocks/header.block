@@ -4,11 +4,12 @@
 		<img class="hover" src="../assets/ham2.svg" alt="hamburger menu"/>
 		<img class="hover" src="../assets/ham3.svg" alt="hamburger menu"/>
 	</div>
+  <div id="hamburger-select" style="width: 1px; top: 0; cursor: pointer; position: absolute; height: 1px; z-index: 40000000; border: 1px solid lime;" onclick="toggleMenu()"></div>
 	<img src={website.logoImageUrl} onclick="window.open('/','_self')" class="logo hover fade-in" id="header-logo" alt="{website.siteTitle} logo"/>
 	<div class="nav-blank-space"></div>
 </nav>
 <script>
-	var menuOpen = false;
+
 	var navMenuList = document.getElementById('nav-menu-list');
   var navMenuItems = document.getElementsByClassName('site-navigation-item');
   var navHamburger = document.getElementById('hamburger');
@@ -20,15 +21,20 @@
 	    navMenuList.style.display = "none"
 	    navHamburger.classList.remove('hamburger-x')
 	    body.style.marginLeft = 0;
+      $('#hamburger-select').css({"height": "0px", "width": "0px", "display": "none"})
 	  } else {
 	    navMenuList.style.display = "block"
 	    navHamburger.classList.add('hamburger-x');
 	    body.style.marginLeft = "200px"
+      $('#hamburger-select').css({"height": "100vh", "width": "300px", "display": "block"})
 	    for (i=0; i<navMenuItems.length; i++){
 	      navMenuItems[i].style.animation = "fade-in-left " + i * 0.1 + "s cubic-bezier(.25,.46,.45,.94) both"
 	    }
+      
 	  }
 	}
+
+
 
 	function detectScrollFromTop() {
 	  var scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;

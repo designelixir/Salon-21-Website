@@ -1,30 +1,22 @@
 <nav class="site-navigation" id="nav-menu-list">
-  <ul class="site-navigation-list">
-    {.repeated section items}
+	<ul class="site-navigation-list">
+		{.repeated section items}
+		<li class="site-navigation-item hover {.section active} active-link{.end}">
+			{.section collection}
+			<a href="{fullUrl}">{navigationTitle}</a>
+			{.end}
 
-      <li class="site-navigation-item hover {.section active} active-link{.end}">
-
-        <!-- collection link -->
-        {.section collection}
-          <a href="{fullUrl}">{navigationTitle}</a>
-        {.end}
-
-        <!-- external link -->
-        {.section externalLink}
-          <a href="{url}"{.section newWindow} target="_blank"{.end}>
-            {title}
-          </a>
-        {.end}
-
-      </li>
-
-    {.end}
-  </ul>
-  <div class="site-navigation-footer flex-start-start flex-column" style=" width: calc(100% - 20px);">
-            <img src="../assets/spear-white.svg" style="width: calc(100% - 20px); margin-bottom: 10px;" alt="decorative spear" />
-  
-            <button class="tan-button"><a class="home-navigation-item home-bottom-item hover" href="/contact">Contact</a></button>
-            <br>
-            <a class="home-navigation-item home-bottom-item hover" href="https://instagram.com/salon.21" target="_blank">@salon.21</a>
+			{.section externalLink}
+			<a href="{url}"{.section newWindow} target="_blank"{.end}>
+			{title}
+			</a>
+			{.end}
+		</li>
+		{.end}
+	</ul>
+	<div class="site-navigation-footer flex-start-start flex-column" style=" width: calc(100% - 20px);">
+	<img src="../assets/spear-white.svg" style="width: calc(100% - 20px); margin-bottom: 10px;" alt="decorative spear" />
+	<button class="tan-button"><a class="home-navigation-item home-bottom-item hover" href="/contact">Contact</a></button>
+	<br>
+	<a class="home-navigation-item home-bottom-item hover" href="https://instagram.com/salon.21" target="_blank">@salon.21</a>
 </nav>
-
