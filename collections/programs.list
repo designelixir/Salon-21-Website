@@ -31,8 +31,8 @@
 </div>
 <div class="inner-content-container flex-center-center flex-column">
 	<squarespace:block-field id="eventsContent" columns="12"/>
-	<i style="text-align: center;">Note that dates and info are subject to change. <br> Please check back and join our mailing list for upcoming event updates.  </i>
-	<p><a>Salon 21</a> is currently available for buyouts to brands, designers, and press as a venue to host private dinners, cocktail events, trunk shows, editorial and content photoshoots, and more. Our team will work directly with you to create your perfect, customized event, with add-ons including florals, food and drink menus and tablescapes. Our space is located in a 1,600-sq foot loft in Manhattan's SoHo district. To learn more about our space, full event capabilities and availability, please contact <a href="mailto:alex@salontwenty-one.com">alex@salontwenty-one.com</a></p>
+	
+	
 </div>
 {.repeated section items}
   {.if starred}
