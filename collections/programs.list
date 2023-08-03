@@ -170,7 +170,7 @@ calContainer.innerHTML = calendar;
 			console.log(closuresList[i])
 			
 			$('#' + closuresList[i] ).addClass("closed")
-		$('#' + closuresList[i] ).find('.event-container').html("<img src='../assets/closed.svg' class='calendar-closure' alt='test'/>")
+		$('#' + closuresList[i] ).find('.event-container').html("<p style='text-align: center; font-size: 20px;'>Closed<p>")
 		}
 	}
 	
