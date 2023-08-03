@@ -249,7 +249,7 @@ td {width: 150px; height: 150px; padding: 2px;}
   .event-details {width: 100%;}
   .event-container { padding: 37px 10px; background-color: rgba(255,255,255,0.25)}
 }
-
+.closed {opacity: 0.4!important;}
 
 .event-container {width: 100%;}
 
@@ -262,17 +262,18 @@ td {width: 150px; height: 150px; padding: 2px;}
 
 
 
-.exhibition-event p { margin: 0; font-size: 10px; font-style: italic; line-height: 12px!important;}
-.event-details p{ text-align: left!important; padding: 5px 0px;}
+.exhibition-event p {font-size: 12px; font-style: italic; line-height: 14px!important; margin: 5px 0px; padding: 0px!important;}
+.event-details p{ text-align: left!important; padding: 0px 5px;}
+.event-details p:nth-child(odd) {padding: 10px 1px 0px;}
 
+.event-details-title {padding: 0px; margin: 0; }
+.event-details p:nth-child(even){font-size: 12px; color: black!important; margin: 0px;  font-weight: 100; }
+.event-details p:nth-child(even) a{font-size: 12px; cursor: pointer; color: black!important; margin: 0px;    font-weight: 100; text-transform: none; text-decoration: underline; font-family: 'Reckless', sans-serif;}
 
-
-.event-details p:nth-child(even){font-size: 12px; color: lime!important; margin: 0px; padding: 5px 0px 0px 0px; }
-
-.regular-event p {font-size: 14px;}
+.regular-event p {font-size: 14px; line-height: 13px;}
 .event-container .event-details:nth-child(2) {border-top: 1px solid black;}
-.special-event p {font-size: 16px; font-weight: 600; margin: 0!important;}
-
+.special-event p {font-size: 16px; font-weight: 600;  line-height: 16px;}
+.calendar-closure {width: 115px; padding-left: 10px;}
 
 // CONTACT PAGE
 .contact-header {width: 100vw; height: 550px; border: 2px solid red; padding: 20px; margin-top: 100px;  background-image: url('../assets/soho-v2.png'); background-size: contain; background-repeat: no-repeat; background-position: 0% 25px;}
