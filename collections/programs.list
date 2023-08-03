@@ -160,7 +160,8 @@ calContainer.innerHTML = calendar;
 	addEvent(events)
 	addEvent(specialEvents)
 	
-	
+	var closuresList = ['8-17', '8-18', '8-24', '8-25', '9-1', '9-2', '9-8', '9-9', '9-15', '9-16', '9-22', '9-23', '9-29', '9-30', '10-23', '10-24', '11-24', '11-25', '11-26', '11-27', '11-28', '11-29', '11-30', '11-31', '0-1', '0-2' ]
+
 	function closures(closuresList){
 		console.log(closuresList)
 		for (i = 0; i < closuresList.length; i++){
@@ -173,7 +174,7 @@ calContainer.innerHTML = calendar;
 		}
 	}
 	
-	
+	closures(closuresList)
 	
 
 	function toggleMonths(monthName){
