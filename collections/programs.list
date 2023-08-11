@@ -244,10 +244,7 @@ calContainer.innerHTML = calendar;
 	}
 	colorCalendar();
  function orderEvents(list){
-	console.log(list)
-	console.log("called order events")
 	for(i=0; i<list.length; i++){
-		console.log($(list[i]).attr("data-military-time"))
 		var time = $(list[i]).attr("data-military-time");
 		$(list[i]).css("order", time);
 	}
