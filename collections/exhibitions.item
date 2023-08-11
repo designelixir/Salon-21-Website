@@ -31,8 +31,8 @@
 	<div class=" exhibition-container">
 		<div class="flex-start-start exhibition-details"  >
 			<div class="exhibition-details-body" >
-				{.if customContent.exhibitionImage}
-				<img src="{customContent.exhibitionImage.assetUrl}" class="exhibition-image">
+				{.if customContent.hideImage} {.or}
+				<img src="{assetUrl}" class="exhibition-image">
 				{.end}
 				{.if customContent.dateNotDefined}
 				<h6><span class="exhibition-type-label" id="eventType-{id}"></span><br><br>{structuredContent.startDate|date %B %Y } - <i>Check back for dates</i></h6>
@@ -50,10 +50,10 @@
 				<a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if website.location.addressTitle}{website.location.addressTitle}, {.end}{website.location.addressLine1}, {website.location.addressLine2}</a><br>
 				{.end}
 				{.if customContent.hideArtistTags}
-				    {.repeated section tags}
-						<br>
+				    <br>
+						<i>{excerpt|safe}</i><br><br>
 						{body|safe}
-					{.end}
+					
 					
 					
 					

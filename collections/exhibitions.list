@@ -53,7 +53,7 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
               <h6 class="red-text"><span class="exhibition-type-label" id="eventType-{id}"></span><br style="margin-bottom: 10px;"> {structuredContent.startDate|date %B %e} - {structuredContent.endDate|date %B %e, %Y} </h6>
               {.end}
               
-              <h3 onclick="window.open('{fullUrl}', '_self')">{title}</h3>
+              <h3 onclick="window.open('{.if sourceUrl}{sourceUrl} {.or}{fullUrl}{.end}', '_self')">{title}</h3>
               
               {.if excerpt}
                 <p class="light-weight" style="font-size: 12px!important;"><i>{excerpt}</i></p>
