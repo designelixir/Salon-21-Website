@@ -1,6 +1,6 @@
 
 <script>
-
+var eventList = []
 function isDateInFutureOrPast(start, end, id) {
   const today = new Date();
   const targetDiv = document.getElementById(id)
@@ -20,8 +20,9 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
   }  else {
     console.log("no event defined")
   }
-
+  eventList.push({id, start});
 }
+console.log(eventList)
 </script>
 
 <section id="exhibitions-list">
@@ -36,7 +37,7 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
   <img src="../assets/frame-decor.svg" alt="decorative frame" style="transform: scaleX(-1)">
 </div>
 
-<div id="events-list" class="flex-center-center flex-column-reverse">
+<div id="events-list" class="flex-center-center flex-column">
 
 <div id="noExhibitions" style="display: none;">
   <p style="padding: 20px; text-align: center;"><i>No events to show</i></p>
@@ -98,10 +99,41 @@ var eventTypeDiv = document.getElementById("eventType-" + id)
 
 
 <script>
+console.log(eventList)
+function sortByStartDate(arr) {
+  // Use the sort() method with a custom comparison function
+  arr.sort((a, b) => {
+    const dateA = new Date(a.start);
+    const dateB = new Date(b.start);
+
+    // Compare the dates
+    if (dateA < dateB) {
+      return -1;
+    } else if (dateA > dateB) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  rearrangeDivs(arr)
+  return arr;
+}
+sortByStartDate(eventList)
+
+function rearrangeDivs(arr){
+  const sortedDivs = arr;
+  console.log("array is ", arr)
+  for (i=0; i<sortedDivs.length; i++){
+    var orderTarget = sortedDivs[i].id;
+    document.getElementById(orderTarget).style.order = i;
+  }
+}
 
 function toggleSections(section){
   var events = document.getElementsByClassName('exhibition')
   var eventsLength = events.length;
+
+  
 
   var archivedEvents = document.getElementsByClassName('past-event')
   var archivedEventsLength = archivedEvents.length;
@@ -145,4 +177,5 @@ function toggleSections(section){
 }
 
 toggleSections('onview')
+
 </script>
