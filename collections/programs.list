@@ -101,10 +101,10 @@
 		</script>
 	{.end}
 {.end}
-<div id="eventPopup" class="flex-start-start flex-column" style="display: none" onclick="toggleEventPopup('')">
-<div style="border: 3px solid white; width: 90vw; height: 90vh; margin: 5vw; overflow-y: scroll;">
-	<div id="eventPopupClose" onclick="toggleEventPopup('')" class="hover">Close</div>
-	<iframe id="eventIframe"></iframe>
+<div id="eventPopup" class="flex-center-start" style="display: none" onclick="toggleEventPopup('')">
+	<div style="border: 3px solid white; width: 90vw; height: 90vh; overflow-y: scroll;">
+		<div id="eventPopupClose" onclick="toggleEventPopup('')" class="hover">Close</div>
+		<iframe id="eventIframe"></iframe>
 	</div>
 </div>
 <script>
