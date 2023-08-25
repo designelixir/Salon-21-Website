@@ -101,7 +101,7 @@
 		</script>
 	{.end}
 {.end}
-<div id="eventPopup" class="flex-center-start" style="display: none" onclick="toggleEventPopup('')">
+<div id="eventPopup" class="flex-start-center" style="display: none" onclick="toggleEventPopup('')">
 	<div style="border: 3px solid white; width: 90vw; height: 90vh; overflow-y: scroll;">
 		<div id="eventPopupClose" onclick="toggleEventPopup('')" class="hover">Close</div>
 		<iframe id="eventIframe"></iframe>
