@@ -31,7 +31,7 @@
 				console.log(source)
 				var ongoingContainer = "<div class='event-details ongoing-event event-container has-time clickable' data-military-time={structuredContent.startDate|date %H}>"
 				{.or}
-				var source = `onclick='toggleEventPopup("https://salontwenty-one.com/programs/" + "{urlId}")'`
+				var source = `onclick='toggleEventPopup("https://salontwenty-one.com/events/" + "{urlId}")'`
 				console.log(source)
 				{.end}
 				var ongoingContainer = "<div class='event-details ongoing-event event-container has-time hover clickable' data-military-time={structuredContent.startDate|date %H} " + source +">"
@@ -76,7 +76,7 @@
 				
 				var specialContainer = "<div class='event-details{.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end} onclick='window.open("+ {sourceUrl} +")'>"
 				{.or} 
-					var source = `"https://salontwenty-one.com/programs/" + "{urlId}"`
+					var source = `"https://salontwenty-one.com/events/" + "{urlId}"`
 					var specialContainer = "<div class='event-details {.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end} onclick='toggleEventPopup("+ source +")'>"
 				{.end}
 			{.or} 
