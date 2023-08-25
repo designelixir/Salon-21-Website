@@ -6,7 +6,7 @@
 
 <div style="padding: 2.5vw; width:100%;" class="textured-bg">
     <h1 class="popup-h1"><span onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red);">{title}</span></h1>
-		<div class="flex-start-start exhibition-details"  style="padding: 0px 25px;">
+		<div  style="padding: 0px 25px;">
 			<div class="flex-start-start event-popup-details" >
 				<div class="event-popup-image" style="height: 400px; width: 400px; background-image: url({assetUrl}); background-size: cover; background-position: center center;"></div>
                 <div>
@@ -27,14 +27,14 @@
                     {.or}
                     <a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if website.location.addressTitle}{website.location.addressTitle}, {.end}{website.location.addressLine1}, {website.location.addressLine2}</a><br>
                     {.end}
+                    {.if customContent.ticketLink}
+                    <p>Reserve your spot by clicking "Reserve Spot". {.if customContent.ticketCost} This event is {customContent.ticketCost} per person.{.end} </p>
+                    <br>
+                    <button onclick="window.open('{customContent.ticketLink}')" class="red-button hover">Reserve Spot</button>
+                    {.end}
 				</div>
 				
-                {.if customContent.ticketLink}
-                <p>Reserve your spot by clicking "Reserve Spot". {.if customContent.ticketCost} This event is {customContent.ticketCost} per person.{.end} </p>
                 
-                <br>
-                <button onclick="window.open('{customContent.ticketLink}')" class="red-button hover">Reserve Spot</button>
-                {.end}
                 
 
 			</div>
