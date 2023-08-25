@@ -102,15 +102,15 @@
 	{.end}
 {.end}
 <div id="eventPopup" class="flex-start-center" style="display: none" onclick="toggleEventPopup('')">
-	<div style="border: 3px solid white; width: 90vw; height: 90vh; margin-top: 25px; overflow-y: scroll;">
+	<div style="border: 3px solid white; width: 90vw; height: calc(88vh); margin-top: 75px; overflow-y: hidden;">
 		<div id="eventPopupClose" onclick="toggleEventPopup('')" class="hover">Close</div>
-		<iframe id="eventIframe"></iframe>
+		<iframe id="eventIframe" style="overflow-y: scroll;"></iframe>
 	</div>
 </div>
 <script>
 
 function toggleEventPopup(source){
-	console.log("clickaru")
+	console.log(source)
 	if (document.getElementById('eventPopup').style.display === "none"){
 		document.getElementById('eventPopup').style.display = "flex";
 		document.getElementById('eventIframe').src = source;
