@@ -56,7 +56,7 @@
 			
 			console.log(ongoingTitle, ongoingStartMonth, ongoingStartDate, ongoingEndMonth, ongoingEndDate, ongoingDateCell, ongoingDestinationUrl, ongoingShowTime, ongoingPopup)
 			
-			var eventTitle = "<div class='event-details ongoing-event event-container' onclick='toggleEventPopup("+ ongoingDestinationUrl +")'><p class='hover event-details-title ongoing-event-title'>" + ongoingTitle + "</p></div>"
+			var eventTitle = "<div class='event-details ongoing-event event-container' onclick='toggleEventPopup("+ ongoingDestinationUrl +")'><p class='{.if customContent.programClickable} hover {.end}event-details-title ongoing-event-title'>" + ongoingTitle + "</p></div>"
 			var ongoingEventRange = (ongoingEndDate - ongoingStartDate);
 			if(ongoingEventRange > 0){
 				
@@ -74,71 +74,46 @@
 
 	{.equal? customContent.customType "eventSpecial"}
 		<script>
-			var ongoingTitle = "{title}";
-			var ongoingStartMonth = {structuredContent.startDate|date %m} - 1;
-			var ongoingStartDate = {structuredContent.startDate|date %e};
-			var ongoingEndMonth = {structuredContent.endDate|date %m} - 1;
-			var ongoingEndDate = {structuredContent.endDate|date %e}
-			var ongoingDateCell = String(ongoingStartMonth) + "-" + String(ongoingStartDate)
-			
-			{.if sourceUrl} 
-				var ongoingDestinationUrl = `{sourceUrl}`
-			{.or} 
-				var ongoingDestinationUrl =`{fullUrl}`
-			{.end}
+			var specialTitle = "{title}";
+			var specialStartMonth = {structuredContent.startDate|date %m} - 1;
+			var specialStartDate = {structuredContent.startDate|date %e};
+			var specialEndMonth = {structuredContent.endDate|date %m} - 1;
+			var specialEndDate = {structuredContent.endDate|date %e}
+			var specialDateCell = String(specialStartMonth) + "-" + String(specialStartDate)
 			{.if customContent.showTime} 
-				var ongoingShowTime = true 
+				var specialShowTime = "<span class='event-time'>{structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p}</span>"
 			{.or} 
-				var ongoingShowTime = false 
+				var specialShowTime = ""
 			{.end}
+			
 			{.if customContent.programClickable} 
-				var ongoingPopup = true; 
+				{.if sourceUrl} 
+				
+				var specialContainer = "<div class='event-details {.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end} onclick='window.open("+ {sourceUrl} +")'>"
+				{.or} 
+					var source = `"https://salontwenty-one.com/programs/" + "{urlId}"`
+					var specialContainer = "<div class='event-details {.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end} onclick='toggleEventPopup("+ source +")'>"
+				{.end}
 			{.or} 
-				var ongoingPopup = false 
+				var specialContainer = "<div class='event-details  {.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end}>"
 			{.end}
 			
-			console.log(ongoingTitle, ongoingStartMonth, ongoingStartDate, ongoingEndMonth, ongoingEndDate, ongoingDateCell, ongoingDestinationUrl, ongoingShowTime, ongoingPopup)
+			{.if excerpt}
+				var specialExcerpt = "<span class='event-excerpt'> - " + `{excerpt|safe}` + "</span>"
+				{.or}
+				var specialExcerpt = ""
+			{.end}
+			{#  console.log(specialTitle, specialStartMonth, specialStartDate, specialEndMonth, specialEndDate, specialDateCell, specialDestinationUrl, specialShowTime, specialPopup)  }
 			
-			var eventTitle = "<div class='event-details ongoing-event event-container' onclick='toggleEventPopup("+ ongoingDestinationUrl +")'><p class='hover event-details-title ongoing-event-title'>" + ongoingTitle + "</p></div>"
-			var ongoingEventRange = (ongoingEndDate - ongoingStartDate);
-			if(ongoingEventRange > 0){
-				
-				console.log(ongoingEventRange)
-				for (i = 0; i < ongoingEventRange + 1; i++){
-					var nextDay = ongoingStartDate + i
-					var ongoingDateCellMulti = String(ongoingStartMonth) + "-" + String(ongoingStartDate + i)
-					$("#" + ongoingDateCellMulti).append(eventTitle)
-					$("#" + ongoingDateCellMulti).addClass('has-event')
-				}
-				console.log(ongoingStartMonth)
-			} else {}
+			var specialEvent = specialContainer + "<p class='{.if customContent.programClickable} hover {.end} event-details-title {.if starred}special-event-title {.or} regular-event-title {.end}'>" + specialTitle +  specialExcerpt + "<br>" + specialShowTime + "</p></div>"
+			var specialEventRange = (specialEndDate - specialStartDate);
+			$("#" + specialDateCell).append(specialEvent)
+		
+			
 		</script>
 	{.end}
-
-
-
-  {.if starred}
-    {.if sourceUrl}
-	<script>createSpecialEvent("{title}", {structuredContent.startDate|date %m}, {structuredContent.startDate|date %e}, {structuredContent.endDate|date %m}, {structuredContent.endDate|date %e}, "{sourceUrl}", '{excerpt|html}')</script>
-	{.or}
-	<script>createSpecialEvent("{title}", {structuredContent.startDate|date %m}, {structuredContent.startDate|date %e}, {structuredContent.endDate|date %m}, {structuredContent.endDate|date %e}, "{fullUrl}", '{excerpt}')</script>
-	{.end}
-  {.or}
-    {.if categories}
-      {.if sourceUrl}
-	  <script>createExhibitionEvent("{title}", {structuredContent.startDate|date %m}, {structuredContent.startDate|date %e}, {structuredContent.endDate|date %m}, {structuredContent.endDate|date %e}, "{sourceUrl}")</script>
-	  {.or}
-	  <script>createExhibitionEvent("{title}", {structuredContent.startDate|date %m}, {structuredContent.startDate|date %e}, {structuredContent.endDate|date %m}, {structuredContent.endDate|date %e}, "{fullUrl}")</script>
-	  {.end}
-    {.or}
-      {.if sourceUrl}
-	  <script>createEvent("{title}", {structuredContent.startDate|date %m}, {structuredContent.startDate|date %e}, {structuredContent.endDate|date %m}, {structuredContent.endDate|date %e}, "{sourceUrl}", {.if customContent.showTime}"<br><span class='event-time'>{structuredContent.startDate|date %l:%M %p} to", "{structuredContent.endDate|date %l:%M %p}</span>", {structuredContent.startDate|date %H}, "has-time"{.or}"", "", "", ""{.end}, {excerpt} )</script>
-	  	{.or}
-		<script>createEvent("{title}", {structuredContent.startDate|date %m}, {structuredContent.startDate|date %e}, {structuredContent.endDate|date %m}, {structuredContent.endDate|date %e}, "{fullUrl}", {.if customContent.showTime}"<br><span class='event-time'>{structuredContent.startDate|date %l:%M %p} to", "{structuredContent.endDate|date %l:%M %p}</span>", {structuredContent.startDate|date %H}, "has-time"{.or}"", "", "", ""{.end}, {excerpt} )</script>{.end}
-    {.end}
-  {.end}
 {.end}
-<div id="eventPopup" class="flex-start-start flex-column" onclick="toggleEventPopup('')">
+<div id="eventPopup" class="flex-start-start flex-column" style="display: none" onclick="toggleEventPopup('')">
 	<div id="eventPopupClose" onclick="toggleEventPopup('')" class="hover">Close</div>
 	<iframe id="eventIframe"></iframe>
 </div>
@@ -146,18 +121,15 @@
 
 function toggleEventPopup(source){
 	console.log("clickaru")
-	if (source === ''){
-		document.getElementById('eventPopup').style.display = "none";
-		console.log('targeted' + source)
-	} else {
-		document.getElementById('eventIframe').attr.src = String(source)
+	if (document.getElementById('eventPopup').style.display === "none"){
 		document.getElementById('eventPopup').style.display = "flex";
+		document.getElementById('eventIframe').src = source
+		
+	} else if (document.getElementById('eventPopup').style.display === "flex") {
+		document.getElementById('eventIframe').src = ""
+		document.getElementById('eventPopup').style.display = "none";
 	}
 }
-	
-	
-
-
 	
 	function addEvent(eventList){
 	 for (var i = 0; i < eventList.length; i++){

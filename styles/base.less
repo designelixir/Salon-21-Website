@@ -228,7 +228,7 @@ td {width: 150px; padding: 2px; height: 150px;}
 .month-label {padding: 15px 20px 10px; font-size: 18px; cursor: pointer;}
 .active-month-label {background-image: url('../assets/circled-event-1.png'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center center;}
 .textured-bg { background-image: url('../assets/texture.jpg'); background-size: 100vw 100vh; background-position: center 10vh; background-attachment: fixed;}
-
+.regular-event-title {font-size: 14px; font-weight: 600; line-height: 14px;}
 .date-cell {  margin: 5px; padding: 5px;  height: 100%; width: 100%; }
 .date-cell .special-event + .date-cell {border: 3px solid white;}
 .day-of-week {display: none;}
@@ -267,14 +267,11 @@ td {width: 150px; padding: 2px; height: 150px;}
 
 
 .exhibition-event p {font-size: 12px; font-style: italic; line-height: 14px!important; margin: 5px 0px; padding: 0px!important;}
-.event-details p{ text-align: left!important; padding: 0px 5px;}
+.event-details p{ text-align: left!important; padding: 0px;}
 .event-details p:nth-child(odd) {padding: 7px 1px 7px;}
 
 .event-details-title {padding: 0px; margin: 0; }
-.event-details p:nth-child(even){font-size: 12px; color: black!important; margin: 0px;  font-weight: 100; }
-.event-details p:nth-child(even) a{font-size: 12px; cursor: pointer; color: black!important; margin: 0px;    font-weight: 100; text-transform: none; text-decoration: underline; font-family: 'Reckless', sans-serif;}
 
-.regular-event p {font-size: 11px; line-height: 12px; }
 .event-container .event-details:nth-child(2) {border-top: 1px solid rgba(255,255,255,0.6);}
 .special-event p {font-size: 16px; font-weight: 600;  line-height: 16px;}
 .calendar-closure {width: 115px; padding-left: 10px;}
@@ -299,12 +296,17 @@ td {width: 150px; padding: 2px; height: 150px;}
 }
 
 //New Calendar
-.ongoing-event-title {font-size: 12px; text-align: left; font-style: italic;}
+.ongoing-event-title {font-size: 12px; text-align: left; font-style: italic; line-height: 14px;}
 .closed .event-details {display: none;}
 
-#eventPopup {width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; display: none; z-index: 20000000000000; border: 3px solid red; padding: 5vw; backdrop-filter: blur(5px);}
+#eventPopup {width: 100vw; height: 100vh; cursor: pointer; position: fixed; top: 0; left: 0;  z-index: 20000000000000; border: 3px solid red; padding: 5vw; backdrop-filter: blur(5px);}
 #eventIframe {width: 100%; height: 100%;}
-#eventPopupClose {border: 2px solid blue; width: 100%; height: 100px;}
+#eventPopupClose {border: 2px solid blue; width: 100%; height: 100px; pointer-events: none;}
+.event-time {font-size: 12px; font-weight: 600;}
+.event-excerpt {font-style: italic; font-size: 12px; color: black; font-weight: 300;}
+
+.event-details:nth-child(odd) {border-top: 0.5px solid white;}
+
 // BLOCKQUOTE 
 .quote-block {display: flex; align-items: center; justify-content: center;}
 .sqs-block-quote .sqs-block-content { max-width: 600px; margin: 25px 0px;}
