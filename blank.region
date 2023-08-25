@@ -15,9 +15,7 @@
 				{.if item.title}<h1><span class="red-text sub-title">{item.title}</h1>{.end}
 			</header>
 			<div class="flex-center-center flex-column">
-				
 					{squarespace.main-content}
-				
 			</div>
       
 			{@|apply footer.block}
