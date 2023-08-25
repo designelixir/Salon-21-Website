@@ -16,7 +16,6 @@
     <div class="flex-center-center flex-wrap" id="month-list"></div>
     <div id="calendar-container"></div>
 </div>
-
 <div class="inner-content-container flex-center-center flex-column" style="margin-top: 50px;">
     <squarespace:block-field id="eventsContent" columns="12"/>
 </div>
@@ -113,7 +112,7 @@
 			for (i = 0; i < closuresList.length; i++){
 				var targetClosure = document.getElementById(closuresList[i])
 				$('#' + closuresList[i] ).addClass("closed")
-			$('#' + closuresList[i] ).find('.event-container').html("<p class='closed-p'>Closed<p>")
+			$('#' + closuresList[i] ).find('.event-wrapper').html("<p class='closed-p'>Closed<p>")
 			}
 		}
 		

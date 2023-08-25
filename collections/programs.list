@@ -7,7 +7,6 @@
 	{.if item.title}<h1><span class="red-text sub-title">{item.title}</h1>{.end}
 </header>
 {@|apply calendarBuilder.block}
-
 {@|apply footer.block}
 
 {.repeated section items}
@@ -89,13 +88,15 @@
 				{.or}
 				var specialExcerpt = ""
 			{.end}
-			{#  console.log(specialTitle, specialStartMonth, specialStartDate, specialEndMonth, specialEndDate, specialDateCell, specialDestinationUrl, specialShowTime, specialPopup)  }
+			
 			
 			var specialEvent = specialContainer + "<p class='{.if customContent.programClickable} hover {.end} event-details-title {.if starred}special-event-title {.or} regular-event-title {.end}'>" + specialTitle +  specialExcerpt + "<br class='mobile-breaks'>" + specialShowTime + "</p></div>"
 			var specialEventRange = (specialEndDate - specialStartDate);
 			$("#" + specialDateCell + " .event-wrapper").append(specialEvent)
 			$("#" + specialDateCell ).addClass('has-event')
-			{.if starred}$("#" + specialDateCell).addClass('special-event-border'){.end}
+			{.if starred}
+				$("#" + specialDateCell).addClass('special-event-border')
+			{.end}
 			
 		</script>
 	{.end}
@@ -119,6 +120,7 @@ function toggleEventPopup(source){
 		
 	}
 }
+	
 	
 
 	
