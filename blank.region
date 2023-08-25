@@ -7,7 +7,7 @@
 		{squarespace-headers}
 	</head>
 	<squarespace:navigation navigationId="siteNav" template="site-navigation" />
-	<body class="flex-start-start full-width-region" data-content-field="main-content">
+	<body class="flex-start-start full-width-region custom-bg-region" data-content-field="main-content">
 		
 		<div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container custom-bg-region" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
 			

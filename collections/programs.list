@@ -1,6 +1,7 @@
 <style>
 	.custom-bg-region {background-repeat: no-repeat; background-position: center 50px; padding-top: 50px;}
 </style>
+{@|apply header.block}
 <header class="site-header">
 	<h1 class="hover" onclick="window.open('{collection.fullUrl}','_self')"  id="page-title-h1">{collection.title}</h1>
 	{.if item.title}<h1><span class="red-text sub-title">{item.title}</h1>{.end}
@@ -143,36 +144,7 @@ function toggleEventPopup(source){
 	}
 }
 	
-	function addEvent(eventList){
-	 for (var i = 0; i < eventList.length; i++){
-	  	var event = eventList[i];
-	  	var monthNum = event[1];
-    	var monthName =  (monthNum - 1) + '-table'
-    if (event[6] === 'exhibition-event'){var eventTitle = "<div class='event-details "+ event[6]+"'><p class='hover event-details-title' onclick=window.open('"+ String(event[5]) +"')>" + event[0] + "</p></div>"}
-    else if(event[6] === 'special-event'){var eventTitle = "<div class='event-details "+ event[6]+"'><p class='hover event-details-title' onclick=window.open('"+ String(event[5]) +"')>" + event[0] + "<br>"+ event[7] + "</p></div>"}
-    else {var eventTitle = "<div class='event-details " + event[6]+" "+ String(event[10])+"' data-military-time="+ event[9] +"><p class='hover event-details-title' onclick=window.open('"+ String(event[5]) +"')><span style='font-weight: 600; color: black!important'>" + event[0] + "</span> - "+ event[7] + event[8] + "</p><br>"+ event[11]+"</div>"}
-	     
-    if ((event[4] - event[2]) === 0){
-      var targetDiv = "#" + (event[1] - 1) + "-" + event[2];
-      $("#" + monthName).find("#" + (event[1] - 1) + "-" + event[2] +" .event-container").append(eventTitle)
-      $("#" + monthName).find("#" + (event[1] - 1) + "-" + event[2]).addClass('has-event')
-	  } else {
-    
-    }
-	 }
-	 $(".date-cell").has(".special-event").css("border", "3px solid white");
-	
-	}
-	
-	addEvent(exhibitionEvents)
-	addEvent(events)
-	addEvent(specialEvents)
-	
-	
-	
 
-	
-	
 	
 {#  After calendar has been loaded  }
 	

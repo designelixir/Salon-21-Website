@@ -1,13 +1,13 @@
 {#  Calendar Framework  }
-<div style="border: 2px solid magenta">
-	<div id="calendarWrapper" class="textured-bg">
-		<div class="flex-center-center flex-wrap" id="month-list"></div>
-		<div id="calendar-container"></div>
-	</div>
-	<div class="inner-content-container flex-center-center flex-column">
-		<squarespace:block-field id="eventsContent" columns="12"/>
-	</div>
+
+<div id="calendarWrapper" class="textured-bg">
+    <div class="flex-center-center flex-wrap" id="month-list"></div>
+    <div id="calendar-container"></div>
 </div>
+<div class="inner-content-container flex-center-center flex-column">
+    <squarespace:block-field id="eventsContent" columns="12"/>
+</div>
+
 
 
 <script>

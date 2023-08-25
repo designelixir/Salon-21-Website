@@ -236,11 +236,11 @@ td {width: 150px; padding: 2px; min-height: 150px;}
 .has-event {opacity: 1!important;}
 @media screen and (max-width: 1000px)  {
   #calendar-container {max-height: 60vh; overflow-y: scroll; margin-bottom: 25px;}
-  td {width: unset; height: unset;}
+  td {width: unset;}
   tr {width: 100%;}
   .calendar-closure {width: 50px;}
   tr:nth-child(1){display: none!important;}
-  td + .dead-date {display: none!important; }
+  td + .dead-date {display: none!important; height: 0px!important; }
   .closed-p {text-align: left!important; font-size: 20px;}
   .date-cell {padding: 0px; width: 95vw; justify-content: flex-start!important; min-height: 10px; max-width: unset; height: unset;}
   .date-cell-day {width: 100%;}
