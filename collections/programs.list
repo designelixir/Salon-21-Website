@@ -102,8 +102,10 @@
 	{.end}
 {.end}
 <div id="eventPopup" class="flex-start-start flex-column" style="display: none" onclick="toggleEventPopup('')">
+<div style="border: 3px solid white">
 	<div id="eventPopupClose" onclick="toggleEventPopup('')" class="hover">Close</div>
 	<iframe id="eventIframe"></iframe>
+	</div>
 </div>
 <script>
 

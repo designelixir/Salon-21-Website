@@ -1,31 +1,7 @@
 <style>
 	#headerIcon {display: none!important;}
 </style>
-<script>
-	function isDateInFutureOrPast(start, end, id) {
-	  const today = new Date();
-	  const targetDiv = document.getElementById(id)
-	  const startDate = new Date(start)
-	  const endDate = new Date(end)
-	var eventTypeDiv = document.getElementById("eventType-" + id)
-	
-	  if (startDate > today) {
-	    targetDiv.classList.add("future-event")
-	    eventTypeDiv.innerHTML = "Upcoming"
-	  } else if (startDate < today && endDate > today){
-	    targetDiv.classList.add("current-event")
-	    eventTypeDiv.innerHTML = "On View"
-	  } else if (startDate < today) {
-	    targetDiv.classList.add("past-event")
-	    eventTypeDiv.innerHTML = "Past Event"
-	  }  else {
-	    console.log("no event defined")
-	  }
-	}
-	
-	
-	
-</script>
+
 {.section item}
 <div style="background-image: url('../assets/texture.jpg'); background-size: cover">
 <div style="padding: 5vw;">
