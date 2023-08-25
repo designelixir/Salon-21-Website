@@ -61,13 +61,13 @@
 			</div>
             
 		</div>
-        
-		
-	</div>
-    <br>
+       <br>
     <div>
         {body}
-    </div>
+    </div> 
+		
+	</div>
+    
 
 	{.end}
 
