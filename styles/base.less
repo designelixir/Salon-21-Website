@@ -15,7 +15,7 @@ html { overflow-x: hidden; background-color: var(--tan); }
 body { overflow-x:hidden; min-height: 100vh; overflow-y: scroll; background-image: url('../assets/texture.jpg'); background-size: 100% 100%; background-attachment: fixed; -webkit-animation:fade-in 2.5s cubic-bezier(.39,.575,.565,1.000) both;animation:fade-in 2.5s cubic-bezier(.39,.575,.565,1.000) both  }
 .content-container { width: 100vw; min-width: 100vw; max-width: 100vw;  }
 .inner-content-container {width: 90vw; margin: 0 5vw; max-width: 1000px; padding: 0px 25px;}
-.custom-bg-region {background-size: 100%; background-position: center top; background-repeat:repeat-y; background-attachment: fixed;}
+.custom-bg-region {background-size: 100vh; background-position: center top; background-repeat:repeat-y; background-attachment: fixed;}
 h1 {font-family: 'Armoire', sans-serif; text-transform: uppercase; font-size: 48px;}
 h2 {font-family: 'Reckless-Reg', serif; font-weight: 600; font-size: 28px}
 h2 span {text-decoration: none!important; color: var(--red)}
@@ -45,7 +45,7 @@ header {width: 100%;}
 .site-header {margin-top: 100px; margin-bottom: 50px;}
 .site-header h1 {text-align: center; padding: 0px 20px; margin: 0;}
 
-.header-icon-container {height: 250px; width: 250px; object-fit: contain; border: 1px solid red;}
+.header-icon-container {height: 250px; width: 250px; object-fit: contain; }
 .header-icon-container img {width: 100%;}
 .header-title {margin: 25px; text-align: center;}
 .stamp-container {margin: 25px;}
@@ -274,7 +274,7 @@ td p {text-align: left!important;}
 
 .event-details p:nth-child(odd) {margin: 3px 0px; padding: 3px 0px;}
 .event-details {border-top: 1px solid rgba(255,255,255,0.6);}
-.event-details:nth-child(2) {border-top: 0px solid rgba(255,255,255,0.6);}
+.event-details:nth-child(1) {border-top: 0px solid rgba(255,255,255,0.6);}
 
 
 .event-details-title {padding: 0px; margin: 0; }
