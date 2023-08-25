@@ -43,23 +43,25 @@
 			var ongoingEndDate = {structuredContent.endDate|date %e}
 			var ongoingDateCell = String(ongoingStartMonth) + "-" + String(ongoingStartDate)
 			
-			{.if sourceUrl} 
-				var ongoingDestinationUrl = `{sourceUrl}`
-			{.or} 
-				var ongoingDestinationUrl =`{fullUrl}`
-			{.end}
+			
 			{.if customContent.showTime} 
 				var ongoingShowTime = true 
 			{.or} 
 				var ongoingShowTime = false 
 			{.end}
 			{.if customContent.programClickable} 
-				var ongoingPopup = true; 
+				{.if sourceUrl} 
+				
+				var ongoingContainer = "<div class='event-details ongoing-event  event-container has-time hover' data-military-time={structuredContent.startDate|date %H} onclick='window.open("+ {sourceUrl} +")'>"
+				{.or} 
+					
+					var ongoingContainer = "<div class='event-details ongoing-event has-time event-container hover' data-military-time={structuredContent.startDate|date %H} onclick='toggleEventPopup(`www.salontwenty-one.com/programs/ + {urlId}`)'>"
+				{.end}
 			{.or} 
-				var ongoingPopup = false 
+				var ongoingContainer = "<div class='event-details  ongoing-event has-time event-container' data-military-time={structuredContent.startDate|date %H}>"
 			{.end}
 			
-			var eventTitle = "<div class='event-details ongoing-event event-container has-time {.if customContent.programClickable} hover' {.end}' data-military-time={structuredContent.startDate|date %H}><p class='event-details-title ongoing-event-title'>" + ongoingTitle + "</p></div>"
+			var eventTitle = ongoingContainer + "<p class='event-details-title ongoing-event-title'>" + ongoingTitle + "</p></div>"
 			var ongoingEventRange = (ongoingEndDate - ongoingStartDate);
 			if(ongoingEventRange > 0){
 				console.log(ongoingEventRange)
@@ -101,7 +103,7 @@
 			{.end}
 			
 			{.if excerpt}
-				var specialExcerpt = "<span class='event-excerpt'> - " + `{excerpt|safe}` + "</span>"
+				var specialExcerpt = "<br><span class='event-excerpt'>" + `{excerpt|safe}` + "</span>"
 				{.or}
 				var specialExcerpt = ""
 			{.end}
