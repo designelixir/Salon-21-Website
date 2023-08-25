@@ -6,6 +6,7 @@
 	{.if item.title}<h1><span class="red-text sub-title">{item.title}</h1>{.end}
 </header>
 {@|apply calendarBuilder.block}
+{@|apply footer.block}
 <script>
 	var events = [] 
 	var exhibitionEvents = []

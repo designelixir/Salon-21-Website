@@ -16,7 +16,7 @@
 					{squarespace.main-content}
 			</div>
       
-			{@|apply footer.block}
+			
 			<squarespace:script src="site.js" combo="{.if authenticatedAccount}false{.or}true{.end}" />
 			{squarespace-footers}
 		</div>
