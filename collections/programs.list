@@ -126,11 +126,13 @@ function toggleEventPopup(source){
 	console.log("clickaru")
 	if (document.getElementById('eventPopup').style.display === "none"){
 		document.getElementById('eventPopup').style.display = "flex";
-		document.getElementById('eventIframe').src = source
+		document.getElementById('eventIframe').src = source;
+		
 		
 	} else if (document.getElementById('eventPopup').style.display === "flex") {
 		document.getElementById('eventIframe').src = ""
 		document.getElementById('eventPopup').style.display = "none";
+		
 	}
 }
 	
