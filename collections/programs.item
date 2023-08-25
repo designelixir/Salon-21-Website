@@ -4,9 +4,10 @@
 
 {.section item}
 <div style="background-image: url('../assets/texture.jpg'); background-size: cover">
-<div style="padding: 5vw;">
-	<h1 style="padding: 0px 25px;"><span style="font-size: 48px!important;" class="popup-h1" onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red); font-size: 48px!important;" class="popup-h1">{title}</span></h1>
-    <div >
+<div >
+	
+    <div style="padding: 5vw;">
+    <h1><span style="font-size: 48px!important;" class="popup-h1" onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red); font-size: 48px!important;" class="popup-h1">{title}</span></h1>
 		<div class="flex-start-start exhibition-details"  style="padding: 0px 25px;">
 			<div class="flex-start-start event-popup-details" >
 				<div class="event-popup-image" style="height: 400px; width: 400px; background-image: url({assetUrl}); background-size: cover; background-position: center center;"></div>
