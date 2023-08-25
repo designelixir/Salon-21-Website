@@ -28,8 +28,6 @@
 </div>
 <div class="inner-content-container flex-center-center flex-column">
 	<squarespace:block-field id="eventsContent" columns="12"/>
-	
-	
 </div>
 {.repeated section items}
   {.if starred}
@@ -47,9 +45,9 @@
 	  {.end}
     {.or}
       {.if sourceUrl}
-	  <script>createEvent("{title}", {structuredContent.startDate|date %m}, {structuredContent.startDate|date %e}, {structuredContent.endDate|date %m}, {structuredContent.endDate|date %e}, "{sourceUrl}", {.if customContent.showTime}"<span class='event-time'>{structuredContent.startDate|date %l:%M} to", "{structuredContent.endDate|date %l:%M %p}</span>", {structuredContent.startDate|date %H}, "has-time"{.or}"", "", "", ""{.end} )</script>
+	  <script>createEvent("{title}", {structuredContent.startDate|date %m}, {structuredContent.startDate|date %e}, {structuredContent.endDate|date %m}, {structuredContent.endDate|date %e}, "{sourceUrl}", {.if customContent.showTime}"<br><span class='event-time'>{structuredContent.startDate|date %l:%M %p} to", "{structuredContent.endDate|date %l:%M %p}</span>", {structuredContent.startDate|date %H}, "has-time"{.or}"", "", "", ""{.end} )</script>
 	  	{.or}
-		<script>createEvent("{title}", {structuredContent.startDate|date %m}, {structuredContent.startDate|date %e}, {structuredContent.endDate|date %m}, {structuredContent.endDate|date %e}, "{fullUrl}", {.if customContent.showTime}"<span class='event-time'>{structuredContent.startDate|date %l:%M} to", "{structuredContent.endDate|date %l:%M %p}</span>", {structuredContent.startDate|date %H}, "has-time"{.or}"", "", "", ""{.end} )</script>{.end}
+		<script>createEvent("{title}", {structuredContent.startDate|date %m}, {structuredContent.startDate|date %e}, {structuredContent.endDate|date %m}, {structuredContent.endDate|date %e}, "{fullUrl}", {.if customContent.showTime}"<br><span class='event-time'>{structuredContent.startDate|date %l:%M %p} to", "{structuredContent.endDate|date %l:%M %p}</span>", {structuredContent.startDate|date %H}, "has-time"{.or}"", "", "", ""{.end} )</script>{.end}
     {.end}
   {.end}
 {.end}
@@ -148,7 +146,7 @@ calContainer.innerHTML = calendar;
     var monthName =  (monthNum - 1) + '-table'
     if (event[6] === 'exhibition-event'){var eventTitle = "<div class='event-details "+ event[6]+"'><p class='hover event-details-title' onclick=window.open('"+ String(event[5]) +"')>" + event[0] + "</p></div>"}
     else if(event[6] === 'special-event'){var eventTitle = "<div class='event-details "+ event[6]+"'><p class='hover event-details-title' onclick=window.open('"+ String(event[5]) +"')>" + event[0] + "<br>"+ event[7] + "</p></div>"}
-    else {var eventTitle = "<div class='event-details " + event[6]+" "+ String(event[10])+"' data-military-time="+ event[9] +"><p class='hover event-details-title' onclick=window.open('"+ String(event[5]) +"')><span style='font-weight: 600; color: black!important'>" + event[0] + "</span> - "+ event[7] + " to " + event[8] + "</p></div>"}
+    else {var eventTitle = "<div class='event-details " + event[6]+" "+ String(event[10])+"' data-military-time="+ event[9] +"><p class='hover event-details-title' onclick=window.open('"+ String(event[5]) +"')><span style='font-weight: 600; color: black!important'>" + event[0] + "</span> - "+ event[7] + event[8] + "</p></div>"}
 	     
     if ((event[4] - event[2]) === 0){
       var targetDiv = "#" + (event[1] - 1) + "-" + event[2];
@@ -254,5 +252,21 @@ calContainer.innerHTML = calendar;
  
  orderEvents(hasTimeList)
  
+
+ function setTallestTDHeight() {
+  const tdElements = document.getElementsByTagName('td');
+  
+  let tallestHeight = 0;
+  for (const td of tdElements) {
+    const tdHeight = td.clientHeight;
+    if (tdHeight > tallestHeight) {
+      tallestHeight = tdHeight;
+    }
+  }
+  for (const td of tdElements) {
+    td.style.height = tallestHeight + 'px';
+  }
+}
+setTallestTDHeight();
 
 </script>
