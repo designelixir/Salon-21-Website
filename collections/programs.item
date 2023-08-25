@@ -27,7 +27,8 @@
 	
 </script>
 {.section item}
-<div id="{id}" data-item-id="{id}" style="padding: 5vw;">
+<div style="background-image: url('../assets/texture.jpg'); background-size: cover">
+<div style="padding: 5vw;">
 	<h1><span style="font-size: 48px!important;" onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red); font-size: 48px!important;">{title}</span></h1>
     <div >
 		<div class="flex-start-start exhibition-details"  >
@@ -95,4 +96,5 @@
         <a href="/">Salon 21</a>
     </div>  }
 	{.end}
+</div>
 </div>
