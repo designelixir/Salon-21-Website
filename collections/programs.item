@@ -6,7 +6,7 @@
 
 <div style="padding: 2.5vw; width:100%;" class="textured-bg">
     <h1 class="popup-h1"><span onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red);">{title}</span></h1>
-		<div  style="padding: 0px 25px;">
+		<div>
 			<div class="flex-start-start event-popup-details" >
 				<div class="event-popup-image" style="height: 400px; width: 400px; background-image: url({assetUrl}); background-size: cover; background-position: center center;"></div>
                 <div>
