@@ -5,8 +5,6 @@
 {.section item}
 
 <div style="padding: 2.5vw; width:100%;" class="textured-bg">
-	
-    <div>
     <h1 class="popup-h1"><span onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red);">{title}</span></h1>
 		<div class="flex-start-start exhibition-details"  style="padding: 0px 25px;">
 			<div class="flex-start-start event-popup-details" >
@@ -73,4 +71,3 @@
 
 	{.end}
 
-</div>
