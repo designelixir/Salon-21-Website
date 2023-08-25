@@ -8,33 +8,8 @@
 </header>
 {@|apply calendarBuilder.block}
 {@|apply footer.block}
-<script>
-	var events = [] 
-	var exhibitionEvents = []
-	var specialEvents = []
-
-
-	var ongoingEvents = []
-	function createEvent(eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl, startTime, endTime, militaryTime, hasTime, excerpt){
-	  var event = [eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl, "regular-event", startTime, endTime, militaryTime, hasTime, excerpt]
-	  events.push(event);
-	}
-	
-	function createExhibitionEvent(eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl){
-	  var exhibitionEvent = [eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl, "exhibition-event"]
-	  
-	  exhibitionEvents.push(exhibitionEvent)
-	}
-	
-	function createSpecialEvent(eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl, excerpt){
-	  var specialEvent = [eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl, "special-event", excerpt]
-	  specialEvents.push(specialEvent)
-	}
-</script>
 
 {.repeated section items}
-
-	
 	{.equal? customContent.customType "eventOngoing"}
 		<script>
 			var ongoingTitle = "{title}";
@@ -44,31 +19,30 @@
 			var ongoingEndDate = {structuredContent.endDate|date %e}
 			var ongoingDateCell = String(ongoingStartMonth) + "-" + String(ongoingStartDate)
 			
-			
 			{.if customContent.showTime} 
-				var ongoingShowTime = true 
+				var ongoingTime = "<span class='event-time'>{structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p}</span>"
 			{.or} 
-				var ongoingShowTime = false 
+				var ongoingTime = "";
 			{.end}
 
 			{.if customContent.programClickable}
 				{.if sourceUrl}
 				var source = `onclick='window.open("{sourceUrl}")'`
 				console.log(source)
-				var ongoingContainer = "<div class='event-details ongoing-event event-container has-time' data-military-time={structuredContent.startDate|date %H}>"
+				var ongoingContainer = "<div class='event-details ongoing-event event-container has-time clickable' data-military-time={structuredContent.startDate|date %H}>"
 				{.or}
 				var source = `onclick='toggleEventPopup("https://salontwenty-one.com/programs/" + "{urlId}")'`
 				console.log(source)
 				{.end}
-				var ongoingContainer = "<div class='event-details ongoing-event event-container has-time hover' data-military-time={structuredContent.startDate|date %H} " + source +">"
+				var ongoingContainer = "<div class='event-details ongoing-event event-container has-time hover clickable' data-military-time={structuredContent.startDate|date %H} " + source +">"
 
 			{.or}
-				var ongoingContainer = "<div class='event-details ongoing-event event-container has-time' data-military-time={structuredContent.startDate|date %H}>"
+				var ongoingContainer = "<div class='event-details ongoing-event event-container has-time non-clickable' data-military-time={structuredContent.startDate|date %H}>"
 			{.end}
 			
 			
 			
-			var eventTitle = ongoingContainer + "<p class='event-details-title ongoing-event-title'>" + ongoingTitle + "</p></div>"
+			var eventTitle = ongoingContainer + "<p class='event-details-title ongoing-event-title'>" + ongoingTitle + ongoingTime + "</p></div>"
 			var ongoingEventRange = (ongoingEndDate - ongoingStartDate);
 			if(ongoingEventRange > 0){
 				console.log(ongoingEventRange)
@@ -100,13 +74,13 @@
 			{.if customContent.programClickable} 
 				{.if sourceUrl} 
 				
-				var specialContainer = "<div class='event-details {.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end} onclick='window.open("+ {sourceUrl} +")'>"
+				var specialContainer = "<div class='event-details{.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end} onclick='window.open("+ {sourceUrl} +")'>"
 				{.or} 
 					var source = `"https://salontwenty-one.com/programs/" + "{urlId}"`
 					var specialContainer = "<div class='event-details {.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end} onclick='toggleEventPopup("+ source +")'>"
 				{.end}
 			{.or} 
-				var specialContainer = "<div class='event-details  {.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end}>"
+				var specialContainer = "<div class='event-details non-clickable {.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end}>"
 			{.end}
 			
 			{.if excerpt}
@@ -119,7 +93,8 @@
 			var specialEvent = specialContainer + "<p class='{.if customContent.programClickable} hover {.end} event-details-title {.if starred}special-event-title {.or} regular-event-title {.end}'>" + specialTitle +  specialExcerpt + "<br>" + specialShowTime + "</p></div>"
 			var specialEventRange = (specialEndDate - specialStartDate);
 			$("#" + specialDateCell).append(specialEvent)
-		
+			$("#" + specialDateCell).addClass('has-event')
+			{.if starred}$("#" + specialDateCell).addClass('special-event-border'){.end}
 			
 		</script>
 	{.end}
@@ -158,21 +133,5 @@ function toggleEventPopup(source){
  var hasTimeList = document.getElementsByClassName('has-time');
  orderEvents(hasTimeList)
  
-
- function setTallestTDHeight() {
-  const tdElements = document.getElementsByTagName('td');
-  
-  let tallestHeight = 0;
-  for (const td of tdElements) {
-    const tdHeight = td.clientHeight;
-    if (tdHeight > tallestHeight) {
-      tallestHeight = tdHeight;
-    }
-  }
-  for (const td of tdElements) {
-    td.style.height = tallestHeight + 'px!important';
-  }
-}
-setTallestTDHeight();
 
 </script>

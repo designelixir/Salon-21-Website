@@ -1,3 +1,15 @@
+<style>
+#calendarWrapper { max-width: 1100px;}
+#month-list {margin-bottom: 25px;}
+.month-label {padding: 15px 20px 10px; font-size: 18px; cursor: pointer;}
+.active-month-label {background-image: url('../assets/circled-event-1.png'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center center;}
+
+.dead-date {display: none!important;}
+.date-cell {  height: 100%; width: 100%; }
+.day-of-week {display: none;}
+.day-wrapper {font-family: 'Armoire', sans-serif; padding: 4px; font-weight: 900; background: rgba(255,255,255,0.2); opacity: 0.75; color: white; font-size: 18px; }
+</style>
+
 {#  Calendar Framework  }
 
 <div id="calendarWrapper" class="textured-bg">
