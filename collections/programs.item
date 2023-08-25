@@ -8,8 +8,8 @@
 	<h1><span style="font-size: 48px!important;" onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red); font-size: 48px!important;">{title}</span></h1>
     <div >
 		<div class="flex-start-start exhibition-details"  >
-			<div class="flex-start-start" >
-				<div style="height: 400px; width: 400px; background-image: url({assetUrl}); background-size: cover; background-position: center center;"></div>
+			<div class="flex-start-start event-popup-details" >
+				<div class="event-popup-image" style="height: 400px; width: 400px; background-image: url({assetUrl}); background-size: cover; background-position: center center;"></div>
                 <div style="padding: 0px 25px;">
                 {.if excerpt}<p style="margin-bottom: 15px; font-size: 16px;"><i>{excerpt|safe}</i><p>{.end}
                 {.equal? customContent.customType "eventSpecial"}
@@ -63,7 +63,7 @@
             
 		</div>
         
-		<script>isDateInFutureOrPast(`{structuredContent.startDate|date %Y-%m-%dT%T}`, `{structuredContent.endDate|date %Y-%m-%dT%T}`, `{id}`)</script>
+		
 	</div>
     <br>
     {body}
