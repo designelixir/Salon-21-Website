@@ -224,7 +224,7 @@ button {border: 0px; padding: 10px 20px; font-family: 'Armoire', sans-serif!impo
 tr {display: grid;
   grid-template-columns: repeat(7, 1fr);
 } 
-td {width: 150px; padding: 2px; height: 150px;}
+td {width: 150px; padding: 2px; min-height: 150px;}
 .month-label {padding: 15px 20px 10px; font-size: 18px; cursor: pointer;}
 .active-month-label {background-image: url('../assets/circled-event-1.png'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center center;}
 .textured-bg { background-image: url('../assets/texture.jpg'); background-size: 100vw 100vh; background-position: center 10vh; background-attachment: fixed;}
@@ -268,7 +268,10 @@ td {width: 150px; padding: 2px; height: 150px;}
 
 .exhibition-event p {font-size: 12px; font-style: italic; line-height: 14px!important; margin: 5px 0px; padding: 0px!important;}
 .event-details p{ text-align: left!important; padding: 0px;}
-.event-details p:nth-child(odd) {padding: 7px 1px 7px;}
+.event-details p:nth-child(odd) {margin: 2px 0px 2px; padding: 2px 0px 2px;}
+.event-details {border-top: 1px solid rgba(255,255,255,0.6);}
+.event-details:nth-child(2) {border-top: 0px solid rgba(255,255,255,0.6);}
+
 
 .event-details-title {padding: 0px; margin: 0; }
 
@@ -276,11 +279,22 @@ td {width: 150px; padding: 2px; height: 150px;}
 .special-event p {font-size: 16px; font-weight: 600;  line-height: 16px;}
 .calendar-closure {width: 115px; padding-left: 10px;}
 
-.event-container .event-details:nth-child(3) {
-  border-top: 1px solid rgba(255,255,255,0.6);
-}
 
-.event-time {color: black!important;}
+
+
+
+//New Calendar
+.ongoing-event-title {font-size: 12px; text-align: left; font-style: italic; line-height: 14px;}
+.closed .event-details {display: none;}
+
+#eventPopup {width: 100vw; height: 100vh; cursor: pointer; position: fixed; top: 0; left: 0;  z-index: 20000000000000; border: 3px solid red; padding: 5vw; backdrop-filter: blur(5px);}
+#eventIframe {width: 100%; height: 100%;}
+#eventPopupClose {border: 2px solid blue; background: var(--red); text-align: center; padding: 15px; color: white; width: 100%; font-size: 24px; pointer-events: none;}
+.event-time {font-size: 12px; font-weight: 600; color: black;}
+.event-excerpt {font-style: italic; font-size: 12px; color: black; font-weight: 300;}
+
+
+
 
 // CONTACT PAGE
 .contact-header {width: 100vw; height: 550px; border: 2px solid red; padding: 20px; margin-top: 100px;  background-image: url('../assets/soho-v2.png'); background-size: contain; background-repeat: no-repeat; background-position: 0% 25px;}
@@ -295,17 +309,7 @@ td {width: 150px; padding: 2px; height: 150px;}
   
 }
 
-//New Calendar
-.ongoing-event-title {font-size: 12px; text-align: left; font-style: italic; line-height: 14px;}
-.closed .event-details {display: none;}
 
-#eventPopup {width: 100vw; height: 100vh; cursor: pointer; position: fixed; top: 0; left: 0;  z-index: 20000000000000; border: 3px solid red; padding: 5vw; backdrop-filter: blur(5px);}
-#eventIframe {width: 100%; height: 100%;}
-#eventPopupClose {border: 2px solid blue; width: 100%; height: 100px; pointer-events: none;}
-.event-time {font-size: 12px; font-weight: 600;}
-.event-excerpt {font-style: italic; font-size: 12px; color: black; font-weight: 300;}
-
-.event-details:nth-child(odd) {border-top: 0.5px solid white;}
 
 // BLOCKQUOTE 
 .quote-block {display: flex; align-items: center; justify-content: center;}

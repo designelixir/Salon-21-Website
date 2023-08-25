@@ -1,4 +1,90 @@
-<div style="width: 100vw; height: 100vh; background: red;">
-{title}
+<style>
+	#headerIcon {display: none!important;}
+</style>
+<script>
+	function isDateInFutureOrPast(start, end, id) {
+	  const today = new Date();
+	  const targetDiv = document.getElementById(id)
+	  const startDate = new Date(start)
+	  const endDate = new Date(end)
+	var eventTypeDiv = document.getElementById("eventType-" + id)
+	
+	  if (startDate > today) {
+	    targetDiv.classList.add("future-event")
+	    eventTypeDiv.innerHTML = "Upcoming"
+	  } else if (startDate < today && endDate > today){
+	    targetDiv.classList.add("current-event")
+	    eventTypeDiv.innerHTML = "On View"
+	  } else if (startDate < today) {
+	    targetDiv.classList.add("past-event")
+	    eventTypeDiv.innerHTML = "Past Event"
+	  }  else {
+	    console.log("no event defined")
+	  }
+	}
+	
+	
+	
+</script>
+{.section item}
+<div id="{id}" data-item-id="{id}" style="margin: 5vw;">
+	<h1>{title}</h1>
+    <div >
+		<div class="flex-start-start exhibition-details"  >
+			<div class="flex-start-start" >
+				<div style="height: 400px; width: 400px; background-image: url({assetUrl}); background-size: cover; background-position: center center;"></div>
+                <div style="padding: 0px 25px;">
+                {.equal? customContent.customType "eventSpecial"}
+                <h1 style="font-size: 24px; color: var(--red); "> {structuredContent.startDate|date %B %e, %Y} </h1>
+                <h1 style="font-size: 18px;  "> {structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} </h1>
+                {.or}
+                <h1 style="font-size: 24px; color: var(--red); "> {structuredContent.startDate|date %B %e, %Y} - {structuredContent.endDate|date %B %e, %Y} </h1>
+                {.end}
+                
+				
+                <img src="../assets/spear.svg" alt="decorative frame" style="margin-right: 10px;">
+                
+                {.if excerpt}<p style="margin-bottom: 15px; font-size: 16px;"><i>{excerpt|safe}</i><p>{.end}
+				{.if location}
+				{.section location}
+				<a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if addressTitle}{addressTitle}, {.end}{addressLine1}, {addressLine2}</a><br>
+				{.end}
+				{.or}
+				<a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if website.location.addressTitle}{website.location.addressTitle}, {.end}{website.location.addressLine1}, {website.location.addressLine2}</a><br>
+				{.end}
+				
+				{.if tags}
+				
+				<p style="font-size: 14px; line-height: 14px;"><i>Featuring:</i></p>
+				<div class="flex-start-start flex-wrap artist-tags-wrapper" style="margin-bottom: 15px">
+					{.repeated section tags}
+						<a class="artist-tag hover" href="/artists/{@|slugify}" target="_blank">{@}</a>
+					{.end}
+					<script>$('.artist-tags-wrapper a').sort(function(a, b) {
+						return $(a).text().localeCompare($(b).text());
+						}).appendTo('.artist-tags-wrapper');
+					</script>
+					
+						
+					
+				</div>
+				
+				
+				
+				</div>
+				{.end}
+                {.if customContent.ticketLink}
+                <button>Purchase Tickets</button>
+                {.end}
+                
 
+			</div>
+            
+		</div>
+        
+		<script>isDateInFutureOrPast(`{structuredContent.startDate|date %Y-%m-%dT%T}`, `{structuredContent.endDate|date %Y-%m-%dT%T}`, `{id}`)</script>
+	</div>
+    <br>
+    {body}
+	{.end}
 </div>

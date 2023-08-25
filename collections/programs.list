@@ -59,10 +59,9 @@
 				var ongoingPopup = false 
 			{.end}
 			
-			var eventTitle = "<div class='event-details ongoing-event event-container has-time' data-military-time={structuredContent.startDate|date %H} onclick='toggleEventPopup("+ ongoingDestinationUrl +")'><p class='{.if customContent.programClickable} hover {.end}event-details-title ongoing-event-title'>" + ongoingTitle + "</p></div>"
+			var eventTitle = "<div class='event-details ongoing-event event-container has-time {.if customContent.programClickable} hover' {.end}' data-military-time={structuredContent.startDate|date %H}><p class='event-details-title ongoing-event-title'>" + ongoingTitle + "</p></div>"
 			var ongoingEventRange = (ongoingEndDate - ongoingStartDate);
 			if(ongoingEventRange > 0){
-				
 				console.log(ongoingEventRange)
 				for (i = 0; i < ongoingEventRange + 1; i++){
 					var nextDay = ongoingStartDate + i
