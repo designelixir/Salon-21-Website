@@ -1,11 +1,14 @@
 <style>
 	.custom-bg-region {background-repeat: no-repeat; background-position: center 50px; padding-top: 50px;}
 </style>
-{@|apply calendarBuilder.block}
+
 <script>
 	var events = [] 
 	var exhibitionEvents = []
 	var specialEvents = []
+
+
+	var ongoingEvents = []
 	function createEvent(eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl, startTime, endTime, militaryTime, hasTime, excerpt){
 	  var event = [eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl, "regular-event", startTime, endTime, militaryTime, hasTime, excerpt]
 	  events.push(event);
@@ -21,10 +24,99 @@
 	  var specialEvent = [eventTitle, eventStartMonth, eventStartDay, eventEndMonth, eventEndDay, fullUrl, "special-event", excerpt]
 	  specialEvents.push(specialEvent)
 	}
-	
 </script>
 
 {.repeated section items}
+
+	
+	{.equal? customContent.customType "eventOngoing"}
+		<script>
+			var ongoingTitle = "{title}";
+			var ongoingStartMonth = {structuredContent.startDate|date %m} - 1;
+			var ongoingStartDate = {structuredContent.startDate|date %e};
+			var ongoingEndMonth = {structuredContent.endDate|date %m} - 1;
+			var ongoingEndDate = {structuredContent.endDate|date %e}
+			var ongoingDateCell = String(ongoingStartMonth) + "-" + String(ongoingStartDate)
+			
+			{.if sourceUrl} 
+				var ongoingDestinationUrl = `{sourceUrl}`
+			{.or} 
+				var ongoingDestinationUrl =`{fullUrl}`
+			{.end}
+			{.if customContent.showTime} 
+				var ongoingShowTime = true 
+			{.or} 
+				var ongoingShowTime = false 
+			{.end}
+			{.if customContent.programClickable} 
+				var ongoingPopup = true; 
+			{.or} 
+				var ongoingPopup = false 
+			{.end}
+			
+			console.log(ongoingTitle, ongoingStartMonth, ongoingStartDate, ongoingEndMonth, ongoingEndDate, ongoingDateCell, ongoingDestinationUrl, ongoingShowTime, ongoingPopup)
+			
+			var eventTitle = "<div class='event-details ongoing-event event-container' onclick='toggleEventPopup("+ ongoingDestinationUrl +")'><p class='hover event-details-title ongoing-event-title'>" + ongoingTitle + "</p></div>"
+			var ongoingEventRange = (ongoingEndDate - ongoingStartDate);
+			if(ongoingEventRange > 0){
+				
+				console.log(ongoingEventRange)
+				for (i = 0; i < ongoingEventRange + 1; i++){
+					var nextDay = ongoingStartDate + i
+					var ongoingDateCellMulti = String(ongoingStartMonth) + "-" + String(ongoingStartDate + i)
+					$("#" + ongoingDateCellMulti).append(eventTitle)
+					$("#" + ongoingDateCellMulti).addClass('has-event')
+				}
+				console.log(ongoingStartMonth)
+			} else {}
+		</script>
+	{.end}
+
+	{.equal? customContent.customType "eventSpecial"}
+		<script>
+			var ongoingTitle = "{title}";
+			var ongoingStartMonth = {structuredContent.startDate|date %m} - 1;
+			var ongoingStartDate = {structuredContent.startDate|date %e};
+			var ongoingEndMonth = {structuredContent.endDate|date %m} - 1;
+			var ongoingEndDate = {structuredContent.endDate|date %e}
+			var ongoingDateCell = String(ongoingStartMonth) + "-" + String(ongoingStartDate)
+			
+			{.if sourceUrl} 
+				var ongoingDestinationUrl = `{sourceUrl}`
+			{.or} 
+				var ongoingDestinationUrl =`{fullUrl}`
+			{.end}
+			{.if customContent.showTime} 
+				var ongoingShowTime = true 
+			{.or} 
+				var ongoingShowTime = false 
+			{.end}
+			{.if customContent.programClickable} 
+				var ongoingPopup = true; 
+			{.or} 
+				var ongoingPopup = false 
+			{.end}
+			
+			console.log(ongoingTitle, ongoingStartMonth, ongoingStartDate, ongoingEndMonth, ongoingEndDate, ongoingDateCell, ongoingDestinationUrl, ongoingShowTime, ongoingPopup)
+			
+			var eventTitle = "<div class='event-details ongoing-event event-container' onclick='toggleEventPopup("+ ongoingDestinationUrl +")'><p class='hover event-details-title ongoing-event-title'>" + ongoingTitle + "</p></div>"
+			var ongoingEventRange = (ongoingEndDate - ongoingStartDate);
+			if(ongoingEventRange > 0){
+				
+				console.log(ongoingEventRange)
+				for (i = 0; i < ongoingEventRange + 1; i++){
+					var nextDay = ongoingStartDate + i
+					var ongoingDateCellMulti = String(ongoingStartMonth) + "-" + String(ongoingStartDate + i)
+					$("#" + ongoingDateCellMulti).append(eventTitle)
+					$("#" + ongoingDateCellMulti).addClass('has-event')
+				}
+				console.log(ongoingStartMonth)
+			} else {}
+		</script>
+	{.end}
+
+
+
   {.if starred}
     {.if sourceUrl}
 	<script>createSpecialEvent("{title}", {structuredContent.startDate|date %m}, {structuredContent.startDate|date %e}, {structuredContent.endDate|date %m}, {structuredContent.endDate|date %e}, "{sourceUrl}", '{excerpt|html}')</script>
@@ -46,8 +138,22 @@
     {.end}
   {.end}
 {.end}
-
+<div id="eventPopup" class="flex-start-start flex-column" onclick="toggleEventPopup('')">
+	<div id="eventPopupClose" onclick="toggleEventPopup('')" class="hover">Close</div>
+	<iframe id="eventIframe"></iframe>
+</div>
 <script>
+
+function toggleEventPopup(source){
+	console.log("clickaru")
+	if (source === ''){
+		document.getElementById('eventPopup').style.display = "none";
+		console.log('targeted' + source)
+	} else {
+		document.getElementById('eventIframe').attr.src = String(source)
+		document.getElementById('eventPopup').style.display = "flex";
+	}
+}
 	
 	
 
@@ -55,9 +161,9 @@
 	
 	function addEvent(eventList){
 	 for (var i = 0; i < eventList.length; i++){
-	  var event = eventList[i];
-	  var monthNum = event[1];
-    var monthName =  (monthNum - 1) + '-table'
+	  	var event = eventList[i];
+	  	var monthNum = event[1];
+    	var monthName =  (monthNum - 1) + '-table'
     if (event[6] === 'exhibition-event'){var eventTitle = "<div class='event-details "+ event[6]+"'><p class='hover event-details-title' onclick=window.open('"+ String(event[5]) +"')>" + event[0] + "</p></div>"}
     else if(event[6] === 'special-event'){var eventTitle = "<div class='event-details "+ event[6]+"'><p class='hover event-details-title' onclick=window.open('"+ String(event[5]) +"')>" + event[0] + "<br>"+ event[7] + "</p></div>"}
     else {var eventTitle = "<div class='event-details " + event[6]+" "+ String(event[10])+"' data-military-time="+ event[9] +"><p class='hover event-details-title' onclick=window.open('"+ String(event[5]) +"')><span style='font-weight: 600; color: black!important'>" + event[0] + "</span> - "+ event[7] + event[8] + "</p><br>"+ event[11]+"</div>"}
@@ -67,13 +173,7 @@
       $("#" + monthName).find("#" + (event[1] - 1) + "-" + event[2] +" .event-container").append(eventTitle)
       $("#" + monthName).find("#" + (event[1] - 1) + "-" + event[2]).addClass('has-event')
 	  } else {
-      var eventRange = event[4] - event[2];
-	  
-      for (i = 0; i < eventRange + 1; i++){
-        var nextDay = event[2] + i
-        $("#" + monthName).find("#" + (event[1] - 1) + "-" + nextDay +" .event-container").append(eventTitle)
-        $("#" + monthName).find("#" + (event[1] - 1) + "-" + nextDay).addClass('has-event')
-      }
+    
     }
 	 }
 	 $(".date-cell").has(".special-event").css("border", "3px solid white");
