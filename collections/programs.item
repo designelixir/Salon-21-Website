@@ -9,47 +9,26 @@
 		<div class="flex-start-start exhibition-details"  style="padding: 0px 25px;">
 			<div class="flex-start-start event-popup-details" >
 				<div class="event-popup-image" style="height: 400px; width: 400px; background-image: url({assetUrl}); background-size: cover; background-position: center center;"></div>
-                <div >
-                {.if excerpt}<p style="margin-bottom: 15px; font-size: 16px;"><i>{excerpt|safe}</i><p>{.end}
-                {.equal? customContent.customType "eventSpecial"}
-                <h1 style="font-size: 24px; color: var(--red); "> {structuredContent.startDate|date %B %e, %Y} </h1>
-                <h1 style="font-size: 18px;  "> {structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} </h1>
-                {.or}
-                <h1 style="font-size: 24px; color: var(--red); "> {structuredContent.startDate|date %B %e, %Y} - {structuredContent.endDate|date %B %e, %Y} </h1>
-                {.end}
+                <div>
+                    {.if excerpt}<p style="margin-bottom: 15px; font-size: 16px;"><i>{excerpt|safe}</i><p>{.end}
+                    {.equal? customContent.customType "eventSpecial"}
+                        <h1 style="font-size: 24px; color: var(--red); "> {structuredContent.startDate|date %B %e, %Y} </h1>
+                        <h1 style="font-size: 18px;  "> {structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} </h1>
+                    {.or}
+                        <h1 style="font-size: 24px; color: var(--red); "> {structuredContent.startDate|date %B %e, %Y} - {structuredContent.endDate|date %B %e, %Y} </h1>
+                    {.end}
                 
-				
-                <img src="../assets/spear.svg" alt="decorative frame" style="margin-right: 10px;"><br>
+                    <img src="../assets/spear.svg" alt="decorative frame" style="margin-right: 10px;"><br>
                 
-                
-				{.if location}
-				{.section location}
-				<a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if addressTitle}{addressTitle}, {.end}{addressLine1}, {addressLine2}</a><br>
-				{.end}
-				{.or}
-				<a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if website.location.addressTitle}{website.location.addressTitle}, {.end}{website.location.addressLine1}, {website.location.addressLine2}</a><br>
-				{.end}
-				
-				{.if tags}
-				
-				
-				<div class="flex-start-start flex-wrap artist-tags-wrapper" style="margin-bottom: 15px">
-					{.repeated section tags}
-						<a class="artist-tag hover" href="/artists/{@|slugify}" target="_blank">{@}</a>
-					{.end}
-					<script>$('.artist-tags-wrapper a').sort(function(a, b) {
-						return $(a).text().localeCompare($(b).text());
-						}).appendTo('.artist-tags-wrapper');
-					</script>
-					
-						
-					
+                    {.if location}
+                    {.section location}
+                    <a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if addressTitle}{addressTitle}, {.end}{addressLine1}, {addressLine2}</a><br>
+                    {.end}
+                    {.or}
+                    <a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if website.location.addressTitle}{website.location.addressTitle}, {.end}{website.location.addressLine1}, {website.location.addressLine2}</a><br>
+                    {.end}
 				</div>
 				
-				
-				
-				</div>
-				{.end}
                 {.if customContent.ticketLink}
                 <p>Reserve your spot by clicking "Reserve Spot". {.if customContent.ticketCost} This event is {customContent.ticketCost} per person.{.end} </p>
                 
@@ -59,13 +38,9 @@
                 
 
 			</div>
-            
-		</div>
-       <br>
-    <div>
-        {body}
-    </div> 
-		
+            <br>
+            {body}
+		</div>	
 	</div>
     
 
