@@ -10,12 +10,9 @@
 	<body class="flex-start-start full-width-region" data-content-field="main-content">
 		
 		<div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container custom-bg-region" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
-			<header class="site-header">
-			    <h1 class="hover" onclick="window.open('{collection.fullUrl}','_self')"  id="page-title-h1">{collection.title}</h1>
-				{.if item.title}<h1><span class="red-text sub-title">{item.title}</h1>{.end}
-			</header>
+			
 			<div class="flex-center-center flex-column">
-                {@|apply calendarBuilder.block}
+                
 					{squarespace.main-content}
 			</div>
       
