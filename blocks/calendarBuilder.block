@@ -16,7 +16,8 @@
     <div class="flex-center-center flex-wrap" id="month-list"></div>
     <div id="calendar-container"></div>
 </div>
-<div class="inner-content-container flex-center-center flex-column">
+
+<div class="inner-content-container flex-center-center flex-column" style="margin-top: 50px;">
     <squarespace:block-field id="eventsContent" columns="12"/>
 </div>
 
@@ -51,10 +52,10 @@
         const weekRow = table.insertRow();
         for (let j = 0; j < 7; j++) {
             const cell = weekRow.insertCell();
-            if (i === 0 && j < startingDayOfWeek) {cell.innerHTML = '<div "class="date-cell dead-date"></div>';} 
+            if (i === 0 && j < startingDayOfWeek) {cell.innerHTML = '<div "class=" dead-date" style="height: 0px!important;"></div>'; } 
             else if (currentDate <= numDaysInMonth) {
                 var cellDate = []
-                cell.innerHTML = '<div class="date-cell live-date"  id="'+ month +'-'+ currentDate +'"><div class="date-cell-day"><div class="day-wrapper"><span class="day-of-week">'+ daysOfWeek[j] +'</span>'+ currentDate +'</div><div class="event-container"></div></div></div>';
+                cell.innerHTML = '<div class="date-cell live-date"  id="'+ month +'-'+ currentDate +'"><div class="date-cell-day"><div class="day-wrapper"><span class="day-of-week">'+ daysOfWeek[j] +'</span>'+ currentDate +'</div></div><div class="event-wrapper"></div></div>';
                 currentDate++;
             }
         }
@@ -134,18 +135,10 @@
 		 var windowWidth = $(window).width()
 		 
 		 if (windowWidth < 1000){
-		   
-		   $('tr').addClass('flex-start-start flex-column')
-	     $('.date-cell-day').addClass('flex-center-start')
-	    
-	
+
 		 } else {
 		   
-	     $('tr').removeClass('flex-start-start flex-column')
-	     $('.date-cell-day').removeClass('flex-center-start')
-	      
-	
-	     
+	    
 		 }
 		 
 		}

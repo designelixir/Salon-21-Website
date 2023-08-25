@@ -7,6 +7,7 @@
 	{.if item.title}<h1><span class="red-text sub-title">{item.title}</h1>{.end}
 </header>
 {@|apply calendarBuilder.block}
+
 {@|apply footer.block}
 
 {.repeated section items}
@@ -49,7 +50,7 @@
 				for (i = 0; i < ongoingEventRange + 1; i++){
 					var nextDay = ongoingStartDate + i
 					var ongoingDateCellMulti = String(ongoingStartMonth) + "-" + String(ongoingStartDate + i)
-					$("#" + ongoingDateCellMulti).append(eventTitle)
+					$("#" + ongoingDateCellMulti + " .event-wrapper").append(eventTitle)
 					$("#" + ongoingDateCellMulti).addClass('has-event')
 				}
 				console.log(ongoingStartMonth)
@@ -84,16 +85,16 @@
 			{.end}
 			
 			{.if excerpt}
-				var specialExcerpt = "<br><span class='event-excerpt'>" + `{excerpt|safe}` + "</span>"
+				var specialExcerpt = "<br class='mobile-breaks'><span class='event-excerpt'> " + `{excerpt|safe}` + "</span>"
 				{.or}
 				var specialExcerpt = ""
 			{.end}
 			{#  console.log(specialTitle, specialStartMonth, specialStartDate, specialEndMonth, specialEndDate, specialDateCell, specialDestinationUrl, specialShowTime, specialPopup)  }
 			
-			var specialEvent = specialContainer + "<p class='{.if customContent.programClickable} hover {.end} event-details-title {.if starred}special-event-title {.or} regular-event-title {.end}'>" + specialTitle +  specialExcerpt + "<br>" + specialShowTime + "</p></div>"
+			var specialEvent = specialContainer + "<p class='{.if customContent.programClickable} hover {.end} event-details-title {.if starred}special-event-title {.or} regular-event-title {.end}'>" + specialTitle +  specialExcerpt + "<br class='mobile-breaks'>" + specialShowTime + "</p></div>"
 			var specialEventRange = (specialEndDate - specialStartDate);
-			$("#" + specialDateCell).append(specialEvent)
-			$("#" + specialDateCell).addClass('has-event')
+			$("#" + specialDateCell + " .event-wrapper").append(specialEvent)
+			$("#" + specialDateCell ).addClass('has-event')
 			{.if starred}$("#" + specialDateCell).addClass('special-event-border'){.end}
 			
 		</script>
