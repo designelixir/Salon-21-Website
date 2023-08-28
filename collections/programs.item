@@ -31,7 +31,7 @@
                     
                     {.if customContent.ticketPurchaseDescription}<p> {customContent.ticketPurchaseDescription} </p>{.end}
                     <br>
-                    <button onclick="window.open('{customContent.ticketLink}')" class="red-button hover">Reserve Spot</button>
+                    <button onclick="window.open('{customContent.ticketLink}')" class="red-button hover">{.if customContent.ticketButton}{customContent.ticketButton}{.or}Reserve Spot{.end}</button>
                     {.end}
 				</div>
 				
