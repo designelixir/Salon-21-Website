@@ -6,6 +6,7 @@
 	<h1 class="hover" onclick="window.open('{collection.fullUrl}','_self')"  id="page-title-h1">{collection.title}</h1>
 	{.if item.title}<h1><span class="red-text sub-title">{item.title}</h1>{.end}
 </header>
+
 {@|apply calendarBuilder.block}
 {@|apply footer.block}
 
@@ -107,6 +108,7 @@
 		<iframe id="eventIframe" style="overflow-y: scroll;"></iframe>
 	</div>
 </div>
+
 <script>
 
 function toggleEventPopup(source){
@@ -122,9 +124,6 @@ function toggleEventPopup(source){
 		
 	}
 }
-	
-	
-
 	
 {#  After calendar has been loaded  }
 	
