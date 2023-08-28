@@ -28,7 +28,7 @@
                     <a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if website.location.addressTitle}{website.location.addressTitle}, {.end}{website.location.addressLine1}, {website.location.addressLine2}</a><br>
                     {.end}
                     {.if customContent.ticketLink}
-                    <p>Reserve your spot by clicking "Reserve Spot". {.if customContent.ticketCost} This event is {customContent.ticketCost} per person.{.end} </p>
+                        {.if customContent.ticketPurchaseDescription} {customContent.ticketPurchaseDescription} {.end}
                     <br>
                     <button onclick="window.open('{customContent.ticketLink}')" class="red-button hover">Reserve Spot</button>
                     {.end}
