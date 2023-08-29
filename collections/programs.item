@@ -9,7 +9,15 @@
     <h1 class="popup-h1"><span onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red);">{title}</span></h1>
 		<div>
 			<div class="flex-start-start event-popup-details" >
-				<div class="event-popup-image" style="height: 400px; width: 400px; background-image: url({assetUrl}); background-size: cover; background-position: center center;"></div>
+                
+				<div class="event-popup-image" id="eventPopupImage" style="height: 400px; width: 400px; background-image: url({assetUrl}); background-size: cover; background-position: center center;"></div>
+                <script>
+                var theUrl = `{assetUrl}`
+                console.log(theUrl)
+                if (theUrl.includes('https://static1.squarespace.com')){
+                 document.getElementById('eventPopupImage').style.display = "none"
+                }
+                </script>
                 <div>
                     {.if excerpt}<p style="margin-bottom: 15px; font-size: 16px;"><i>{excerpt|safe}</i><p>{.end}
                     {.equal? customContent.customType "eventSpecial"}
@@ -30,7 +38,7 @@
                     {.end}
                     {.if customContent.ticketLink}
                     
-                    {.if customContent.ticketPurchaseDescription}<p> {customContent.ticketPurchaseDescription} </p>{.end}
+                    {.if customContent.ticketPurchaseDescription}<p style="font-size: 12px"> {customContent.ticketPurchaseDescription} </p>{.end}
                     <br>
                     <button onclick="window.open('{customContent.ticketLink}')" class="red-button hover">{.if customContent.ticketButton}{customContent.ticketButton}{.or}Reserve Spot{.end}</button>
                     {.end}
@@ -42,9 +50,9 @@
 			</div>
             
             
-
-            {body}
             <br>
+            {body}
+            
             <p><i>Disclaimer: Due to the building’s landmark status from 1912, we do not have an elevator. Salon 21 is on the third floor, up two flights of stairs.</i></p>
             {.if customContent.ticketLink}
                 <p style="font-size: 12px;"><i>Tickets are limited and non-refundable. Please contact Alex at <a href="mailto:alex@salontwenty-one.com" target="blank">alex@salontwenty-one.com</a> with any questions or concerns. Professional photography will be taken at the event. Please note that by entering the event site you agree to be filmed or photographed which may be used for marketing or promotional purposes. By purchasing this ticket you also agree to absolve the organizers and host of this event from any and all legal liability for any injury or illness that may occur. Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of food-borne illness, especially if you have certain medical conditions. Please drink responsibly. All guests must be over the age of 21 to attend.</i></p>
