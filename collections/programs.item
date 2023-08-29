@@ -6,7 +6,7 @@
 
 {.section item}
 
-<div style="padding: 0px 25px 50px; overflow-y: scroll!important;" class="textured-bg event-item-wrapper">
+<div style="overflow-y: scroll!important;" class="textured-bg event-item-wrapper">
     <h1 class="popup-h1"><span class="hover" onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red);">{title}</span></h1>
 			<div class="event-popup-details" >
                 <img id="eventPopupImage" src="">
