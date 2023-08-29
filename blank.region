@@ -7,7 +7,7 @@
 		{squarespace-headers}
 	</head>
 	<squarespace:navigation navigationId="siteNav" template="site-navigation" />
-	<body class="flex-start-start custom-bg-region" data-content-field="main-content" id="calendarBody">
+	<body class="flex-start-start textured-bg" data-content-field="main-content" id="calendarBody">
 		
 		<div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container custom-bg-region" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
 			
