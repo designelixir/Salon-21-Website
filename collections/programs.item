@@ -1,59 +1,58 @@
 <style>
 	#headerIcon {display: none!important;}
     .custom-bg-region {background-image: unset!important;}
+    .col {float: unset!important;}
 </style>
 
 {.section item}
 
-<div style="padding: 15px 25px 100px; width: 100%; height: 100%; overflow-x: hidden; overflow-y: scroll!important;" class="textured-bg">
-    <h1 class="popup-h1"><span onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red);">{title}</span></h1>
-			<div class="flex-start-start event-popup-details" >
-                
-				<div class="event-popup-image" id="eventPopupImage" style="height: 400px; width: 400px; background-image: url({assetUrl}); background-size: cover; background-position: center center;"></div>
-                <script>
-                var theUrl = `{assetUrl}`
-                console.log(theUrl)
-                if (theUrl.includes('https://static1.squarespace.com')){
-                 document.getElementById('eventPopupImage').style.display = "none"
-                }
-                </script>
-                <div>
-                    {.if excerpt}<p style="margin-bottom: 15px; font-size: 16px;"><i>{excerpt|safe}</i><p>{.end}
+<div style="padding: 0px 25px 50px; overflow-y: scroll!important;" class="textured-bg event-item-wrapper">
+    <h1 class="popup-h1"><span class="hover" onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red);">{title}</span></h1>
+			<div class="event-popup-details" >
+                <img id="eventPopupImage" src="">
+                <script>var theUrl = `{assetUrl}`; if (theUrl.includes('https://static1.squarespace.com')){document.getElementById('eventPopupImage').style.display = "none"} else {document.getElementById('eventPopupImage').src = theUrl}</script>
+                <div id="eventDetails">
+                    {.if excerpt}
+                        <p class="event-details-excerpt">{excerpt|safe}<p>
+                    {.end}
                     {.equal? customContent.customType "eventSpecial"}
-                        <h1 style="font-size: 24px; color: var(--red); "> {structuredContent.startDate|date %B %e, %Y} </h1>
-                        <h1 style="font-size: 18px;  "> {structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} </h1>
+                        <h2 class="event-details-dates"> {structuredContent.startDate|date %B %e, %Y} </h2>
+                        <h2 class="event-details-times"> {structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} </h2>
                     {.or}
-                        <h1 style="font-size: 24px; color: var(--red); "> {structuredContent.startDate|date %B %e, %Y} - {structuredContent.endDate|date %B %e, %Y} </h1>
+                        <h2 class="event-details-dates"> {structuredContent.startDate|date %B %e, %Y} - {structuredContent.endDate|date %B %e, %Y} </h2>
+                        {.if customContent.showTime}
+                        <h2 class="event-details-times"> {structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} </h2>
+                        {.end}
                     {.end}
                 
-                    <img src="../assets/spear.svg" alt="decorative frame" style="margin-right: 10px;"><br>
+                    <img src="../assets/spear.svg" alt="decorative frame" style="margin-right: 10px; margin-bottom: 15px;"><br>
                 
                     {.if location}
-                    {.section location}
-                    <a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if addressTitle}{addressTitle}, {.end}{addressLine1}, {addressLine2}</a><br>
-                    {.end}
-                    {.or}
-                    <a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if website.location.addressTitle}{website.location.addressTitle}, {.end}{website.location.addressLine1}, {website.location.addressLine2}</a><br>
+                        {.section location}
+                        <a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if addressTitle}{addressTitle}, {.end}{addressLine1}, {addressLine2}</a><br>
+                        {.end}
+                        {.or}
+                        <a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍 52 Greene Street, Floor 3, New York, NY, 10013</a><br>
                     {.end}
                     {.if customContent.ticketLink}
-                    
-                    {.if customContent.ticketPurchaseDescription}<p style="font-size: 12px"> {customContent.ticketPurchaseDescription} </p>{.end}
-                    <br>
-                    <button onclick="window.open('{customContent.ticketLink}')" class="red-button hover">{.if customContent.ticketButton}{customContent.ticketButton}{.or}Reserve Spot{.end}</button>
+                        {.if customContent.ticketPurchaseDescription}
+                        <p style="font-size: 12px"> {customContent.ticketPurchaseDescription} </p>
+                        {.end}
+                        <br>
+                        <button onclick="window.open('{customContent.ticketLink}')" class="red-button hover">{.if customContent.ticketButton}{customContent.ticketButton}{.or}Reserve Spot{.end}</button>
                     {.end}
+                    <br>
+                    <div class="event-details-body" id="eventDetailsBody">{body}</div>
+                    
 				</div>
-				
-                
-                
-
 			</div>
-            <br>
-            {body}
-            
+             <br>
             <p><i>Disclaimer: Due to the building’s landmark status from 1912, we do not have an elevator. Salon 21 is on the third floor, up two flights of stairs.</i></p>
             {.if customContent.ticketLink}
                 <p style="font-size: 12px;"><i>Tickets are limited and non-refundable. Please contact Alex at <a href="mailto:alex@salontwenty-one.com" target="blank">alex@salontwenty-one.com</a> with any questions or concerns. Professional photography will be taken at the event. Please note that by entering the event site you agree to be filmed or photographed which may be used for marketing or promotional purposes. By purchasing this ticket you also agree to absolve the organizers and host of this event from any and all legal liability for any injury or illness that may occur. Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of food-borne illness, especially if you have certain medical conditions. Please drink responsibly. All guests must be over the age of 21 to attend.</i></p>
             {.end}
+            
+            
 	</div>
 	{.end}
 
