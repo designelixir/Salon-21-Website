@@ -143,6 +143,7 @@ console.log(closuresList)
 			var targetClosure = document.getElementById(closuresList[i])
 			$('#' + closuresList[i] ).addClass("closed")
 		$('#' + closuresList[i] ).find('.event-wrapper').html("<p class='closed-p'>Closed<p>")
+		
 		}
 	}
 	
