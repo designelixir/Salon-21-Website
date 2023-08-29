@@ -105,7 +105,7 @@
 <div id="eventPopup" class="flex-start-center" style="display: none" onclick="toggleEventPopup('')">
 	<div style="border: 3px solid white; width: 90vw; height: 90vh; margin: 2.5vw">
 		<div id="eventPopupClose" onclick="toggleEventPopup('')" class="flex-center-center">Close</div>
-		<iframe id="eventIframe" style="height: calc(90vh - 71px); overflow-y: scroll;"></iframe>
+		<iframe id="eventIframe" style="height: calc(90vh - 71px); overflow-y: scroll;" class="textured-bg"></iframe>
 	</div>
 </div>
 
