@@ -116,11 +116,13 @@ function toggleEventPopup(source){
 	if (document.getElementById('eventPopup').style.display === "none"){
 		document.getElementById('eventPopup').style.display = "flex";
 		document.getElementById('eventIframe').src = source;
+		document.body.classList.add('no-scroll');
 		
 		
 	} else if (document.getElementById('eventPopup').style.display === "flex") {
 		document.getElementById('eventIframe').src = ""
 		document.getElementById('eventPopup').style.display = "none";
+		document.body.classList.remove('no-scroll');
 		
 	}
 }

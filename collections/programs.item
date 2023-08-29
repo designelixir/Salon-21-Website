@@ -54,10 +54,6 @@
             {.if customContent.ticketLink}
                 <p style="font-size: 12px;"><i>Tickets are limited and non-refundable. Please contact Alex at <a href="mailto:alex@salontwenty-one.com" target="blank">alex@salontwenty-one.com</a> with any questions or concerns. Professional photography will be taken at the event. Please note that by entering the event site you agree to be filmed or photographed which may be used for marketing or promotional purposes. By purchasing this ticket you also agree to absolve the organizers and host of this event from any and all legal liability for any injury or illness that may occur. Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of food-borne illness, especially if you have certain medical conditions. Please drink responsibly. All guests must be over the age of 21 to attend.</i></p>
             {.end}
-            
-		
 	</div>
-    
-
 	{.end}
 
