@@ -54,7 +54,7 @@
             if (i === 0 && j < startingDayOfWeek) {cell.innerHTML = '<div "class=" dead-date" style="height: 0px!important;"></div>'; } 
             else if (currentDate <= numDaysInMonth) {
                 var cellDate = []
-                cell.innerHTML = '<div class="date-cell live-date"  id="'+ month +'-'+ currentDate +'"><div class="date-cell-day"><div class="day-wrapper"><span class="day-of-week">'+ daysOfWeek[j] +'</span>'+ currentDate +'</div></div><div class="event-wrapper"></div></div>';
+                cell.innerHTML = '<div class="date-cell live-date"  id="'+ month +'_'+ currentDate +'"><div class="date-cell-day"><div class="day-wrapper"><span class="day-of-week">'+ daysOfWeek[j] +'</span>'+ currentDate +'</div></div><div class="event-wrapper"></div></div>';
                 currentDate++;
             }
         }

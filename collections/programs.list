@@ -29,11 +29,9 @@
 			{.if customContent.programClickable}
 				{.if sourceUrl}
 				var source = `onclick='window.open("{sourceUrl}")'`
-				console.log(source)
 				var ongoingContainer = "<div class='event-details ongoing-event event-container has-time clickable' data-military-time={structuredContent.startDate|date %H}>"
 				{.or}
 				var source = `onclick='toggleEventPopup("https://salontwenty-one.com/events/" + "{urlId}")'`
-				console.log(source)
 				{.end}
 				var ongoingContainer = "<div class='event-details ongoing-event event-container has-time hover clickable' data-military-time={structuredContent.startDate|date %H} " + source +">"
 
@@ -46,14 +44,12 @@
 			var eventTitle = ongoingContainer + "<p class='event-details-title ongoing-event-title'>" + ongoingTitle + ongoingTime + "</p></div>"
 			var ongoingEventRange = (ongoingEndDate - ongoingStartDate);
 			if(ongoingEventRange > 0){
-				console.log(ongoingEventRange)
 				for (i = 0; i < ongoingEventRange + 1; i++){
 					var nextDay = ongoingStartDate + i
-					var ongoingDateCellMulti = String(ongoingStartMonth) + "-" + String(ongoingStartDate + i)
+					var ongoingDateCellMulti = String(ongoingStartMonth) + "_" + String(ongoingStartDate + i)
 					$("#" + ongoingDateCellMulti + " .event-wrapper").append(eventTitle)
 					$("#" + ongoingDateCellMulti).addClass('has-event')
 				}
-				console.log(ongoingStartMonth)
 			} else {}
 		</script>
 	{.end}
@@ -65,7 +61,7 @@
 			var specialStartDate = {structuredContent.startDate|date %e};
 			var specialEndMonth = {structuredContent.endDate|date %m} - 1;
 			var specialEndDate = {structuredContent.endDate|date %e}
-			var specialDateCell = String(specialStartMonth) + "-" + String(specialStartDate)
+			var specialDateCell = String(specialStartMonth) + "_" + String(specialStartDate)
 			{.if customContent.showTime} 
 				var specialShowTime = "<span class='event-time'>{structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p}</span>"
 			{.or} 
@@ -78,7 +74,7 @@
 				var specialContainer = "<div class='event-details{.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end} onclick='window.open("+ {sourceUrl} +")'>"
 				{.or} 
 					var source = `"https://salontwenty-one.com/events/" + "{urlId}"`
-					var specialContainer = "<div class='event-details {.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end} onclick='toggleEventPopup("+ source +")'>"
+					var specialContainer = "<div class='event-details {.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end} onclick='toggleEventPopup("+ source + ", `" + specialDateCell + "`)'>"
 				{.end}
 			{.or} 
 				var specialContainer = "<div class='event-details non-clickable {.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end}>"
@@ -102,31 +98,42 @@
 		</script>
 	{.end}
 {.end}
-<div id="eventPopup" class="flex-start-center" style="display: none" onclick="toggleEventPopup('')">
+<div id="eventPopup" class="flex-start-center" style="display: none;">
 	<div style="border: 3px solid white; width: 90vw; height: 90vh; margin: 2.5vw">
-		<div id="eventPopupClose" onclick="toggleEventPopup('')" class="flex-center-center">Close</div>
+		<div id="eventPopupClose" class="flex-center-center">Close</div>
 		<iframe id="eventIframe" style="height: calc(90vh - 71px); overflow-y: scroll;" class="textured-bg"></iframe>
 	</div>
 </div>
 
 <script>
 
-function toggleEventPopup(source){
-	console.log(source)
+
+
+var scrollPosition;
+
+function toggleEventPopup(source, sourceId){
+	console.log(sourceId)
+	scrollPosition = sourceId
 	if (document.getElementById('eventPopup').style.display === "none"){
 		document.getElementById('eventPopup').style.display = "flex";
 		document.getElementById('eventIframe').src = source;
 		document.body.classList.add('no-scroll');
-		
-		
 	} else if (document.getElementById('eventPopup').style.display === "flex") {
-		document.getElementById('eventIframe').src = ""
-		document.getElementById('eventPopup').style.display = "none";
-		document.body.classList.remove('no-scroll');
-		
+		closePopup()
 	}
 }
-	
+
+function closePopup(){
+	document.getElementById('eventIframe').src = ""
+	document.getElementById('eventPopup').style.display = "none";
+	document.body.classList.remove('no-scroll');
+	var targetDiv = document.getElementById(scrollPosition);
+	targetDiv.scrollIntoView({ behavior: 'instant', block: 'center' });
+}
+
+document.getElementById("eventPopup").addEventListener("click", closePopup);
+
+
 {#  After calendar has been loaded  }
 	
  function orderEvents(list){
