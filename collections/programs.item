@@ -41,7 +41,9 @@
                         {.end}
                     {.if customContent.ticketLink}
                         <br>
-                        <button onclick="window.open('{customContent.ticketLink}')" class="red-button hover">Tickets Here</button>
+                        <button onclick="window.open('{customContent.ticketLink}')" class="red-button hover">
+                            {.if customContent.ticketButton}{customContent.ticketButton}{.or}Tickets Here{.end}
+                        </button>
                         <br>
                     {.end}
                     <br>
