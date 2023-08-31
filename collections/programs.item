@@ -40,7 +40,7 @@
                         <p style="font-size: 12px"> {customContent.ticketPurchaseDescription} </p>
                         {.end}
                         {.if customContent.hasFood}
-                            <p style="font-size: 12px">Guests must be over the age of 21 to attend this event. All food and beverages are included in the cost of the ticket. Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of food-borne illness, especially if you have certain medical conditions. Please drink responsibly.</p>
+                            <p style="font-size: 12px">Guests must be over the age of 21 to attend this event. Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of food-borne illness, especially if you have certain medical conditions. Please drink responsibly.</p>
                         {.end}
                     {.if customContent.ticketLink}
                         <br>
