@@ -98,11 +98,11 @@
 	{.end}
 {.end}
 <div id="eventPopup" class="flex-start-center" style="display: none;">
-	<div style="border: 3px solid white; width: 90vw; height: 88vh; margin: 2.5vw; border: 2px solid blue;" class="textured-bg">
+	<div style="border: 3px solid white; width: 90vw; height: 88vh; margin: 2.5vw;" class="textured-bg">
 		<div id="eventPopupClose" class="flex-center-center">Close</div>
-		<div style="border: 3px solid magenta; overflow-y: scroll; max-height: calc(88vh - 71px);">
+		<div style=" overflow-y: scroll; max-height: calc(88vh - 71px);">
 		{.repeated section items}
-		<div id={id} style=" border: 2px solid teal;" class=" event-frame hidden-event-frame">
+		<div id={id} class="event-frame hidden-event-frame">
 			{.if customContent.programClickable}
 				<div class="event-item-wrapper">
 					<h1 class="popup-h1"><span class="hover" onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red);">{title}</span></h1>
@@ -178,6 +178,7 @@ function toggleEventPopup(id, sourceId){
 	if (document.getElementById('eventPopup').style.display === "none"){
 		document.getElementById('eventPopup').style.display = "flex";
 		document.getElementById(id).classList.remove('hidden-event-frame')
+		document.getElementById(id).scroll(0,0)
 		document.body.classList.add('no-scroll');
 	} else if (document.getElementById('eventPopup').style.display === "flex") {
 		closePopup()
