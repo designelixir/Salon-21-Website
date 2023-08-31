@@ -136,7 +136,7 @@ document.getElementById("eventPopup").addEventListener("click", closePopup);
 {#  After calendar has been loaded  }
 
 
-var closuresList = ['8_17', '8_18', '8_24', '8_25', '9_1', '9_2', '9_8', '9_9', '9_15', '9_16', '9_22', '9_23', '9_29', '9_30', '10_5', '10_6', '10_12', '10_13', '10_19', '10_20', '10_26', '10_27', '10_23', '10_24', '11_3', '11_4', '11_10', '11_11', '11_17', '11_18', '11_24', '11_25', '11_26', '11_27', '11_28', '11_29', '11_30', '11_31', '0_1', '0_2', '0_8', '0_9', '0_15', '0_16', '0_22', '0_23', '0_29', '0_30' ]
+
 console.log(closuresList)
 	function closures(closuresList){
 		for (i = 0; i < closuresList.length; i++){
