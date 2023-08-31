@@ -35,13 +35,14 @@
                         {.or}
                         <a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍 52 Greene Street, Floor 3, New York, NY, 10013</a><br>
                     {.end}
-                    {.if customContent.ticketLink}
+                    
                         {.if customContent.ticketPurchaseDescription}
                         <p style="font-size: 12px"> {customContent.ticketPurchaseDescription} </p>
                         {.end}
                         {.if customContent.hasFood}
-                            <p style="font-size: 12px">This event is 21+. All food and beverages are included in the cost of the ticket.</p>
+                            <p style="font-size: 12px">Guests must be over the age of 21 to attend this event. All food and beverages are included in the cost of the ticket. Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of food-borne illness, especially if you have certain medical conditions. Please drink responsibly.</p>
                         {.end}
+                    {.if customContent.ticketLink}
                         <br>
                         <button onclick="window.open('{customContent.ticketLink}')" class="red-button hover">Tickets Here</button>
                         <br>
@@ -54,9 +55,9 @@
             <br>
             <p><i>Disclaimer: Due to the building’s landmark status from 1912, we do not have an elevator. Salon 21 is on the third floor, up two flights of stairs.</i></p>
             {.if customContent.ticketLink}
-                <p style="font-size: 12px;"><i>Tickets are limited and non-refundable. Please contact Alex at <a href="mailto:alex@salontwenty-one.com">alex@salontwenty-one.com</a> with any questions or concerns.
+                <p style="font-size: 12px;"><i>Tickets are limited and non-refundable. Please contact Alex at <a href="mailto:alex@salontwenty-one.com">alex@salontwenty-one.com</a> with any questions or concerns.<br>
 
-Professional photography will be taken at the event. Please note that by entering the event site you agree to be filmed or photographed which may be used for marketing or promotional purposes. By purchasing this ticket you also agree to absolve the organizers and host of this event from any and all legal liability for any injury or illness that may occur. Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of food-borne illness, especially if you have certain medical conditions. Please drink responsibly. All guests must be over the age of 21 to attend.
+Professional photography will be taken at the event. Please note that by entering the event site you agree to be filmed or photographed which may be used for marketing or promotional purposes. By purchasing this ticket you also agree to absolve the organizers and host of this event from any and all legal liability for any injury or illness that may occur. 
 </i></p>
             {.end}
             
