@@ -14,7 +14,7 @@
                 <script>var theUrl = `{assetUrl}`; if (theUrl.includes('https://static1.squarespace.com')){document.getElementById('eventPopupImage').style.display = "none"} else {document.getElementById('eventPopupImage').src = theUrl}</script>
                 <div id="eventDetails">
                     {.if excerpt}
-                        <p class="event-details-excerpt">{excerpt|safe}<p>
+                        <span class="event-details-excerpt">{excerpt|safe}</span>
                     {.end}
                     {.equal? customContent.customType "eventSpecial"}
                         <h2 class="event-details-dates"> {structuredContent.startDate|date %B %e, %Y} </h2>
@@ -55,7 +55,7 @@
             {.end}
             <p><i><span style="font-weight: 800;">Disclaimer:</span> Due to the building’s landmark status from 1912, we do not have an elevator. Salon 21 is on the third floor, up two flights of stairs.</i></p>
             {.if customContent.ticketLink}
-                <p style="font-size: 12px;"><i>Tickets are limited and non-refundable. Please contact Alex at <a href="mailto:alex@salontwenty-one.com">alex@salontwenty-one.com</a> with any questions or concerns.<br>
+                <p style="font-size: 12px;"><i>Tickets are limited and non-refundable. Please contact Alex at <a href="mailto:alex@salontwenty-one.com">alex@salontwenty-one.com</a> with any questions or concerns.
 
 Professional photography will be taken at the event. Please note that by entering the event site you agree to be filmed or photographed which may be used for marketing or promotional purposes. By purchasing this ticket you also agree to absolve the organizers and host of this event from any and all legal liability for any injury or illness that may occur. 
 </i></p>
