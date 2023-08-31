@@ -131,7 +131,7 @@ function closePopup(){
 }
 
 document.getElementById("eventPopup").addEventListener("click", closePopup);
-
+document.getElementById("eventPopupClose").addEventListener("click", closePopup);
 
 {#  After calendar has been loaded  }
 
