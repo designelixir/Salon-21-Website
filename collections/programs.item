@@ -30,14 +30,14 @@
                 
                     {.if location}
                         {.section location}
-                        <a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if addressTitle}{addressTitle}, {.end}{addressLine1}, {addressLine2}</a><br>
+                        <a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 16px; color: black; opacity: 0.85">📍{.if addressTitle}{addressTitle}, {.end}{addressLine1}, {addressLine2}</a><br>
                         {.end}
                         {.or}
-                        <a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍 52 Greene Street, Floor 3, New York, NY, 10013</a><br>
+                        <a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 16px; color: black; opacity: 0.85">📍 52 Greene Street, Floor 3, New York, NY, 10013</a><br>
                     {.end}
                     
                         {.if customContent.ticketPurchaseDescription}
-                        <p style="font-size: 12px"> {customContent.ticketPurchaseDescription} </p>
+                        <p style="font-size: 14px"> {customContent.ticketPurchaseDescription} </p>
                         {.end}
                     {.if customContent.ticketLink}
                         <br>
