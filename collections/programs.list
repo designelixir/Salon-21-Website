@@ -157,7 +157,7 @@
 								
 							</div>
 						</div>
-						<br>
+						
 						{.if customContent.hasFood}
 							<p style="font-size: 14px;">Guests must be over the age of 21 to attend this event. Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of food-borne illness, especially if you have certain medical conditions. Please drink responsibly.</p>
 						{.end}
