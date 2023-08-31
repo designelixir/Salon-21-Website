@@ -100,7 +100,7 @@
 <div id="eventPopup" class="flex-start-center" style="display: none;">
 	<div style="border: 3px solid white; width: 90vw; height: 88vh; margin: 2.5vw;" class="textured-bg">
 		<div id="eventPopupClose" class="flex-center-center">Close</div>
-		<div style=" overflow-y: scroll; max-height: calc(88vh - 71px);">
+		<div style=" overflow-y: scroll; max-height: calc(88vh - 71px);" id="eventWrapper">
 		{.repeated section items}
 		<div id={id} class="event-frame hidden-event-frame">
 			{.if customContent.programClickable}
@@ -179,6 +179,7 @@ function toggleEventPopup(id, sourceId){
 		document.getElementById('eventPopup').style.display = "flex";
 		document.getElementById(id).classList.remove('hidden-event-frame')
 		document.getElementById(id).scroll(0,0)
+		document.getElementById('eventWrapper').scroll(0,0)
 		document.body.classList.add('no-scroll');
 	} else if (document.getElementById('eventPopup').style.display === "flex") {
 		closePopup()
