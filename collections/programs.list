@@ -6,7 +6,7 @@
 {@|apply header.block}
 <header class="site-header">
 	<h1 class="hover" onclick="window.open('{collection.fullUrl}','_self')"  id="page-title-h1">{collection.title}</h1>
-	{.if item.title}<h1><span class="red-text sub-title">{item.title}</h1>{.end}
+	{.if item.title}<h1><span class="red-text sub-title">{item.title}</span></h1>{.end}
 </header>
 
 {@|apply calendarBuilder.block}
@@ -100,50 +100,57 @@
 	{.end}
 {.end}
 <div id="eventPopup" class="flex-start-center" style="display: none;">
-	<div style="border: 3px solid white; width: 90vw; height: 88vh; margin: 2.5vw;" class="textured-bg">
+	<div class="textured-bg" id="eventPopupWindow">
 		<div id="eventPopupClose" class="flex-center-center">Close</div>
-		<div style=" overflow-y: scroll; max-height: calc(88vh - 71px);" id="eventWrapper">
+		<div style="max-height: calc(88vh - 71px);" id="eventWrapper">
 		{.repeated section items}
 		<div id={id} class="event-frame hidden-event-frame">
 			{.if customContent.programClickable}
 				<div class="event-item-wrapper">
 					<h1 class="popup-h1"><span class="hover" onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red);">{title}</span></h1>
-						<div class="event-popup-details" >
-							<img id="eventPopupImage" src="">
-							<script>var theUrl = `{assetUrl}`; if (theUrl.includes('https://static1.squarespace.com')){document.getElementById('eventPopupImage').style.display = "none"} else {document.getElementById('eventPopupImage').src = theUrl}</script>
-							<div id="eventDetails">
-								{.if excerpt}
-									<span class="event-details-excerpt">{excerpt|safe}</span>
-								{.end}
+						<div class="event-popup-details">
+							<img id="eventPopupImage" alt="" src="">
+							<script>
+								var theUrl = `{assetUrl}`; 
+								if (theUrl.includes('https://static1.squarespace.com')){
+									document.getElementById('eventPopupImage').style.display = "none"
+								} else {document.getElementById('eventPopupImage').src = theUrl}
+							</script>
+							<div id="eventDetails" class="flex-start-start flex-column">
+								{.if excerpt}<span class="event-details-excerpt">{excerpt|safe}</span>{.end}
 								{.equal? customContent.customType "eventSpecial"}
+								<div  style="text-align: left!important;">
 									<h2 class="event-details-dates"> {structuredContent.startDate|date %B %e, %Y} </h2>
 									<h2 class="event-details-times"> {structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} </h2>
+								</div>
 								{.or}
-									<h2 class="event-details-dates"> {structuredContent.startDate|date %B %e, %Y} - {structuredContent.endDate|date %B %e, %Y} </h2>
+									<h2 class="event-details-dates"> {structuredContent.startDate|date %B %e, %Y} - {structuredContent.endDate|date %B %e, %Y}</h2>
 									{.if customContent.showTime}
-									<h2 class="event-details-times"> {structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} </h2>
+									<h2 class="event-details-times"> {structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p}</h2>
 									{.end}
+									 
+									
 								{.end}
-							
-								<img src="../assets/spear.svg" alt="decorative frame" style="margin-right: 10px; margin-bottom: 15px;"><br>
-							
+								<div class="flex-start-start"><img src="../assets/spear.svg" alt="decorative frame" style="margin-right: 10px; margin-bottom: 15px;"></div>
+								
 								{.if location}
 									{.section location}
-									<a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 16px; color: black; opacity: 0.85">📍{.if addressTitle}{addressTitle}, {.end}{addressLine1}, {addressLine2}</a><br>
+									<a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 16px; color: black; opacity: 0.85; margin: 10px 0px;">📍{.if addressTitle}{addressTitle}, {.end}{addressLine1}, {addressLine2}</a><br>
 									{.end}
 									{.or}
-									<a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 16px; color: black; opacity: 0.85">📍 52 Greene Street, Floor 3, New York, NY, 10013</a><br>
+									<a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 16px; color: black; opacity: 0.85; margin: 10px 0px">📍 52 Greene Street, Floor 3, New York, NY, 10013</a><br>
 								{.end}
+								
 								
 									{.if customContent.ticketPurchaseDescription}
 									<p style="font-size: 14px"> {customContent.ticketPurchaseDescription} </p>
 									{.end}
 								{.if customContent.ticketLink}
-									<br>
-									<button onclick="window.open('{customContent.ticketLink}')" class="red-button hover">
+									
+									<button onclick="window.open('{customContent.ticketLink}')" class="red-button hover" style="margin: 10px 0px 15px 0px;">
 										{.if customContent.ticketButton}{customContent.ticketButton}{.or}Tickets Here{.end}
 									</button>
-									<br>
+									
 								{.end}
 								<br>
 								<div class="event-details-body" id="eventDetailsBody">{body}</div>
@@ -205,7 +212,7 @@ function closePopup(){
 	targetDiv.scrollIntoView({ behavior: 'instant', block: 'center' });
 }
 
-document.getElementById("eventPopup").addEventListener("click", closePopup);
+
 document.getElementById("eventPopupClose").addEventListener("click", closePopup);
 
 {#  After calendar has been loaded  }
