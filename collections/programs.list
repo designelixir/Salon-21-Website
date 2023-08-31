@@ -175,10 +175,9 @@ var scrollPosition;
 
 function toggleEventPopup(id, sourceId){
 	scrollPosition = sourceId
-	console.log(id)
 	if (document.getElementById('eventPopup').style.display === "none"){
 		document.getElementById('eventPopup').style.display = "flex";
-		document.getElementById(id).style.display = "block"
+		document.getElementById(id).classList.remove('hidden-event-frame')
 		document.body.classList.add('no-scroll');
 	} else if (document.getElementById('eventPopup').style.display === "flex") {
 		closePopup()
@@ -186,7 +185,16 @@ function toggleEventPopup(id, sourceId){
 }
 
 function closePopup(){
-	document.getElementById('eventIframe').src = ""
+	var openWindow = document.getElementsByClassName('event-frame')
+	
+	for (i=0; i < openWindow.length; i++){
+		if (openWindow[i].classList.contains('hidden-event-frame')){
+			console.log("we good")
+		} else {
+			openWindow[i].classList.add('hidden-event-frame')
+			console.log("added frame")
+		}
+	}
 	document.getElementById('eventPopup').style.display = "none";
 	document.body.classList.remove('no-scroll');
 	var targetDiv = document.getElementById(scrollPosition);
