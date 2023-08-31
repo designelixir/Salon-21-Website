@@ -70,11 +70,12 @@
 			
 			{.if customContent.programClickable} 
 				{.if sourceUrl} 
-				
-				var specialContainer = "<div class='event-details{.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end} onclick='window.open("+ {sourceUrl} +")'>"
+					var specialContainer = "<div class='event-details{.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end} onclick='window.open("+ {sourceUrl} +")'>"
 				{.or} 
 					var source = `"https://salontwenty-one.com/events/" + "{urlId}"`
-					var specialContainer = "<div class='event-details {.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end} onclick='toggleEventPopup("+ source + ", `" + specialDateCell + "`)'>"
+					var id = `"{id}"`
+					console.log(id)
+					var specialContainer = "<div class='event-details {.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end} onclick='toggleEventPopup("+ id + ", `" + specialDateCell + "`)'>"
 				{.end}
 			{.or} 
 				var specialContainer = "<div class='event-details non-clickable {.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end}>"
@@ -85,8 +86,6 @@
 				{.or}
 				var specialExcerpt = ""
 			{.end}
-			
-			
 			var specialEvent = specialContainer + "<p class='{.if customContent.programClickable} hover {.end} event-details-title {.if starred}special-event-title {.or} regular-event-title {.end}'>" + specialTitle +  specialExcerpt + "<br class='mobile-breaks'>" + specialShowTime + "</p></div>"
 			var specialEventRange = (specialEndDate - specialStartDate);
 			$("#" + specialDateCell + " .event-wrapper").append(specialEvent)
@@ -99,9 +98,72 @@
 	{.end}
 {.end}
 <div id="eventPopup" class="flex-start-center" style="display: none;">
-	<div style="border: 3px solid white; width: 90vw; height: 88vh; margin: 2.5vw">
+	<div style="border: 3px solid white; width: 90vw; height: 88vh; margin: 2.5vw; border: 2px solid blue;" class="textured-bg">
 		<div id="eventPopupClose" class="flex-center-center">Close</div>
-		<iframe id="eventIframe"  scrolling="yes" style="height: calc(88vh - 71px);" class="textured-bg"></iframe>
+		<div style="border: 3px solid magenta; overflow-y: scroll; max-height: calc(88vh - 71px);">
+		{.repeated section items}
+		<div id={id} style=" border: 2px solid teal;" class=" event-frame hidden-event-frame">
+			{.if customContent.programClickable}
+				<div class="event-item-wrapper">
+					<h1 class="popup-h1"><span class="hover" onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red);">{title}</span></h1>
+						<div class="event-popup-details" >
+							<img id="eventPopupImage" src="">
+							<script>var theUrl = `{assetUrl}`; if (theUrl.includes('https://static1.squarespace.com')){document.getElementById('eventPopupImage').style.display = "none"} else {document.getElementById('eventPopupImage').src = theUrl}</script>
+							<div id="eventDetails">
+								{.if excerpt}
+									<span class="event-details-excerpt">{excerpt|safe}</span>
+								{.end}
+								{.equal? customContent.customType "eventSpecial"}
+									<h2 class="event-details-dates"> {structuredContent.startDate|date %B %e, %Y} </h2>
+									<h2 class="event-details-times"> {structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} </h2>
+								{.or}
+									<h2 class="event-details-dates"> {structuredContent.startDate|date %B %e, %Y} - {structuredContent.endDate|date %B %e, %Y} </h2>
+									{.if customContent.showTime}
+									<h2 class="event-details-times"> {structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} </h2>
+									{.end}
+								{.end}
+							
+								<img src="../assets/spear.svg" alt="decorative frame" style="margin-right: 10px; margin-bottom: 15px;"><br>
+							
+								{.if location}
+									{.section location}
+									<a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 16px; color: black; opacity: 0.85">📍{.if addressTitle}{addressTitle}, {.end}{addressLine1}, {addressLine2}</a><br>
+									{.end}
+									{.or}
+									<a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 16px; color: black; opacity: 0.85">📍 52 Greene Street, Floor 3, New York, NY, 10013</a><br>
+								{.end}
+								
+									{.if customContent.ticketPurchaseDescription}
+									<p style="font-size: 14px"> {customContent.ticketPurchaseDescription} </p>
+									{.end}
+								{.if customContent.ticketLink}
+									<br>
+									<button onclick="window.open('{customContent.ticketLink}')" class="red-button hover">
+										{.if customContent.ticketButton}{customContent.ticketButton}{.or}Tickets Here{.end}
+									</button>
+									<br>
+								{.end}
+								<br>
+								<div class="event-details-body" id="eventDetailsBody">{body}</div>
+								
+							</div>
+						</div>
+						<br>
+						{.if customContent.hasFood}
+							<p style="font-size: 14px;">Guests must be over the age of 21 to attend this event. Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of food-borne illness, especially if you have certain medical conditions. Please drink responsibly.</p>
+						{.end}
+						<p style="font-size: 14px;"><i><span style="font-weight: 800;">Disclaimer:</span> Due to the building’s landmark status from 1912, we do not have an elevator. Salon 21 is on the third floor, up two flights of stairs.</i></p>
+						{.if customContent.ticketLink}
+							<p style="font-size: 14px;"><i>
+							Tickets are limited and non-refundable. Please contact Alex at <a href="mailto:alex@salontwenty-one.com">alex@salontwenty-one.com</a> with any questions or concerns.
+							Professional photography will be taken at the event. Please note that by entering the event site you agree to be filmed or photographed which may be used for marketing or promotional purposes. By purchasing this ticket you also agree to absolve the organizers and host of this event from any and all legal liability for any injury or illness that may occur. 
+							</i></p>
+						{.end}
+				</div>
+			{.end}
+		</div>
+		{.end}
+		</div>
 	</div>
 </div>
 
@@ -111,11 +173,12 @@
 
 var scrollPosition;
 
-function toggleEventPopup(source, sourceId){
+function toggleEventPopup(id, sourceId){
 	scrollPosition = sourceId
+	console.log(id)
 	if (document.getElementById('eventPopup').style.display === "none"){
 		document.getElementById('eventPopup').style.display = "flex";
-		document.getElementById('eventIframe').src = source;
+		document.getElementById(id).style.display = "block"
 		document.body.classList.add('no-scroll');
 	} else if (document.getElementById('eventPopup').style.display === "flex") {
 		closePopup()
