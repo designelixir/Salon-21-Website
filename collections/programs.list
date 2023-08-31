@@ -1,5 +1,7 @@
 <style>
 	.custom-bg-region {background-repeat: no-repeat; background-position: center 50px; padding-top: 50px;}
+	.col {float: unset!important;}
+    .sqs-block-quote .sqs-block-content {margin: 15px 0px;}
 </style>
 {@|apply header.block}
 <header class="site-header">
