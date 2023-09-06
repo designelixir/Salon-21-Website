@@ -108,14 +108,9 @@
 			{.if customContent.programClickable}
 				<div class="event-item-wrapper">
 					<h1 class="popup-h1"><span class="hover" onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red);">{title}</span></h1>
-						<div class="event-popup-details">
-							<img id="eventPopupImage" alt="" src="">
-							<script>
-								var theUrl = `{assetUrl}`; 
-								if (theUrl.includes('https://static1.squarespace.com')){
-									document.getElementById('eventPopupImage').style.display = "none"
-								} else {document.getElementById('eventPopupImage').src = theUrl}
-							</script>
+						<div class="event-popup-details flex-start-start">
+							<img id="eventPopupImage" alt="" src="{assetUrl}">
+							
 							<div id="eventDetails" class="flex-start-start flex-column">
 								{.if excerpt}<span class="event-details-excerpt">{excerpt|safe}</span>{.end}
 								{.equal? customContent.customType "eventSpecial"}
