@@ -64,7 +64,7 @@
 	
 	
 	{#  remove stuff from parenthesis when september passes  }
-    var currentDate = new Date(2023, 8 );
+    var currentDate = new Date();
     var currentMonth = currentDate.getMonth(); 
     var year = currentDate.getFullYear();
 	
