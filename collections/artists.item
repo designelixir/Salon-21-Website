@@ -22,14 +22,7 @@
   {.end}
  
 </div>
-<br>
-<div class="preview-container flex-center-center">
-  {.repeated section items}
-  <div class="preview" >
-    <img src={assetUrl} style="width: 25px"/>
-  </div>
-  {.end}
-</div>
+
 <squarespace:block-field id="contactAlex" columns="12"/>
 </squarespace:query>
   </article>
