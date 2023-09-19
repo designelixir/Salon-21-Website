@@ -184,6 +184,55 @@ button {border: 0px; padding: 10px 20px; font-family: 'Armoire', sans-serif!impo
 .artist-tag {margin: 5px; color: black; border: 0.1px solid rgba(0,0,0,0.25); font-size: 12px; padding: 5px 10px; }
 .artist-tag:hover {background-color: var(--gold); color: white;}
 
+.artist-piece {width: 100%; max-width: 250px; margin: 15px; padding: 15px;}
+.artist-piece a {font-size: 16px;}
+
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  margin: auto;
+  
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  
+}
+
+/* Navigation arrows */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 20%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  border-radius: 5px;
+}
+
+.next {
+  right: 0;
+}
+
+/* Slide previews */
+.preview-container {
+  text-align: center;
+  height: 50px;
+  border: 1px solid red;
+}
+
+.preview {
+  display: inline-block;
+  margin: 0 4px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.preview.active {
+  opacity: 1;
+}
 
 .exhibition-details-date h6 {text-align: center;}
 

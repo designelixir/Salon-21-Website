@@ -5,10 +5,70 @@
   <article id="post-{id}" class="{@|item-classes}" data-item-id="{id}">
     {body}
     {postItemInjectCode}
+    <squarespace:query collection="products" tag="{title}" limit="25">
+<div class="slideshow-container">
+     <a class="prev" onclick="plusSlides(-1)"><img src="../assets/prev.png"/></a>
+  <a class="next" onclick="plusSlides(1)"><img src="../assets/next.png"/></a>
+  {.repeated section items}
+  <div class="slide">
+    <div class="flex-center-center flex-column" style="text-align: center!important;">
+    <img src={assetUrl} style="width: 75%; max-width: 500px;  margin-bottom: 25px;"/>
+    
+      <a href="{fullUrl}">{title}</a>
+      {excerpt}
+      <button>Contact for Purchase</button>
+    </div>
+  </div>
+  {.end}
+ 
+</div>
+<br>
+<div class="preview-container flex-center-center">
+  {.repeated section items}
+  <div class="preview" >
+    <img src={assetUrl} style="width: 25px"/>
+  </div>
+  {.end}
+</div>
+<squarespace:block-field id="contactAlex" columns="12"/>
+</squarespace:query>
   </article>
 <script>
 $('#headerImg').attr('src', `{assetUrl}`)
+let slideIndex = 1;
+  showSlides(slideIndex);
 
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    let slides = document.getElementsByClassName("slide");
+    let previews = document.getElementsByClassName("preview");
+
+    if (n > slides.length) {
+      slideIndex = 1;
+    }
+
+    if (n < 1) {
+      slideIndex = slides.length;
+    }
+
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+
+    for (let i = 0; i < previews.length; i++) {
+      previews[i].className = previews[i].className.replace(" active", "");
+    }
+
+    slides[slideIndex - 1].style.display = "block";
+    previews[slideIndex - 1].className += " active";
+  }
 </script>
 {.end}
 
