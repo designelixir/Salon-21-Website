@@ -16,7 +16,6 @@
     
       <a href="{fullUrl}">{title}</a>
       {excerpt}
-      <button>Contact for Purchase</button>
     </div>
   </div>
   {.end}
