@@ -7,11 +7,7 @@
     {postItemInjectCode}
     <squarespace:query collection="products" tag="{title}" limit="25">
 <div class="slideshow-container flex-center-center">
-<div style='position: absolute; width: 100%; margin-top: -250px;'>
-  
-  <a class="next" onclick="plusSlides(1)"><img src="../assets/next.png" style="width: 50px; margin-right: -10px;"/></a>
-  
-</div>
+
 
 
 
