@@ -12,18 +12,7 @@
   <a class="next" onclick="plusSlides(1)"><img src="../assets/next.png" style="width: 50px; margin-right: -10px;"/></a>
   
 </div>
-<br>
-  {.repeated section items}
-  <div class="slide">
-    <div class="flex-start-start flex-column">
-    {.equal? onSale false}<squarespace:block-field id="contactAlex" columns="12"/>{.or}<div class="sold-out">Sold </div>{.end}
-    <img src={assetUrl} style="width: 80%; max-width: 500px;"/>
-      {excerpt}
-    </div>
-  </div>
-  {.end}
- 
-</div>
+
 
 
 </squarespace:query>
