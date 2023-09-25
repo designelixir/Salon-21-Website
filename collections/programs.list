@@ -11,7 +11,7 @@
 
 {@|apply calendarBuilder.block}
 {@|apply footer.block}
-<squarespace:query collection="events" limit="200">
+
 {.repeated section items}
 	{.equal? customContent.customType "eventOngoing"}
 		<script>
@@ -103,7 +103,7 @@
 		</script>
 	{.end}
 {.end}
-</squarespace:query>
+
 <div id="eventPopup" class="flex-start-center" style="display: none;">
 	<div class="textured-bg" id="eventPopupWindow">
 		<div id="eventPopupClose" class="flex-center-center">Close</div>
