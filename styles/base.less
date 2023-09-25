@@ -290,7 +290,7 @@ td p {text-align: left!important;}
 .date-cell {opacity: 0.5}
 .non-clickable {cursor: not-allowed}
 .event-details {padding: 5px;}
-
+.regular-event {order: 0!important;}
 @media screen and (max-width: 1100px)  {
   tr {display: flex; width: 95vw; margin-left: 2.5vw;  align-items: flex-start; justify-content: flex-start; flex-direction: column;} 
   td {width: 100%;  }
@@ -303,6 +303,7 @@ td p {text-align: left!important;}
   .date-cell-day {width: 75px;}
   .event-details {width: 100%;}
   .day-of-week {display: block!important;}
+
   .regular-event p {font-size: 16px!important; line-height: 20px!important; }
   .exhibition-event p {font-size: 16px!important; line-height: 20px!important; margin-bottom: 10px!important;}
   .special-event p {font-size: 16x!important; line-height: 20px!important;}
@@ -348,7 +349,7 @@ td p {text-align: left!important;}
 
 //New Calendar
 .ongoing-event-title {font-size: 14px; text-align: left; font-style: italic; line-height: 16px;}
-
+.ongoing-event {order: 2!important;}
 #eventPopupWindow {border: 3px solid white; width: 90vw; height: 88vh; margin: 2.5vw;}
 #eventWrapper { overflow-y: scroll;  }
 .event-item-wrapper {width: 100%; padding: 0px 25px 50px;}
@@ -358,7 +359,7 @@ td p {text-align: left!important;}
 #eventPopupClose { background: var(--red); text-align: center; height: 65px; color: white; width: 100%; font-size: 24px;}
 .event-time {font-size: 12px; font-weight: 100; margin-top: 3px; color: black;}
 .event-excerpt {font-style: italic; font-size: 12px; color: black; font-weight: 300; opacity: 0.5; margin: 0; line-height: 13px;}
-.excerpt{font-size: 11px; opacity: 0.75; line-height: 13px;}
+.excerpt{font-size: 11px; color: black; width: 100%; opacity: 0.75; line-height: 13px;}
 #eventDetails {width: 100%;}
 
 #eventPopupImage {max-width: 400px; width: 100%; float: left; margin: 0px 25px 25px 0px}
