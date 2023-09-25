@@ -250,5 +250,6 @@ console.log(closuresList)
  var hasTimeList = document.getElementsByClassName('has-time');
  orderEvents(hasTimeList)
  
+ document.getElementById("9_9").append('email alex@salontwenty-one.com to request private viewing')
 
 </script>
