@@ -16,7 +16,7 @@
     <div class="flex-center-center flex-wrap" id="month-list"></div>
     <div id="calendar-container"></div>
 </div>
-<div class="inner-content-container flex-center-center flex-column" style="margin-top: 50px;">
+<div class="inner-content-container flex-center-center flex-column textured-bg" style="margin-top: 50px;">
     <squarespace:block-field id="eventsContent" columns="12"/>
 </div>
 
