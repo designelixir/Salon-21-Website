@@ -250,6 +250,9 @@ console.log(closuresList)
  var hasTimeList = document.getElementsByClassName('has-time');
  orderEvents(hasTimeList)
  var extraExcerpt = "<span class='excerpt'>Email alex@salontwenty-one.com to request private viewing</span>"
- var nineNine = document.getElementById('9_9')
- nineNine.insertAdjacentHTML(beforeend, extraExcerpt)
+ 
+ $('#9_9 .event-details').append(extraExcerpt)
+ $('#9_10 .event-details').append(extraExcerpt)
+ $('#9_11 .event-details').append(extraExcerpt)
+ $('#9_12 .event-details').append(extraExcerpt)
 </script>
