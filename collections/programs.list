@@ -249,7 +249,7 @@ console.log(closuresList)
  {#  Organize events on day by start times  }
  var hasTimeList = document.getElementsByClassName('has-time');
  orderEvents(hasTimeList)
- var extraExcerpt = "<span class="excerpt">Email alex@salontwenty-one.com to request private viewing</span>"
+ var extraExcerpt = "<span class='excerpt'>Email alex@salontwenty-one.com to request private viewing</span>"
  document.getElementById("9_9").append(extraExcerpt)
  document.getElementById("9_10").append(extraExcerpt)
  document.getElementById("9_11").append(extraExcerpt)
