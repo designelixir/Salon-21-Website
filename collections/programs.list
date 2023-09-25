@@ -251,8 +251,6 @@ console.log(closuresList)
  orderEvents(hasTimeList)
  var extraExcerpt = "<span class='excerpt'>Email alex@salontwenty-one.com to request private viewing</span>"
  document.getElementById("9_9").insertAdjacentHTML(beforeend, extraExcerpt)
- document.getElementById("9_10").append(extraExcerpt)
- document.getElementById("9_11").append(extraExcerpt)
- document.getElementById("9_12").append(extraExcerpt)
+ 
 
 </script>
