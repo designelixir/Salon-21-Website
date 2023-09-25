@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		{squarespace-headers}
+	</head>
+	<squarespace:navigation navigationId="siteNav" template="site-navigation" />
+	<body class="flex-start-start textured-bg" data-content-field="main-content" id="calendarBody">
+		
+		<div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container custom-bg-region" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
+			
+			<div class="flex-center-center flex-column">
+                {@|apply calendarBuilder.block}
+					{squarespace.main-content}
+			</div>
+      
+			
+			<squarespace:script src="site.js" combo="{.if authenticatedAccount}false{.or}true{.end}" />
+			{squarespace-footers}
+		</div>
+	</body>
+</html>
