@@ -11,7 +11,7 @@
 
 {@|apply calendarBuilder.block}
 {@|apply footer.block}
-<squarespace:query collection="events" limit="100">
+<squarespace:query collection="events" limit="200">
 {.repeated section items}
 	{.equal? customContent.customType "eventOngoing"}
 		<script>

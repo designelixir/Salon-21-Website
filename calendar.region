@@ -7,14 +7,64 @@
 		{squarespace-headers}
 	</head>
 	<squarespace:navigation navigationId="siteNav" template="site-navigation" />
+  
+    
 	<body class="flex-start-start textured-bg" data-content-field="main-content" id="calendarBody">
 		
 		<div id="{squarespace.page-id}" class="{squarespace.page-classes} content-container custom-bg-region" {.if collection.mainImage}style="background-image: url({collection.mainImage.assetUrl})"{.end}>
+			<squarespace:query collection="events" limit="100">
+            {.repeated section items}
+                {.equal? customContent.customType "eventOngoing"}
+                {.if customContent.programClickable}
+                    <div class='event-details ongoing-event event-container has-time hover clickable' data-military-time={structuredContent.startDate|date %H} {.if sourceUrl}onclick='window.open("{sourceUrl}")'{.or} {.end}>
+                    {.or} <div class='event-details ongoing-event event-container has-time non-clickable' data-military-time={structuredContent.startDate|date %H}>
+                    {.end}
+                    <p>{title}</p>
+                    {.if excerpt}<p> {excerpt|safe}</p>{.end}
+                    {.if customContent.showTime} <span class='event-time'>{structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p}</span> {.end}
+                    </div>
+                    <script>
+			var ongoingTitle = "{title}";
+			var ongoingStartMonth = {structuredContent.startDate|date %m} - 1;
+			var ongoingStartDate = {structuredContent.startDate|date %e};
+			var ongoingEndMonth = {structuredContent.endDate|date %m} - 1;
+			var ongoingEndDate = {structuredContent.endDate|date %e}
+			var ongoingDateCell = String(ongoingStartMonth) + "-" + String(ongoingStartDate)
 			
+			
+
+			
+
+
+			
+			
+			
+			
+			var eventTitle = ongoingContainer + "<p class='event-details-title ongoing-event-title'>" + ongoingTitle + ongoingTime + "</p></div>"
+			{.if excerpt} var eventExcerpt = `{excerpt|safe}` {.or} var eventExcerpt = "" {.end}
+			var eventExcerptContainer = "<p class='excerpt'>" + eventExcerpt + "</p>"
+			var ongoingEventRange = (ongoingEndDate - ongoingStartDate);
+			if(ongoingEventRange > 0){
+				for (i = 0; i < ongoingEventRange + 1; i++){
+					var nextDay = ongoingStartDate + i
+					var ongoingDateCellMulti = String(ongoingStartMonth) + "_" + String(ongoingStartDate + i)
+					$("#" + ongoingDateCellMulti + " .event-wrapper").append(eventTitle)
+					$("#" + ongoingDateCellMulti + " .event-wrapper").append(eventExcerptContainer)
+					$("#" + ongoingDateCellMulti).addClass('has-event')
+				}
+			} else {}
+		</script>
+                {.end}
+              {.end} 
+                    
+
+                </squarespace:query>
 			<div class="flex-center-center flex-column">
-                {@|apply calendarBuilder.block}
-					{squarespace.main-content}
+                
+                {@|apply footer.block}
+                {squarespace.main-content}
 			</div>
+            
       
 			
 			<squarespace:script src="site.js" combo="{.if authenticatedAccount}false{.or}true{.end}" />
