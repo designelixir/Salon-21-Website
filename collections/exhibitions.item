@@ -1,5 +1,8 @@
 <style>
 	#headerIcon {display: none!important;}
+	[class*=sqs-col] {
+	 float: unset!important;
+}
 </style>
 <script>
 	function isDateInFutureOrPast(start, end, id) {
@@ -30,51 +33,52 @@
 <div class="inner-content-container textured-bg" id="{id}" data-item-id="{id}" >
 	<div class=" exhibition-container">
 		<div class="flex-start-start exhibition-details"  >
-			<div class="exhibition-details-body" >
-				{.if customContent.hideImage} {.or}
-				<img src="{assetUrl}" class="exhibition-image">
-				{.end}
-				{.if customContent.dateNotDefined}
-				<h6><span class="exhibition-type-label" id="eventType-{id}"></span><br><br>{structuredContent.startDate|date %B %Y } - <i>Check back for dates</i></h6>
-				{.or}
-				<h6>
-					<span class="exhibition-type-label" id="eventType-{id}"></span>&nbsp;&nbsp;<br>
-					<br><span style="font-size: 18px;"> {structuredContent.startDate|date %B %e} - {structuredContent.endDate|date %B %e, %Y} </span>
-				</h6>
-				{.end}
-				{.if location}
-				{.section location}
-				<a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if addressTitle}{addressTitle}, {.end}{addressLine1}, {addressLine2}</a><br>
-				{.end}
-				{.or}
-				<a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if website.location.addressTitle}{website.location.addressTitle}, {.end}{website.location.addressLine1}, {website.location.addressLine2}</a><br>
-				{.end}
-				{.if customContent.hideArtistTags}
-				    <br>
+			<div class="exhibition-details-body flex-start-start" >
+					<div>
+						{.if customContent.hideImage} {.or}
+							<img src="{assetUrl}" class="exhibition-image">
+						{.end}
+					</div>
+					<div>
+						{.if customContent.dateNotDefined}
+							<h6><span class="exhibition-type-label" id="eventType-{id}"></span><br><br>{structuredContent.startDate|date %B %Y } - <i>Check back for dates</i></h6>
+						{.or}
+							<h6>
+								<span class="exhibition-type-label" id="eventType-{id}"></span>&nbsp;&nbsp;<br>
+								<br><span style="font-size: 18px;"> {structuredContent.startDate|date %B %e} - {structuredContent.endDate|date %B %e, %Y} </span>
+							</h6>
+						{.end}
+
+						{.if location}
+							{.section location}
+							<a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if addressTitle}{addressTitle}, {.end}{addressLine1}, {addressLine2}</a><br>
+							{.end}
+						{.or}
+							<a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 14px; color: black; opacity: 0.85">📍{.if website.location.addressTitle}{website.location.addressTitle}, {.end}{website.location.addressLine1}, {website.location.addressLine2}</a><br>
+						{.end}
+
+						{.if customContent.hideArtistTags}
+						{.or}
+							{.if tags}
+								<img src="../assets/spear.svg" alt="decorative frame" style=" margin-right: 10px;">
+								<p style="font-size: 14px; line-height: 14px;"><i>Featuring:</i></p>
+								<div class="flex-start-start flex-wrap artist-tags-wrapper" style="margin-bottom: 15px">
+									{.repeated section tags}
+										<a class="artist-tag hover" href="/artists/{@|slugify}" target="_blank">{@}</a>
+									{.end}
+									<script>$('.artist-tags-wrapper a').sort(function(a, b) {
+										return $(a).text().localeCompare($(b).text());
+										}).appendTo('.artist-tags-wrapper');
+									</script>
+								</div>
+							{.end}
+						{.end}
+							
 						{.if excerpt}<i></i><br><br>{excerpt|safe}{.end}
+						<br>
 						{body}
-				{.or}
-				{.if tags}
-				<img src="../assets/spear.svg" alt="decorative frame" style=" margin-right: 10px;">
-				<p style="font-size: 14px; line-height: 14px;"><i>Featuring:</i></p>
-				<div class="flex-start-start flex-wrap artist-tags-wrapper" style="margin-bottom: 15px">
-					{.repeated section tags}
-						<a class="artist-tag hover" href="/artists/{@|slugify}" target="_blank">{@}</a>
-					{.end}
-					<script>$('.artist-tags-wrapper a').sort(function(a, b) {
-						return $(a).text().localeCompare($(b).text());
-						}).appendTo('.artist-tags-wrapper');
-					</script>
-					
-						
-					
-				</div>
-				
-				{.if excerpt}<i></i><br><br>{excerpt|safe}{.end}
-				{body}
-				
-				{.end}
-				{.end}
+							
+					</div>
 			</div>
 		</div>
 		<script>isDateInFutureOrPast(`{structuredContent.startDate|date %Y-%m-%dT%T}`, `{structuredContent.endDate|date %Y-%m-%dT%T}`, `{id}`)</script>
