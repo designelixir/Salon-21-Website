@@ -255,6 +255,6 @@ console.log(closuresList)
  $('#9_10 .event-details .ongoing-event-title').append(extraExcerpt)
  $('#9_11 .event-details .ongoing-event-title' ).append(extraExcerpt)
  $('#9_12 .event-details .ongoing-event-title').append(extraExcerpt)
- $('#9_18 .event-details .ongoing-event-title').append("<p style='padding-top: 10px; border-top: 1px solid white;'>Private Event</p><p style='margin-top:-5px;' class='excerpt'>5:00pm to 7:00pm</p>")
- $('#9_25 .event-details .ongoing-event-title').append("<p style='padding-top: 10px; border-top: 1px solid white;'>Private Event</p><p style='margin-top:-5px;' class='excerpt'>8:30am to 10:00am</p>")
+ $('#9_18 .event-details .ongoing-event-title').append("<p style='padding-top: 5px; margin-top: 5px; border-top: 1px solid white;'>Private Event</p><p style='margin-top:-5px;' class='excerpt'>5:00pm to 7:00pm</p>")
+ $('#9_25 .event-details .ongoing-event-title').append("<p style='padding-top: 5px; margin-top: 5px; border-top: 1px solid white;'>Private Event</p><p style='margin-top:-5px;' class='excerpt'>8:30am to 10:00am</p>")
 </script>
