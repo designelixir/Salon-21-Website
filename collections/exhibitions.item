@@ -52,7 +52,7 @@
 				{.if customContent.hideArtistTags}
 				    <br>
 						{.if excerpt}<i></i><br><br>{excerpt|safe}{.end}
-						{body|safe}
+						{body}
 				{.or}
 				{.if tags}
 				<img src="../assets/spear.svg" alt="decorative frame" style=" margin-right: 10px;">
