@@ -1,8 +1,6 @@
 <style>
 	#headerIcon {display: none!important;}
-	[class*=sqs-col] {
-	 float: unset!important;
-}
+
 </style>
 <script>
 	function isDateInFutureOrPast(start, end, id) {
@@ -31,13 +29,13 @@
 </script>
 {.section item}
 <div class="inner-content-container textured-bg" id="{id}" data-item-id="{id}" >
-	<div class=" exhibition-container">
+	<div class="exhibition-container">
 		<div class="flex-start-start exhibition-details"  >
 			<div class="exhibition-details-body flex-start-start" >
-					<div>
-						{.if customContent.hideImage} {.or}
-							<img src="{assetUrl}" class="exhibition-image">
-						{.end}
+					<div class="exhibition-details-image">
+					{.if customContent.hideImage} {.or}
+						<img src="{assetUrl}" class="exhibition-image">
+					{.end}
 					</div>
 					<div>
 						{.if customContent.dateNotDefined}
