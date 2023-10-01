@@ -75,14 +75,13 @@
 						{.if excerpt}<i></i><br><br>{excerpt|safe}{.end}
 						<br>
 						{body}
-
-						{.if customContent.hideArtistTags}
-							{.if tags}{@}{.end}
-						{.end}
+						
 							
 					</div>
 			</div>
+			
 		</div>
+		<squarespace:block-field id="{customContent.artistBioName}" columns="1" style="width: 100%; min-height: 20px;"/>
 		<script>isDateInFutureOrPast(`{structuredContent.startDate|date %Y-%m-%dT%T}`, `{structuredContent.endDate|date %Y-%m-%dT%T}`, `{id}`)</script>
 	</div>
 	{.end}
