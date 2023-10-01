@@ -50,7 +50,7 @@
 					var nextDay = ongoingStartDate + i
 					var ongoingDateCellMulti = String(ongoingStartMonth) + "_" + String(ongoingStartDate + i)
 					$("#" + ongoingDateCellMulti + " .event-wrapper").append(eventTitle)
-					$("#" + ongoingDateCellMulti + " .event-wrapper").append(eventExcerptContainer)
+					{.if excerpt}$("#" + ongoingDateCellMulti + " .event-wrapper").append(eventExcerptContainer){.end}
 					
 
 					$("#" + ongoingDateCellMulti).addClass('has-event')
@@ -219,8 +219,6 @@ document.getElementById("eventPopupClose").addEventListener("click", closePopup)
 
 
 var closuresList = ['9_2', '9_3', '9_8', '9_21', '9_22', '10_17', '10_18', '10_22', '10_23', '10_24', '10_25', '10_26',  '11_3', '11_4', '11_10', '11_11', '11_17', '11_18', '11_24', '11_25', '11_26', '11_27', '11_28', '11_29', '11_30', '11_31', '0_1', '0_2', '0_8', '0_9', '0_15', '0_16', '0_22', '0_23', '0_29', '0_30' ]
-
-console.log(closuresList)
 	function closures(closuresList){
 		for (i = 0; i < closuresList.length; i++){
 			var targetClosure = document.getElementById(closuresList[i])
@@ -247,5 +245,11 @@ console.log(closuresList)
  $('#9_10 .event-details .ongoing-event-title').append(extraExcerpt)
  $('#9_11 .event-details .ongoing-event-title' ).append(extraExcerpt)
  $('#9_12 .event-details .ongoing-event-title').append(extraExcerpt)
+ $('#9_12 .event-details .ongoing-event-title').append(extraExcerpt)
+ $('#10_23 .date-cell-day').append("<p class='holiday-event'>Thanksgiving</p>")
+$('#11_24 .date-cell-day').append("<p class='holiday-event'>Christmas Eve</p>")
+ $('#11_25 .date-cell-day').append("<p class='holiday-event'>Christmas</p>")
+ $('#11_31 .date-cell-day').append("<p class='holiday-event'>New Years Eve</p>")
+ $('#0_1 .date-cell-day').append("<p class='holiday-event'>New Years Day</p>")
  
 </script>
