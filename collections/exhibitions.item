@@ -85,7 +85,7 @@
 			<squarespace:query collection="artists" tag="{customContent.artistBioName}" limit="1">
 				{.repeated section items}
 				<h1 style="color: var(--red); font-size: 18px; margin-bottom: 0px; margin-top: 25px;">Meet the Artist</h1>
-				<h2>{title}</h2>
+				<h2 style="line-height: 28px;">{title}</h2>
 				{body}
 				{.end}
 				
