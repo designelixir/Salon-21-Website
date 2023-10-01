@@ -84,7 +84,7 @@
 		{.if customContent.artistBioName}
 			<h1 style="color: var(--red); font-size: 18px;">Meet the Artist</h1>
 			
-			<squarespace:query collection="artists" category="{customContent.artistBioName}" limit="1">
+			<squarespace:query collection="artists" tag="{customContent.artistBioName}" limit="1">
 				{.repeated section items}
 				<h2>{title}</h2>
 				{body}
