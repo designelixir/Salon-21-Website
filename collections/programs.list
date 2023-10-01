@@ -114,15 +114,7 @@
 				<div class="event-item-wrapper">
 					<h1 class="popup-h1"><span class="hover" onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red);">{title}</span></h1>
 						<div class="event-popup-details flex-start-start">
-						<script>
-							var photoLink = '{assetUrl}'
-							var result = photoLink.includes("https://static1")
-							if (result){
-								document.getElementById('eventPopupImage').classList.add("no-photo")				
-							}
-							
-						</script>
-							<img id="eventPopupImage" alt="{title} social photo" src="{assetUrl}">
+							{.if filename}<img id="eventPopupImage" alt="{title} social photo" src="{assetUrl}">{.end}
 							
 							<div id="eventDetails" class="flex-start-start flex-column">
 								{.if excerpt}<span class="event-details-excerpt">{excerpt|safe}</span>{.end}
