@@ -75,6 +75,10 @@
 						{.if excerpt}<i></i><br><br>{excerpt|safe}{.end}
 						<br>
 						{body}
+
+						{.if customContent.hideArtistTags}
+							{.if tags}{@}{.end}
+						{.end}
 							
 					</div>
 			</div>
