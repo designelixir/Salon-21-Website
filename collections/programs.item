@@ -1,6 +1,25 @@
 <style>
 body {background-image: unset;}
 .custom-bg-region {background-repeat: no-repeat; background-position: center 50px; padding-top: 0px; background-image: url("")!important;}
+.popup-h1 {margin-top: 0px;}
+.popup-h1 span {font-size: 42px!important; line-height: 46px;}
+.event-item-wrapper {margin: 25px;}
+
+#eventDetails {width: 100%;}
+#eventPopupImage {max-width: 400px; width: 100%; float: left; margin: 0px 25px 25px 0px}
+.event-details-excerpt {margin-bottom: 15px; padding: 5px; font-size: 14px; font-family: Armoire, 'serif'; text-transform: uppercase; border: 1px solid black;}
+.event-details-dates {font-family: 'Armoire', serif; color: var(--red); font-size: 24px; text-transform: uppercase; text-align: left!important;}
+.event-details-times {font-family: 'Armoire', serif; color: black; font-size: 18px; text-transform: uppercase;}
+
+
+@media screen and (max-width: 750px)  {
+    #eventPopupImage {margin: 0 0 25px 0; max-width: unset;}
+    .popup-h1 span {font-size: 36px!important; line-height: 40px;}
+  .event-details {width: 100%; border-top: none!important;}
+  .event-popup-details {flex-direction: column;}
+  .event-popup-image {width: 100%; margin: 0px;}
+  .event-wrapper {padding-left: 15px; height: 100%;  width: 100%;}
+}
 </style>
 {.section item}
 <div class="event-item-wrapper">

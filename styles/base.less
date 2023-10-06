@@ -182,7 +182,8 @@ button {border: 0px; padding: 10px 20px; font-family: 'Armoire', sans-serif!impo
 .exhibition-details-body {width: 100%; padding-top: 25px; }
 .exhibition {display: none; padding: 10px; margin: 20px 50px; width: 90%; background-color: rgba(255,255,255,0.15) }
 .exhibition-content {padding: 20px;}
-
+.exhibition-event p {font-size: 12px; font-style: italic; line-height: 14px!important; margin: 5px 0px; padding: 0px!important;}
+.future-event {order: -1!important;}
 
 .show-event {display: block;}
 
@@ -283,113 +284,33 @@ button {border: 0px; padding: 10px 20px; font-family: 'Armoire', sans-serif!impo
 
 
 // CALENDER REFINED 
-.event { cursor: default; padding-bottom: 7px;}
-.special-event-title {font-size: 16px; font-weight: 500; line-height: 16px; }
-.regular-event-title {font-size: 14px; font-weight: 600; line-height: 16px;}
-.ongoing-event-title {font-size: 14px; font-weight: 500; text-align: left; font-style: italic; line-height: 16px; opacity: 0.75}
-.event-wrapper {padding: 7px; display: flex; align-items: flex-start; justify-content: flex-start; flex-direction: column;}
 
-.event-wrapper p {margin: 0!important;}
-.event-time {font-size: 12px; font-weight: 100; margin-top: 3px; color: black;}
-.event-excerpt {font-style: italic; font-size: 12px; color: black; font-weight: 300; opacity: 0.5; line-height: 13px;}
-.past-date {opacity: 0.25; pointer-events: none;}
-
-.event .clickable {cursor: pointer!important;}
-.clickable:hover {cursor: pointer; transform: scale(1.03) }
-.special-event-border {border: 4px solid white;}
-.closed-event {width: 100%; height: 100%; text-align: center; font-style: italic; min-height: 80px; color: white; opacity: 0.5; pointer-events: none;}
-.multiple-event-border {border-bottom: 2px solid rgba(255,255,255,0.6); margin: 7px 0px; width: 100%; opacity: 0;}
-
-
-.event-wrapper:nth-child(2) .regular-event {border-top: 2px solid rgba(255,255,255,0.6); padding-top: 7px; width: 100%;}
-
-#eventPopupIframe {width: 100%;}
 
 // CALENDAR
-
-.no-photo {width: 0px!important; margin: 0px!important;}
-tr {display: grid; grid-template-columns: repeat(7, 1fr);} 
-td {margin: 3px;}
-.date-cell {min-width: 150px; min-height: 150px; width: 100%; }
-td p {text-align: left!important;}
-.dead {height: 0px!important;}
-
-
-
-@media screen and (max-width: 1100px)  {
-  tr {display: flex; width: 95vw; margin-left: 2.5vw;  align-items: flex-start; justify-content: flex-start; flex-direction: column;} 
-  td {width: 100%;  }
-  .day-wrapper {height: 100%; color: black!important;}
-  .calendar-closure {width: 50px;}
-  tr:nth-child(1){display: none!important;}
-  td .dead-date + td {display: none!important; height: 0px!important;}
-  .closed-p {text-align: left!important; font-size: 20px;}
-  .date-cell {padding: 0px; width: 100vw; opacity: 0.85;  min-height: 10px; max-width: unset; height: unset; color: black!important;}
-  .date-cell-day {width: 75px;}
-  .event-details {width: 100%;}
-  .day-of-week {display: block!important;}
-
-  .regular-event p {font-size: 16px!important; line-height: 20px!important; }
-  .exhibition-event p {font-size: 16px!important; line-height: 20px!important; margin-bottom: 10px!important;}
-  
-  .has-event {display: flex; align-items: center; justify-content: flex-start; min-height: 150px;}
-  .has-event .day-wrapper {min-height: 190px; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column;}
-  .day-wrapper {padding: 10px; text-align: center;  width: 75px!important;  height: 100%; }
-  .event-details {width: 100%; border-top: none!important;}
-  .event-popup-details {flex-direction: column;}
-  .event-popup-image {width: 100%; height: 200px; margin: 0px;}
-  .event-wrapper {padding-left: 15px; height: 100%;  width: 100%;}
-  .closed {display: flex; align-items: center; justify-content: flex-start; }
-}
-
-
-.event-container {width: 100%; display: flex; align-items: flex-start; justify-content: flex-start; flex-direction: column;}
-
 .cal-color-1 {background-color: var(--color-1);}
 .cal-color-2 {background-color: var(--color-2);}
 .cal-color-3 {background-color: var(--color-3);}
 
-.hidden-calendar-table {display: none;}
-.active-calendar-table {display: block!important;}
-
-.popup-h1 span {font-size: 42px!important;}
-
-.exhibition-event p {font-size: 12px; font-style: italic; line-height: 14px!important; margin: 5px 0px; padding: 0px!important;}
-
-.event-details p:nth-child(odd) {margin: 3px 0px; padding: 3px 0px;}
-.event-details {border-top: 1px solid rgba(255,255,255,0.6);}
-.event-details:nth-child(1) {border-top: 0px solid rgba(255,255,255,0.6);}
-.future-event {order: -1!important;}
-
-.event-details-title {padding: 0px; margin: 0; }
-
-
-
-.calendar-closure {width: 115px; padding-left: 10px;}
 
 
 
 
 
-//New Calendar
 
 
 
-#eventPopupWindow {border: 3px solid white; width: 90vw; height: 88vh; margin: 2.5vw;}
-#eventWrapper { overflow-y: scroll;  }
-.event-item-wrapper {width: 100%; padding: 0px 25px 50px;}
-#eventPopup {width: 100vw; height: 100vh; cursor: pointer; position: fixed; top: 0; left: 0;  z-index: 20000000000000; background: rgba(225, 219, 205, 0.75);  }
-.event-frame {width: 100%;  border: unset;}
-.hidden-event-frame {display: none;}
-#eventPopupClose { background: var(--red); text-align: center; height: 65px; color: white; width: 100%; font-size: 24px;}
 
 
-#eventDetails {width: 100%;}
 
-#eventPopupImage {max-width: 400px; width: 100%; float: left; margin: 0px 25px 25px 0px}
-.event-details-excerpt {margin-bottom: 15px; padding: 5px; font-size: 14px; font-family: Armoire, 'serif'; text-transform: uppercase; border: 1px solid black;}
-.event-details-dates {font-family: 'Armoire', serif; color: var(--red); font-size: 24px; text-transform: uppercase; text-align: left!important;}
-.event-details-times {font-family: 'Armoire', serif; color: black; font-size: 18px; text-transform: uppercase;}
+
+
+
+
+
+
+
+
+
 
 // CONTACT PAGE
 .contact-header {width: 100vw; height: 550px; padding: 20px; margin-top: 100px;  background-image: url('../assets/soho-v2.png'); background-size: contain; background-repeat: no-repeat; background-position: 0% 25px;}
@@ -398,10 +319,8 @@ td p {text-align: left!important;}
 #contact-title {width: 100%;text-align: center; height: 100%;}
 
 @media screen and (max-width: 550px)  {
-  #eventPopupImage {margin: 0 0 25px 0;}
   #contact-title { text-align: center;}
   .contact-details {width: 100%; margin-top: 75vw;}
-  .popup-h1 span {font-size: 32px!important;}
 }
 
 

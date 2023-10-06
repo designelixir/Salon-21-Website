@@ -2,6 +2,29 @@
 	.custom-bg-region {background-repeat: no-repeat; background-position: center 50px; padding-top: 50px;}
 	.col {float: unset!important;}
     .sqs-block-quote .sqs-block-content {margin: 15px 0px;}
+	.event { cursor: default; padding-bottom: 7px;}
+	.special-event-title {font-size: 16px; font-weight: 500; line-height: 16px; }
+	.regular-event-title {font-size: 14px; font-weight: 600; line-height: 16px;}
+	.ongoing-event-title {font-size: 14px; font-weight: 500; text-align: left; font-style: italic; line-height: 16px; opacity: 0.75}
+	.event-wrapper {padding: 7px; display: flex; align-items: flex-start; justify-content: flex-start; flex-direction: column;}
+
+	.event-wrapper p {margin: 0!important;}
+	.event-time {font-size: 12px; font-weight: 100; margin-top: 3px; color: black;}
+	.event-excerpt {font-style: italic; font-size: 12px; color: black; font-weight: 300; opacity: 0.5; line-height: 13px;}
+	.past-date {opacity: 0.25; pointer-events: none;}
+
+	.event .clickable {cursor: pointer!important;}
+	.clickable:hover {cursor: pointer; transform: scale(1.03) }
+	.special-event-border {border: 4px solid white;}
+	.closed-event {width: 100%; height: 100%; text-align: center; font-style: italic; min-height: 80px; color: white; opacity: 0.5; pointer-events: none;}
+	.multiple-event-border {border-bottom: 2px solid rgba(255,255,255,0.6); margin: 7px 0px; width: 100%; opacity: 0;}
+	.event-wrapper:nth-child(2) .regular-event {border-top: 2px solid rgba(255,255,255,0.6); padding-top: 7px; width: 100%;}
+
+#eventPopupWindow {border: 3px solid white; width: 90vw; height: 88vh; margin: 2.5vw;}
+#eventPopup {width: 100vw; height: 100vh; cursor: pointer; position: fixed; top: 0; left: 0;  z-index: 20000000000000; background: rgba(225, 219, 205, 0.75);  }
+#eventPopupClose { background: var(--red); text-align: center; height: 65px; color: white; width: 100%; font-size: 24px;}
+
+
 </style>
 
 {@|apply header.block}
@@ -76,7 +99,7 @@
 		<div id="eventPopupClose" class="flex-center-center">Close</div>
 		<div style="max-height: calc(88vh - 71px);" id="eventWrapper">
 		
-		<iframe id="eventPopupIframe" style="height: 80vh; border: 0px;" src=""></iframe>
+		<iframe id="eventPopupIframe" style="height: 80vh; width: 100%; border: 0px;" src=""></iframe>
 		
 		</div>
 	</div>
