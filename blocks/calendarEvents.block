@@ -1,9 +1,0 @@
-<squarespace:query collection="events" limit="200">
-
-  <ol>
-    {.repeated section items}
-      <li><a href="{fullUrl}">{title}</a></li>
-    {.end}
-  </ol>
-
-</squarespace:query>
