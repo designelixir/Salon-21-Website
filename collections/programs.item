@@ -1,9 +1,12 @@
-<div id={id} class="event-frame">
-			{.if customContent.programClickable}
-				<div class="event-item-wrapper">
-					<h1 class="popup-h1"><span class="hover" onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red);">{title}</span></h1>
-						<div class="event-popup-details flex-start-start">
-							{.if filename}<img id="eventPopupImage" alt="{title} social photo" src="{assetUrl}">{.end}
+<style>
+body {background-image: unset;}
+.custom-bg-region {background-repeat: no-repeat; background-position: center 50px; padding-top: 0px; background-image: url("")!important;}
+</style>
+{.section item}
+<div class="event-item-wrapper">
+<h1 class="popup-h1"><span class="hover" onclick="window.open('/events','_self')">Events/</span><span style="color: var(--red);">{title}</span></h1>
+<div class="event-popup-details flex-start-start">
+							<img id="eventPopupImage" alt="{title} social photo" src="{assetUrl}">
 							
 							<div id="eventDetails" class="flex-start-start flex-column">
 								{.if excerpt}<span class="event-details-excerpt">{excerpt|safe}</span>{.end}
@@ -55,7 +58,8 @@
 							<p style="font-size: 14px;"><i>
 							Tickets are limited and non-refundable. Please contact Alex at <a href="mailto:alex@salontwenty-one.com">alex@salontwenty-one.com</a> with any questions or concerns.
 							</i></p>
-						{.end}
-				</div>
-			{.end}
-		</div>
+                        {.end}
+
+
+</div>
+{.end}

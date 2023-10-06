@@ -30,7 +30,6 @@
 				{.if customContent.showTime}<p class="event-time">{structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} {.end}
 				{.if excerpt}<p class="event-excerpt">{excerpt|safe}</p>{.end}
 			</div>
-			
 			`
 			$('#' + targetDate + " .event-wrapper").append(eventCalendarContent)
 			{.if starred} $('#' + targetDate).addClass("special-event-border") {.end}
@@ -41,30 +40,32 @@
 				<p class="ongoing-event-title">{title}</p>
 				{.if customContent.showTime}<p class="event-time">{structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} {.end}
 				{.if excerpt}<p class="event-excerpt">{excerpt|safe|truncate 45}</p>{.end}
-				
 			</div>
 			
 			`
 
 			var monthDifference = endMonth - startMonth; 
 			var dateDifference = endDate - startDate; 
-			console.log(monthDifference + " " + dateDifference)
 			if (monthDifference === 0){
 				for (i = 0; i <= dateDifference; i++){
 					var targetDate = startMonth + "_" + (startDate + i);
-					console.log(targetDate)
 					$('#' + targetDate + " .event-wrapper").append(eventCalendarContent)
 				}
 			} else {
 				for (i = 0; i <= monthDifference; i++){
-					console.log("month difference: " + monthDifference)
-					var daysInMonth =  $('#' + (startMonth - 1) + "-table .live-date").length;
-					
-					for (i = 0; i <= daysInMonth - startDate; i++){
-					var targetDate = startMonth + "_" + (startDate + i);
-					console.log(targetDate)
-					$('#' + targetDate + " .event-wrapper").append(eventCalendarContent)
-				}
+					var monthToAddEvents = ((startMonth) + i)
+					if (i === 0){
+						var daysInMonth =  $('#' + monthToAddEvents + "-table .live-date").length;
+						for (j = 0; j <= daysInMonth - startDate; j++){
+							var targetDate = monthToAddEvents + "_" + (startDate + j);
+							$('#' + targetDate + " .event-wrapper").append(eventCalendarContent)	
+							}
+					} else {
+						for (j = 0; j <= endDate; j++){
+							var targetDate = monthToAddEvents + "_" + (j);
+							$('#' + targetDate + " .event-wrapper").append(eventCalendarContent)	
+							}
+					}
 				}
 			}
 		}
@@ -99,7 +100,7 @@ function toggleEvent(url){
 		<div id="eventPopupClose" class="flex-center-center">Close</div>
 		<div style="max-height: calc(88vh - 71px);" id="eventWrapper">
 		
-		<iframe id="eventPopupIframe" style="height: 85vh" src=""></iframe>
+		<iframe id="eventPopupIframe" style="height: 80vh; border: 0px;" src=""></iframe>
 		
 		</div>
 	</div>
