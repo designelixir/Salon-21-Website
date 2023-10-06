@@ -8,169 +8,99 @@
 	<h1 class="hover" onclick="window.open('{collection.fullUrl}','_self')"  id="page-title-h1">{collection.title}</h1>
 	{.if item.title}<h1><span class="red-text sub-title">{item.title}</span></h1>{.end}
 </header>
-
 {@|apply calendarBuilder.block}
+
+
+
+<squarespace:query collection="events" limit="100">
+    {.repeated section items}
+	<script>
+		{#  Event Date  }		
+		var startMonth = {structuredContent.startDate|date %m} - 1;
+		var startDate = {structuredContent.startDate|date %e};
+		var endMonth = {structuredContent.endDate|date %m} - 1;
+		var endDate = {structuredContent.endDate|date %e}
+
+		{#  Single or Ongoing Day Event  }
+		if (endMonth - startMonth === 0 && endDate - startDate === 0){
+			var targetDate = startMonth + "_" + startDate
+			var eventCalendarContent = `
+			<div id="{urlId}" class="event {.if customContent.programClickable} clickable {.end} {.if starred} special-event {.or} regular-event {.end}" {.if customContent.programClickable} {.if sourceUrl} onclick="window.open({sourceUrl})" {.or} onclick="toggleEvent('{fullUrl}')"{.end} {.end} style="order: {structuredContent.startDate|date %k}">
+				<p class="{.if starred} special-event-title {.or} regular-event-title {.end}">{title}</p>
+				{.if customContent.showTime}<p class="event-time">{structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} {.end}
+				{.if excerpt}<p class="event-excerpt">{excerpt|safe}</p>{.end}
+			</div>
+			
+			`
+			$('#' + targetDate + " .event-wrapper").append(eventCalendarContent)
+			{.if starred} $('#' + targetDate).addClass("special-event-border") {.end}
+		} else {
+			var targetDate = startMonth + "_" + startDate
+			var eventCalendarContent = `
+			<div id="{urlId}" class="event ongoing-event{.if customContent.programClickable} clickable {.end} {.if starred} special-event {.or} ongoing-event {.end}" {.if customContent.programClickable} {.if sourceUrl} onclick="window.open({sourceUrl})" {.or} onclick="toggleEvent('{fullUrl}')"{.end} {.end} style="order: 1!important">
+				<p class="ongoing-event-title">{title}</p>
+				{.if customContent.showTime}<p class="event-time">{structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} {.end}
+				{.if excerpt}<p class="event-excerpt">{excerpt|safe|truncate 45}</p>{.end}
+				
+			</div>
+			
+			`
+
+			var monthDifference = endMonth - startMonth; 
+			var dateDifference = endDate - startDate; 
+			console.log(monthDifference + " " + dateDifference)
+			if (monthDifference === 0){
+				for (i = 0; i <= dateDifference; i++){
+					var targetDate = startMonth + "_" + (startDate + i);
+					console.log(targetDate)
+					$('#' + targetDate + " .event-wrapper").append(eventCalendarContent)
+				}
+			} else {
+				for (i = 0; i <= monthDifference; i++){
+					console.log("month difference: " + monthDifference)
+					var daysInMonth =  $('#' + (startMonth - 1) + "-table .live-date").length;
+					
+					for (i = 0; i <= daysInMonth - startDate; i++){
+					var targetDate = startMonth + "_" + (startDate + i);
+					console.log(targetDate)
+					$('#' + targetDate + " .event-wrapper").append(eventCalendarContent)
+				}
+				}
+			}
+		}
+	</script>
+    {.end}
+
+</squarespace:query>
+
+
 {@|apply footer.block}
 
-{.repeated section items}
-	{.equal? customContent.customType "eventOngoing"}
-		<script>
-			var ongoingTitle = "{title}";
-			var ongoingStartMonth = {structuredContent.startDate|date %m} - 1;
-			var ongoingStartDate = {structuredContent.startDate|date %e};
-			var ongoingEndMonth = {structuredContent.endDate|date %m} - 1;
-			var ongoingEndDate = {structuredContent.endDate|date %e}
-			var ongoingDateCell = String(ongoingStartMonth) + "-" + String(ongoingStartDate)
-			
-			{.if customContent.showTime} 
-				var ongoingTime = "<span class='event-time'>{structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p}</span>"
-			{.or} 
-				var ongoingTime = "";
-			{.end}
+<script>
 
-			{.if sourceUrl}
-				var source = `onclick='window.open("{sourceUrl}")'`
-			{.end}
+function toggleEvent(url){
+	if (document.getElementById('eventPopup').style.display === "none"){
+		console.log(url)
+		document.getElementById('eventPopup').style.display = "flex";
+		
+		document.getElementById('eventWrapper').scroll(0,0)
+		$("body").css("overflow","hidden!important");
+		$("#eventPopupIframe").attr("src", url)
+	} else if (document.getElementById('eventPopup').style.display === "flex") {
+		closePopup()
+	}
+}
 
+</script>
 
-			{.if customContent.programClickable}
-				var ongoingContainer = "<div class='event-details ongoing-event event-container has-time hover clickable' data-military-time={structuredContent.startDate|date %H} " + source +">"
-			{.or}
-				var ongoingContainer = "<div class='event-details ongoing-event event-container has-time non-clickable' data-military-time={structuredContent.startDate|date %H}>"
-			{.end}
-			
-			
-			
-			var eventTitle = ongoingContainer + "<p class='event-details-title ongoing-event-title'>" + ongoingTitle + ongoingTime + "</p></div>"
-			{.if excerpt} var eventExcerpt = `{excerpt|safe}` {.or} var eventExcerpt = "" {.end}
-			var eventExcerptContainer = "<p class='excerpt'>" + eventExcerpt + "</p>"
-			var ongoingEventRange = (ongoingEndDate - ongoingStartDate);
-			if(ongoingEventRange > 0){
-				for (i = 0; i < ongoingEventRange + 1; i++){
-					var nextDay = ongoingStartDate + i
-					var ongoingDateCellMulti = String(ongoingStartMonth) + "_" + String(ongoingStartDate + i)
-					$("#" + ongoingDateCellMulti + " .event-wrapper").append(eventTitle)
-					{.if excerpt}$("#" + ongoingDateCellMulti + " .event-wrapper").append(eventExcerptContainer){.end}
-					
-
-					$("#" + ongoingDateCellMulti).addClass('has-event')
-				}
-			} else {}
-		</script>
-	{.end}
-
-	{.equal? customContent.customType "eventSpecial"}
-		<script>
-			var specialTitle = "{title}";
-			var specialStartMonth = {structuredContent.startDate|date %m} - 1;
-			var specialStartDate = {structuredContent.startDate|date %e};
-			var specialEndMonth = {structuredContent.endDate|date %m} - 1;
-			var specialEndDate = {structuredContent.endDate|date %e}
-			var specialDateCell = String(specialStartMonth) + "_" + String(specialStartDate)
-			{.if customContent.showTime} 
-				var specialShowTime = "<span class='event-time'>{structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p}</span>"
-			{.or} 
-				var specialShowTime = ""
-			{.end}
-			
-			{.if customContent.programClickable} 
-				{.if sourceUrl} 
-					var source = `"{sourceUrl}"`
-					var specialContainer = "<div class='event-details{.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end} onclick='window.open("+ source +")'>"
-				{.or} 
-					var source = `"https://salontwenty-one.com/events/" + "{urlId}"`
-					var id = `"{id}"`
-
-					var specialContainer = "<div class='event-details {.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end} onclick='toggleEventPopup("+ id + ", `" + specialDateCell + "`)'>"
-				{.end}
-			{.or} 
-				var specialContainer = "<div class='event-details non-clickable {.if starred}special-event {.or} regular-event {.end} event-container {.if customContent.showTime}has-time' data-military-time={structuredContent.startDate|date %H} {.or}' {.end}>"
-			{.end}
-			
-			{.if excerpt}
-				var specialExcerpt = "<br class='mobile-breaks'><span class='event-excerpt'> " + `{excerpt|safe}` + "</span>"
-				{.or}
-				var specialExcerpt = ""
-			{.end}
-			var specialEvent = specialContainer + "<p class='{.if customContent.programClickable} hover {.end} event-details-title {.if starred}special-event-title {.or} regular-event-title {.end}'>" + specialTitle +  specialExcerpt + "<br class='mobile-breaks'>" + specialShowTime + "</p></div>"
-			var specialEventRange = (specialEndDate - specialStartDate);
-			$("#" + specialDateCell + " .event-wrapper").append(specialEvent)
-			$("#" + specialDateCell ).addClass('has-event')
-			{.if starred}
-				$("#" + specialDateCell).addClass('special-event-border')
-			{.end}
-			
-		</script>
-	{.end}
-{.end}
 
 <div id="eventPopup" class="flex-start-center" style="display: none;">
 	<div class="textured-bg" id="eventPopupWindow">
 		<div id="eventPopupClose" class="flex-center-center">Close</div>
 		<div style="max-height: calc(88vh - 71px);" id="eventWrapper">
-		{.repeated section items}
-		<div id={id} class="event-frame hidden-event-frame">
-			{.if customContent.programClickable}
-				<div class="event-item-wrapper">
-					<h1 class="popup-h1"><span class="hover" onclick="window.open('{collection.fullUrl}','_self')">Events/</span><span style="color: var(--red);">{title}</span></h1>
-						<div class="event-popup-details flex-start-start">
-							{.if filename}<img id="eventPopupImage" alt="{title} social photo" src="{assetUrl}">{.end}
-							
-							<div id="eventDetails" class="flex-start-start flex-column">
-								{.if excerpt}<span class="event-details-excerpt">{excerpt|safe}</span>{.end}
-								{.equal? customContent.customType "eventSpecial"}
-								<div  style="text-align: left!important;">
-									<h2 class="event-details-dates"> {structuredContent.startDate|date %B %e, %Y} </h2>
-									<h2 class="event-details-times"> {structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} </h2>
-								</div>
-								{.or}
-									<h2 class="event-details-dates"> {structuredContent.startDate|date %B %e, %Y} - {structuredContent.endDate|date %B %e, %Y}</h2>
-									{.if customContent.showTime}
-									<h2 class="event-details-times"> {structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p}</h2>
-									{.end}
-									 
-									
-								{.end}
-								<div class="flex-start-start"><img src="../assets/spear.svg" alt="decorative frame" style="margin-right: 10px; margin-bottom: 15px;"></div>
-								
-								{.if location}
-									{.section location}
-									<a href="https://www.google.com/maps/search/{addressLine1}{addressLine2}" target="_blank" class="hover" style="font-size: 16px; color: black; opacity: 0.85; margin: 10px 0px;">📍{.if addressTitle}{addressTitle}, {.end}{addressLine1}, {addressLine2}</a><br>
-									{.end}
-									{.or}
-									<a href="https://goo.gl/maps/VaXJAXhjZbGcekmF7" target="_blank" class="hover" style="font-size: 16px; color: black; opacity: 0.85; margin: 10px 0px">📍 52 Greene Street, Floor 3, New York, NY, 10013</a><br>
-								{.end}
-								
-								
-									{.if customContent.ticketPurchaseDescription}
-									<p style="font-size: 14px"> {customContent.ticketPurchaseDescription} </p>
-									{.end}
-								{.if customContent.ticketLink}
-									
-									<button onclick="window.open('{customContent.ticketLink}')" class="red-button hover" style="margin: 10px 0px 15px 0px;">
-										{.if customContent.ticketButton}{customContent.ticketButton}{.or}Tickets Here{.end}
-									</button>
-									
-								{.end}
-								<br>
-								<div class="event-details-body" id="eventDetailsBody">{body}</div>
-								
-							</div>
-						</div>
-						
-						{.if customContent.hasFood}
-							<p style="font-size: 14px;">Guests must be over the age of 21 to attend this event. Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of food-borne illness, especially if you have certain medical conditions. Please drink responsibly.</p>
-						{.end}
-						<p style="font-size: 14px;"><i><span style="font-weight: 800;">Disclaimer:</span> Due to the building’s landmark status from 1912, we do not have an elevator. Salon 21 is on the third floor, up two flights of stairs. <br><br> Professional photography will be taken at the event. Please note that by entering the event site you agree to be filmed or photographed which may be used for marketing or promotional purposes. By attending this event you also agree to absolve the organizers and host of this event from any and all legal liability for any injury or illness that may occur. </i></p>
-						{.if customContent.ticketLink}
-							<p style="font-size: 14px;"><i>
-							Tickets are limited and non-refundable. Please contact Alex at <a href="mailto:alex@salontwenty-one.com">alex@salontwenty-one.com</a> with any questions or concerns.
-							</i></p>
-						{.end}
-				</div>
-			{.end}
-		</div>
-		{.end}
+		
+		<iframe id="eventPopupIframe" style="height: 85vh" src=""></iframe>
+		
 		</div>
 	</div>
 </div>
@@ -185,10 +115,9 @@ function toggleEventPopup(id, sourceId){
 	scrollPosition = sourceId
 	if (document.getElementById('eventPopup').style.display === "none"){
 		document.getElementById('eventPopup').style.display = "flex";
-		document.getElementById(id).classList.remove('hidden-event-frame')
-		document.getElementById(id).scroll(0,0)
+		
 		document.getElementById('eventWrapper').scroll(0,0)
-		document.body.classList.add('no-scroll');
+		$("body").css("overflow","hidden!important");
 	} else if (document.getElementById('eventPopup').style.display === "flex") {
 		closePopup()
 	}
@@ -196,13 +125,10 @@ function toggleEventPopup(id, sourceId){
 
 function closePopup(){
 	var openWindow = document.getElementsByClassName('event-frame')
-	
 	for (i=0; i < openWindow.length; i++){
 		if (openWindow[i].classList.contains('hidden-event-frame')){
-			console.log("we good")
 		} else {
 			openWindow[i].classList.add('hidden-event-frame')
-			console.log("added frame")
 		}
 	}
 	document.getElementById('eventPopup').style.display = "none";
@@ -223,7 +149,7 @@ var closuresList = ['9_2', '9_3', '9_8', '9_21', '9_22', '10_17', '10_18', '10_2
 		for (i = 0; i < closuresList.length; i++){
 			var targetClosure = document.getElementById(closuresList[i])
 			$('#' + closuresList[i] ).addClass("closed")
-		$('#' + closuresList[i] ).find('.event-wrapper').html("<p class='closed-p'>Closed<p>")
+		$('#' + closuresList[i] ).find('.event-wrapper').html("<div class='closed-event flex-center-center flex-column'><p class='closed-p'>Closed<p></div>")
 		
 		}
 	}
@@ -245,11 +171,11 @@ var closuresList = ['9_2', '9_3', '9_8', '9_21', '9_22', '10_17', '10_18', '10_2
  $('#9_10 .event-details .ongoing-event-title').append(extraExcerpt)
  $('#9_11 .event-details .ongoing-event-title' ).append(extraExcerpt)
  $('#9_12 .event-details .ongoing-event-title').append(extraExcerpt)
- $('#9_12 .event-details .ongoing-event-title').append(extraExcerpt)
- $('#10_23 .date-cell-day').append("<p class='holiday-event'>Thanksgiving</p>")
-$('#11_24 .date-cell-day').append("<p class='holiday-event'>Christmas Eve</p>")
- $('#11_25 .date-cell-day').append("<p class='holiday-event'>Christmas</p>")
- $('#11_31 .date-cell-day').append("<p class='holiday-event'>New Years Eve</p>")
- $('#0_1 .date-cell-day').append("<p class='holiday-event'>New Years Day</p>")
+ 
+ $('#10_23 .closed-event').append("<p class='holiday-event'>Thanksgiving</p><br>")
+$('#11_24 .closed-event').append("<p class='holiday-event'>Christmas Eve</p><br>")
+ $('#11_25 .closed-event').append("<p class='holiday-event'>Christmas</p><br>")
+ $('#11_31 .closed-event').append("<p class='holiday-event'>New Years Eve</p><br>")
+ $('#0_1 .closed-event').append("<p class='holiday-event'>New Years Day</p><br>")
  
 </script>

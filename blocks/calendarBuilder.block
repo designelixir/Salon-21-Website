@@ -66,6 +66,7 @@
 	{#  remove stuff from parenthesis when september passes  }
     var currentDate = new Date();
     var currentMonth = currentDate.getMonth(); 
+	var currentDay = currentDate.getDate();
     var year = currentDate.getFullYear();
 	
 	const calendar = createCalendar(currentMonth, year);
@@ -157,5 +158,12 @@
 		}
 		colorCalendar();
 	
-	    
+
+function dullPastDates(month, day){
+	for (i = 0; i < day; i++ ){
+		$('#' + month + "_" + i).addClass("past-date")
+	}
+}
+dullPastDates(currentMonth, currentDay)
+
 </script>
