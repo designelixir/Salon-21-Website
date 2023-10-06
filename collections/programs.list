@@ -25,7 +25,7 @@
 		if (endMonth - startMonth === 0 && endDate - startDate === 0){
 			var targetDate = startMonth + "_" + startDate
 			var eventCalendarContent = `
-			<div id="{urlId}" class="event {.if customContent.programClickable} clickable {.end} {.if starred} special-event {.or} regular-event {.end}" {.if customContent.programClickable} {.if sourceUrl} onclick="window.open({sourceUrl})" {.or} onclick="toggleEvent('{fullUrl}')"{.end} {.end} style="order: {structuredContent.startDate|date %k}">
+			<div id="{urlId}" class="event {.if customContent.programClickable} clickable {.end} {.if starred} special-event {.or} regular-event {.end}" {.if customContent.programClickable} {.if sourceUrl} onclick="window.open('{sourceUrl}')" {.or} onclick="toggleEvent('{fullUrl}')"{.end} {.end} style="order: {structuredContent.startDate|date %k}">
 				<p class="{.if starred} special-event-title {.or} regular-event-title {.end}">{title}</p>
 				{.if customContent.showTime}<p class="event-time">{structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} {.end}
 				{.if excerpt}<p class="event-excerpt">{excerpt|safe}</p>{.end}
@@ -36,7 +36,7 @@
 		} else {
 			var targetDate = startMonth + "_" + startDate
 			var eventCalendarContent = `
-			<div id="{urlId}" class="event ongoing-event{.if customContent.programClickable} clickable {.end} {.if starred} special-event {.or} ongoing-event {.end}" {.if customContent.programClickable} {.if sourceUrl} onclick="window.open({sourceUrl})" {.or} onclick="toggleEvent('{fullUrl}')"{.end} {.end} style="order: 1!important">
+			<div id="{urlId}" class="event ongoing-event{.if customContent.programClickable} clickable {.end} {.if starred} special-event {.or} ongoing-event {.end}" {.if customContent.programClickable} {.if sourceUrl} onclick="window.open('{sourceUrl}')" {.or} onclick="toggleEvent('{fullUrl}')"{.end} {.end} style="order: 1!important">
 				<p class="ongoing-event-title">{title}</p>
 				{.if customContent.showTime}<p class="event-time">{structuredContent.startDate|date %l:%M %p} to {structuredContent.endDate|date %l:%M %p} {.end}
 				{.if excerpt}<p class="event-excerpt">{excerpt|safe|truncate 45}</p>{.end}
@@ -78,19 +78,23 @@
 {@|apply footer.block}
 
 <script>
+function closePopup(){
+	document.getElementById('eventPopup').style.display = "none";
+	$("body").css({"height": "unset", "overflow": "scroll"})
+	$("#eventPopupIframe").attr("src", "")
+}
 
 function toggleEvent(url){
 	if (document.getElementById('eventPopup').style.display === "none"){
-		console.log(url)
 		document.getElementById('eventPopup').style.display = "flex";
-		
-		document.getElementById('eventWrapper').scroll(0,0)
-		$("body").css("overflow","hidden!important");
 		$("#eventPopupIframe").attr("src", url)
+		$("body").css({"height": "100vh", "overflow": "hidden"})
 	} else if (document.getElementById('eventPopup').style.display === "flex") {
 		closePopup()
 	}
 }
+
+
 
 </script>
 
@@ -109,34 +113,6 @@ function toggleEvent(url){
 <script>
 
 
-
-var scrollPosition;
-
-function toggleEventPopup(id, sourceId){
-	scrollPosition = sourceId
-	if (document.getElementById('eventPopup').style.display === "none"){
-		document.getElementById('eventPopup').style.display = "flex";
-		
-		document.getElementById('eventWrapper').scroll(0,0)
-		$("body").css("overflow","hidden!important");
-	} else if (document.getElementById('eventPopup').style.display === "flex") {
-		closePopup()
-	}
-}
-
-function closePopup(){
-	var openWindow = document.getElementsByClassName('event-frame')
-	for (i=0; i < openWindow.length; i++){
-		if (openWindow[i].classList.contains('hidden-event-frame')){
-		} else {
-			openWindow[i].classList.add('hidden-event-frame')
-		}
-	}
-	document.getElementById('eventPopup').style.display = "none";
-	document.body.classList.remove('no-scroll');
-	var targetDiv = document.getElementById(scrollPosition);
-	targetDiv.scrollIntoView({ behavior: 'instant', block: 'center' });
-}
 
 
 document.getElementById("eventPopupClose").addEventListener("click", closePopup);
